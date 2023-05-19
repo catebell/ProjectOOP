@@ -1,0 +1,66 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "C:/Users/Daniele Teli/Documents/FXGLGames/Mario/src/main/resources/assets/levels/tmx/level1.tmx": {
+            "scale": 0.8025238095238094,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 525.8410965406754,
+                "y": 350.7684091853083
+            }
+        },
+        "C:/Users/Daniele Teli/Documents/FXGLGames/Mario/src/main/resources/assets/levels/tmx/level1.tmx#tiles_spritesheet": {
+            "scaleInDock": 1
+        },
+        "TestLvl.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 60.54545454545456,
+                "y": 27.363636363636367
+            }
+        },
+        "Tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 11
+        },
+        "Tileset8Bit.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 5.5
+        },
+        "TilesetT.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 11
+        }
+    },
+    "last.imagePath": "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/TiledStuff",
+    "map.height": 10,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 6,
+    "map.tileWidth": 6,
+    "map.width": 25,
+    "openFiles": [
+    ],
+    "project": "OOPGame.tiled-project",
+    "recentFiles": [
+        "Tileset.tsx",
+        "TilesetT.tsx",
+        "Tileset8Bit.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 6,
+        "width": 6
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.useTransparentColor": true
+}
