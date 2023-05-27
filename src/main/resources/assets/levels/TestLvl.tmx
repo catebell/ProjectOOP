@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="25" height="10" tilewidth="6" tileheight="6" infinite="0" nextlayerid="3" nextobjectid="9">
- <tileset firstgid="1" source="TilesetT.tsx"/>
+ <tileset firstgid="1" source="../TiledStuff/TilesetT.tsx"/>
  <layer id="1" name="Tile Layer 1" width="25" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -16,9 +16,6 @@
 </data>
  </layer>
  <objectgroup id="2" name="Terrain">
-  <object id="7" name="Terrain" type="Terrain" x="1.125" y="36.125">
-   <polygon points="0,0 22.625,-0.25 22.75,6.375 95.625,5.75 148.75,5.875 148.75,12 -1.375,12 -1.125,-0.125"/>
-  </object>
   <object id="8" name="Platform" type="Platform" x="96.125" y="24.125" width="30" height="5.75"/>
  </objectgroup>
 </map>
