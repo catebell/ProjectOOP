@@ -1,17 +1,20 @@
 package com.game.projectoop;
 
+import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.app.scene.LoadingScene;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
-import static com.almasb.fxgl.dsl.FXGLForKtKt.getUIFactoryService;
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class MainLoadingScene extends LoadingScene {
     public MainLoadingScene(){
         Rectangle backGround = new Rectangle(getAppWidth(),getAppHeight(), Color.BLACK);
 
-        Text text = getUIFactoryService().newText("loading",Color.WHITE,50);
+        Text text = getUIFactoryService().newText("loading",Color.WHITE,25);
         centerText(text,getAppWidth()/2.0,getAppHeight()/2.0);
 
         HBox hBox = new HBox(5);

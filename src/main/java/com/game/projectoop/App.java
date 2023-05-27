@@ -27,4 +27,13 @@ public class App extends GameApplication {
         });
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
+
+    @Override
+    protected void initGame() {
+        getGameWorld().addEntityFactory(new PlatformerFactory());
+        spawn("background");
+    }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
