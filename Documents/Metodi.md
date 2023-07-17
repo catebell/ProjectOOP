@@ -1,24 +1,26 @@
-# Metodi utilizzati nel Progetto
+# Project metods layout
 
 ### App extends GameApplication
 
-#### initSetting
+#### enum [EntityType]
 
-* settaggio finestra e schermo intero
-* scena iniziale
+#### initSettings()
+
+* window settings and full screen
+* starting scene
 * runtime mode
-* possibili impostazioni 
+* player options
 
 #### initGame
 * setlazy --> movimento camera morbido
-* sfondo
+* background
 
 
 
 ### MainLoadingScene extends LoadingScene
 
 #### MainLoadingScene()
-* background e testo di loading 
+* loading scene (text, background)
 
 
 

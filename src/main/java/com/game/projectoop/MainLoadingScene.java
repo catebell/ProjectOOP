@@ -23,7 +23,7 @@ public class MainLoadingScene extends LoadingScene {
             Text dot = getUIFactoryService().newText(".",Color.WHITE,30);
             hBox.getChildren().add(dot);
 
-            animationBuilder(this)
+            animationBuilder(this) //loading dots animations
                     .autoReverse(true)
                     .delay(Duration.seconds(i*0.5))
                     .repeatInfinitely()
@@ -31,8 +31,8 @@ public class MainLoadingScene extends LoadingScene {
                     .buildAndPlay();
         }
 
-        hBox.setTranslateX(getAppWidth() / 2 - 15); //spostamento dei puntini di caricamento
-        hBox.setTranslateY(getAppHeight() / 2);
+        hBox.setTranslateX(getAppWidth() / 2.0 - 15); //loading dots centered
+        hBox.setTranslateY(getAppHeight() / 2.0);
 
         getContentRoot().getChildren().setAll(backGround,text,hBox);
     }

@@ -17,6 +17,7 @@ public class App extends GameApplication {
     protected void initSettings(GameSettings settings) {
         settings.setHeight(720);
         settings.setWidth(1280);
+        settings.setFullScreenAllowed(true);
         //settings.setFullScreenFromStart(true);
 
         settings.setSceneFactory(new SceneFactory(){
@@ -27,6 +28,7 @@ public class App extends GameApplication {
         });
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
+
 
     @Override
     protected void initGame() {
