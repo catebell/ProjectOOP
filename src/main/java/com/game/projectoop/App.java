@@ -17,6 +17,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
+import java.util.Map;
+
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 
@@ -105,16 +107,37 @@ public class App extends GameApplication {
                         });
             }
         },KeyCode.E);
+    }
 
-        //FINIRE MOVIMENTO PERSONAGGIO
+    /* [serve?] @Override
+    protected void initGameVars(Map<String, Object> vars) {
+        ;
+    }*/
+
+    @Override
+    protected void onPreInit() {
+        getSettings().setGlobalMusicVolume(0.25);
+        //altre impostazioni del genere
+        /* [what is this] loopBGM("BGM_dash_runner.wav");*/
     }
 
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new PlatformerFactory());
+        player = null;
+
+        setLevel(); //nextlevel(); [?]
+
+        // player must be spawned after call to nextLevel, otherwise player gets removed
+        // before the update tick _actually_ adds the player to game world
+        player = spawn("player", 50, 50);
+        set("player",player);
+
         spawn("background");
 
-        setLevel(); //Thomas
+
+
+
     }
     public static void main(String[] args) {
         launch(args);

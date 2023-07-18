@@ -28,6 +28,8 @@
 * creazione delle entità nel gioco
 #### newBackGround()
 
+#### newPlayer()
+
 ---
 
 ### App extends GameApplication extends Component
