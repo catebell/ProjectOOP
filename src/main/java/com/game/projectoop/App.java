@@ -36,6 +36,7 @@ public class App extends GameApplication {
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("TestLvl.tmx");
+
     }
 
     @Override
@@ -43,6 +44,7 @@ public class App extends GameApplication {
         settings.setHeight(720);
         settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
+
         //settings.setFullScreenFromStart(true);
 
         settings.setSceneFactory(new SceneFactory(){

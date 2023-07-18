@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="25" height="10" tilewidth="6" tileheight="6" infinite="0" nextlayerid="3" nextobjectid="9">
- <tileset version="1.10" tiledversion="1.10.1" name="TilesetT" tilewidth="6" tileheight="6" tilecount="550" columns="22">
-  <image source="Tileset.png" trans="000000" width="132" height="150"/>
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="25" height="10" tilewidth="30" tileheight="30" infinite="0" nextlayerid="3" nextobjectid="9">
+ <tileset firstgid="1" name="TilesetBig" tilewidth="30" tileheight="30" tilecount="550" columns="22">
+  <image source="TilesetBig.png" trans="000000" width="660" height="750"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="25" height="10">
   <data encoding="csv">
@@ -11,13 +11,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,468,296,297,298,468,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,488,0,0,0,488,0,0,0,0,
-292,290,290,293,0,0,0,0,0,0,0,0,0,0,0,0,510,0,0,0,510,0,0,0,0,
+297,297,290,293,0,0,0,0,0,0,0,0,0,0,0,0,510,0,0,0,510,0,0,0,0,
 316,316,316,337,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,1610613051,293,
 316,316,316,296,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,298,316,
 474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474,474
 </data>
  </layer>
  <objectgroup id="2" name="Terrain">
-  <object id="8" name="Platform" type="Platform" x="96.125" y="24.125" width="30" height="5.75"/>
+  <object id="8" name="Platform" type="Platform" x="480.792" y="120.125" width="148" height="29.0833"/>
  </objectgroup>
 </map>
