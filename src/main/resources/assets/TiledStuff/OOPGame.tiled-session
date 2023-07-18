@@ -24,6 +24,25 @@
         "C:/Users/Daniele Teli/Documents/FXGLGames/Mario/src/main/resources/assets/levels/tmx/level1.tmx#tiles_spritesheet": {
             "scaleInDock": 1
         },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx": {
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 73.5,
+                "y": 26.875
+            }
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/level1.tmx": {
+            "scale": 0.6867142857142857,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 525.691699604743,
+                "y": 571.562304971916
+            }
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/level1.tmx#tiles_spritesheet": {
+            "scaleInDock": 1
+        },
         "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels/TestLvl.tmx": {
             "scale": 5.617666666666667,
             "selectedLayer": 1,
@@ -62,9 +81,11 @@
             "scaleInEditor": 11
         }
     },
+    "last.exportedFilePath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
     "last.externalTilesetPath": "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/TiledStuff",
     "last.imagePath": "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/TiledStuff",
     "map.height": 10,
+    "map.lastUsedExportFilter": "All Files (*)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 6,
     "map.tileWidth": 6,
@@ -74,6 +95,7 @@
     ],
     "project": "OOPGame.tiled-project",
     "recentFiles": [
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx",
         "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels/TestLvl.tmx",
         "C:/Users/Daniele Teli/Documents/FXGLGames/Mario/src/main/resources/assets/levels/tmx/level1.tmx",
         "TilesetT.tsx",

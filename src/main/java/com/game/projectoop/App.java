@@ -33,7 +33,7 @@ public class App extends GameApplication {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
             player.setZIndex(Integer.MAX_VALUE);
         }
-        Level level = setLevelFromMap("tmx/TestLvl.tmx");
+        Level level = setLevelFromMap("TestLvl.tmx");
     }
 
     @Override

@@ -18,6 +18,10 @@ public class PlatformerFactory implements EntityFactory {
             .with(new IrremovableComponent())
             .build();
     }
+    @Spawns("Platform")
+    public Entity newPlatform(SpawnData data){
+        return  entityBuilder().build();
+    }
 
 }
 
