@@ -44,7 +44,6 @@ public class App extends GameApplication {
         //settings.setFullScreenFromStart(true);
 
         settings.setSceneFactory(new SceneFactory(){
-            //@NotNull
             @Override
             public LoadingScene newLoadingScene() {
                 return new MainLoadingScene();
