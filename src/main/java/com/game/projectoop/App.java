@@ -115,7 +115,7 @@ public class App extends GameApplication {
         getGameWorld().addEntityFactory(new PlatformerFactory());
         spawn("background");
 
-        //setLevel(); //Thomas
+        setLevel(); //Thomas
     }
     public static void main(String[] args) {
         launch(args);
