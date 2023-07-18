@@ -22,7 +22,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
     public enum EntityType{
-        PLAYER,PLATFORM
+        PLAYER,PLATFORM,BUTTON
     }
 
     //? private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
@@ -36,6 +36,7 @@ public class App extends GameApplication {
         //settings.setFullScreenFromStart(true);
 
         settings.setSceneFactory(new SceneFactory(){
+            //@NotNull
             @Override
             public LoadingScene newLoadingScene() {
                 return new MainLoadingScene();
@@ -46,6 +47,7 @@ public class App extends GameApplication {
 
     @Override
     protected void initInput() {
+        //movement to the left
         getInput().addAction(new UserAction("Left"){
             @Override
             protected void onAction() {
@@ -56,7 +58,48 @@ public class App extends GameApplication {
             protected void onActionEnd() {
                 player.getComponent(PlayerComponent.class).stop();
             }
-        }, KeyCode.A, VirtualButton.LEFT);
+        }, KeyCode.A);
+
+        //movement to the right
+        getInput().addAction(new UserAction("Right") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerComponent.class).right();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PlayerComponent.class).stop();
+            }
+        },KeyCode.D);
+
+        //jump
+        getInput().addAction(new UserAction("Jump") {
+            @Override
+            protected void onActionBegin() {
+                player.getComponent(PlayerComponent.class).jump();
+            }
+        },KeyCode.W);
+
+        getInput().addAction(new UserAction("Use") {
+            @Override
+            protected void onActionBegin() {
+                getGameWorld().getEntitiesByType(EntityType.BUTTON)
+                        .stream()
+                        .filter(btn -> btn.hasComponent(CollidableComponent.class)&& player.isColliding(btn))
+                        .forEach(btn -> {
+                            btn.removeComponent(CollidableComponent.class);
+
+                            Entity keyEntity = btn.getObject("keyEntity");
+                            keyEntity.setProperty("activated", true);
+
+                            KeyView view = (KeyView) keyEntity.getViewComponent().getChildren().get(0);
+                            view.setKeyColor(Color.RED);
+                        });
+            }
+        },KeyCode.E);
+
+        //FINIRE MOVIMENTO PERSONAGGIO
     }
 
     @Override

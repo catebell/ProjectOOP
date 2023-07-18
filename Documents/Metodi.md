@@ -26,13 +26,32 @@
 #### MainLoadingScene()
 * loading scene (text, background)
 
-
+---
 
 ### PlatformerFactory implements EntityFactory
 * creazione delle entità nel gioco
 #### newBackGround()
 
+---
 
+### App extends GameApplication extends Component
+[physics, texture, animIdle, animWalk, jumps]
+
+#### PLayerComponent()
+* sprite and player overall definition
+
+#### onAdded()
+
+#### onUpdate()
+* animations based on movement
+
+#### left()
+
+#### right()
+
+#### stop()
+
+---
 
 ## da fare
 * caricare livello (to test)
