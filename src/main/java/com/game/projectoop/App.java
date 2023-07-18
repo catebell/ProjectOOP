@@ -7,9 +7,15 @@ import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.components.CollidableComponent;
+import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.input.view.KeyView;
 import com.almasb.fxgl.input.virtual.VirtualButton;
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+//import org.jetbrains.annotations.NotNull;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -57,6 +63,16 @@ public class App extends GameApplication {
     protected void initGame() {
         getGameWorld().addEntityFactory(new PlatformerFactory());
         spawn("background");
+        setLevel();
+    }
+
+    private void setLevel(){
+        if(player != null){
+            player.getComponent(PlayerComponent.class).overwritePosition(new Point2D(50,50));
+            player.setZIndex(Integer.MAX_VALUE);
+        }
+        Level level = setLevelFromMap("levels/TestsLvl.tmx");
+
     }
     public static void main(String[] args) {
         launch(args);

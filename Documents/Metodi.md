@@ -15,7 +15,11 @@
 * setlazy --> movimento camera morbido
 * background
 
+#### setLevel (not included)
+* resets the position of the player at the start of the level
+* Loads level from .tmx file
 
+---
 
 ### MainLoadingScene extends LoadingScene
 
@@ -31,8 +35,8 @@
 
 
 ## da fare
-* caricare livello
-* generare la piattaforma
+* caricare livello (to test)
+* generare la piattaforma 
 * inserire il giocatore
 * movimento
 * 
