@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx",
     "expandedProjectPaths": [
+        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
         ".",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
-        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels"
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -62,10 +62,10 @@
                 2
             ],
             "scale": 0.75,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 230,
-                "y": 458.6666666666666
+                "x": 614.6666666666666,
+                "y": 332.6666666666667
             }
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx#TilesetBig": {
@@ -138,12 +138,13 @@
     "map.tileWidth": 30,
     "map.width": 36,
     "openFiles": [
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx"
     ],
     "project": "OOPGame.tiled-project",
     "recentFiles": [
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ExemplesFXGL/src/main/resources/assets/levels/tmx/TilesetBig.tsx",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ExemplesFXGL/src/main/resources/assets/levels/tmx/level2.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TilesetBig.tsx",
         "TilesetBig.tsx",

@@ -1,12 +1,15 @@
 package com.game.projectoop;
 
 import com.almasb.fxgl.app.ApplicationMode;
+import com.almasb.fxgl.app.FXGLPane;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.FXGLScene;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.core.util.LazyValue;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
@@ -39,12 +42,13 @@ public class App extends GameApplication {
         }
         Level level = setLevelFromMap("TestLvl2.tmx");
 
+
     }
 
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setHeight(750);
-        settings.setWidth(1280);
+        settings.setHeight(24*30);
+        settings.setWidth(30*36);
         settings.setFullScreenAllowed(true);
 
         //settings.setFullScreenFromStart(true);
@@ -116,11 +120,10 @@ public class App extends GameApplication {
             }
         },KeyCode.E);
     }
-
-    /* [serve?] @Override
+    @Override
     protected void initGameVars(Map<String, Object> vars) {
-        ;
-    }*/
+        vars.put("Acc",0.0);
+    }
 
     @Override
     protected void onPreInit() {
@@ -134,6 +137,7 @@ public class App extends GameApplication {
         getGameWorld().addEntityFactory(new PlatformerFactory());
         player = null;
 
+
         setLevel(); //nextlevel(); [vedi sotto]
 
         // player must be spawned after call to nextLevel, otherwise player gets removed
@@ -144,7 +148,8 @@ public class App extends GameApplication {
         spawn("background");
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(-1500,0,250*70,getAppHeight());
+        viewport.setZoom(1.5);
+        viewport.setBounds(0,0,36*30,24*30);
         System.out.println(getAppHeight());
         viewport.bindToEntity(player,getAppWidth()/2.0,getAppHeight()/2.0);
         viewport.setLazy(true); //smoother camera movement
