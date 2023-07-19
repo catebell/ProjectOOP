@@ -41,8 +41,6 @@ public class App extends GameApplication {
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("TestLvl2.tmx");
-
-
     }
 
     @Override
@@ -50,8 +48,6 @@ public class App extends GameApplication {
         settings.setHeight(24*30);
         settings.setWidth(30*36);
         settings.setFullScreenAllowed(true);
-
-        //settings.setFullScreenFromStart(true);
 
         settings.setSceneFactory(new SceneFactory(){
             @Override
@@ -122,7 +118,7 @@ public class App extends GameApplication {
     }
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("Acc",0.0);
+        vars.put("acceleration",0.0);
     }
 
     @Override
@@ -157,7 +153,7 @@ public class App extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        getPhysicsWorld().setGravity(0,760);
+        getPhysicsWorld().setGravity(0,1000);
 
         //GESTIONE COLLISIONI
     }
