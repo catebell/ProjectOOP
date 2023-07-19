@@ -54,14 +54,14 @@ public class PlayerComponent extends Component {
         }
     }
 
-    public  void left(){
+    public  void left(double acc){
         getEntity().setScaleX(-1);
-        physics.setVelocityX(-170);
+        physics.setVelocityX(-170*acc);
     }
 
-    public void right(){
+    public void right(double acc){
         getEntity().setScaleX(1);
-        physics.setVelocityX(170);
+        physics.setVelocityX(170*acc);
     }
     public void stop(){
         physics.setVelocityX(0);

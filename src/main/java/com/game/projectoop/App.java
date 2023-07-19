@@ -30,6 +30,7 @@ public class App extends GameApplication {
 
     //? private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
     private Entity player;
+    private double accX=0;
 
     private void setLevel() {
         if (player != null) {
@@ -63,12 +64,14 @@ public class App extends GameApplication {
         getInput().addAction(new UserAction("Left"){
             @Override
             protected void onAction() {
-                player.getComponent(PlayerComponent.class).left();
+                player.getComponent(PlayerComponent.class).left(accX);
+                if(accX<1){ accX+=0.1;}
             }
 
             @Override
             protected void onActionEnd() {
                 player.getComponent(PlayerComponent.class).stop();
+                accX=0;
             }
         }, KeyCode.A);
 
@@ -76,12 +79,14 @@ public class App extends GameApplication {
         getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
-                player.getComponent(PlayerComponent.class).right();
+                player.getComponent(PlayerComponent.class).right(accX);
+                if(accX<1){ accX+=0.1;}
             }
 
             @Override
             protected void onActionEnd() {
                 player.getComponent(PlayerComponent.class).stop();
+                accX=0;
             }
         },KeyCode.D);
 
