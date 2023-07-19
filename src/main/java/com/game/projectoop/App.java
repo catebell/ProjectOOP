@@ -31,18 +31,18 @@ public class App extends GameApplication {
     //? private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
     private Entity player;
 
-    private void setLevel() { //Thomas
+    private void setLevel() {
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
             player.setZIndex(Integer.MAX_VALUE);
         }
-        Level level = setLevelFromMap("TestLvl.tmx");
+        Level level = setLevelFromMap("TestLvl2.tmx");
 
     }
 
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setHeight(720);
+        settings.setHeight(750);
         settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
 
