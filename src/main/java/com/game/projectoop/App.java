@@ -57,9 +57,6 @@ public class App extends GameApplication {
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
 
-    protected void initPhysics(){
-        getPhysicsWorld().setGravity(0, 760);
-    }
     @Override
     protected void initInput() {
         //movement to the left
@@ -132,7 +129,7 @@ public class App extends GameApplication {
         getGameWorld().addEntityFactory(new PlatformerFactory());
         player = null;
 
-        setLevel(); //nextlevel(); [?]
+        setLevel(); //nextlevel(); [vedi sotto]
 
         // player must be spawned after call to nextLevel, otherwise player gets removed
         // before the update tick _actually_ adds the player to game world
@@ -141,10 +138,45 @@ public class App extends GameApplication {
 
         spawn("background");
 
-
-
-
+        Viewport viewport = getGameScene().getViewport();
+        viewport.setBounds(-1500,0,250*70,getAppHeight());
+        viewport.bindToEntity(player,getAppWidth()/2.0,getAppHeight()/2.0);
+        viewport.setLazy(true); //smoother camera movement
     }
+
+    @Override
+    protected void initPhysics() {
+        getPhysicsWorld().setGravity(0,760);
+
+        //GESTIONE COLLISIONI
+    }
+
+    // [se facciamo più livelli]
+    /*private void setLevel(int levelNum) {
+        if (player != null) {
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
+            player.setZIndex(Integer.MAX_VALUE);
+        }
+
+        Level level = setLevelFromMap("tmx/level" + levelNum  + ".tmx");
+    }*/
+
+    // [vedi sopra]
+    /*private void nextLevel() {
+        if (geti("level") == MAX_LEVEL) {
+            showMessage("You finished the demo!");
+            return;
+        }
+
+        inc("level", +1);
+
+        setLevel(geti("level"));
+    }*/
+
+    /*public void onPlayerDied() {
+        setLevel(geti("level"));
+    }*/
+
     public static void main(String[] args) {
         launch(args);
     }

@@ -2,10 +2,10 @@
 
 ### App extends GameApplication
 
-#### enum [EntityType]
+#### enum *EntityType* [ ]
+**Entity** player
 
 #### initSettings()
-
 * window settings and full screen
 * starting scene
 * runtime mode
@@ -35,7 +35,7 @@
 ### App extends GameApplication extends Component
 [physics, texture, animIdle, animWalk, jumps]
 
-#### PLayerComponent()
+#### PlayerComponent()
 * sprite and player overall definition
 
 #### onAdded()
