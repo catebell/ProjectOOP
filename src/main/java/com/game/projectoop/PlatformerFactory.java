@@ -15,6 +15,7 @@ import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import javafx.geometry.Point2D;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
+import static com.game.projectoop.App.EntityType.PLATFORM;
 import static com.game.projectoop.App.EntityType.PLAYER;
 
 public class PlatformerFactory implements EntityFactory {
@@ -28,9 +29,14 @@ public class PlatformerFactory implements EntityFactory {
     }
 
     /*Daniele fixa sta cosa che non so cosa farci*/
-    @Spawns("Platform")
-    public Entity newPlatform(SpawnData data){
-        return  entityBuilder().build();
+
+    @Spawns("platform")
+    public Entity newPlatform(SpawnData data) {
+        return entityBuilder(data)
+                .type(PLATFORM)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .build();
     }
 
     @Spawns("player")

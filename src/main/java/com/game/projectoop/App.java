@@ -5,6 +5,7 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
+import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -56,6 +57,9 @@ public class App extends GameApplication {
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
 
+    protected void initPhysics(){
+        getPhysicsWorld().setGravity(0, 760);
+    }
     @Override
     protected void initInput() {
         //movement to the left
