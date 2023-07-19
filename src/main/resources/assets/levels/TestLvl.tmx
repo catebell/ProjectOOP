@@ -20,6 +20,6 @@
  <objectgroup id="2" name="Terrain">
   <object id="8" name="Platform" type="platform" x="480.792" y="120.125" width="148" height="29.0833"/>
   <object id="9" name="Platform" type="platform" x="116" y="209.909" width="636" height="10"/>
-  <object id="11" name="Platform" type="platform" x="-6" y="179.939" width="126.242" height="10"/>
+  <object id="11" name="Platform" type="platform" x="-8.88178e-16" y="179.939" width="120.242" height="10"/>
  </objectgroup>
 </map>

@@ -5,6 +5,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+import com.almasb.fxgl.entity.components.BoundingBoxComponent;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.components.IrremovableComponent;
 import com.almasb.fxgl.physics.BoundingShape;
@@ -47,12 +48,14 @@ public class PlatformerFactory implements EntityFactory {
 
         return entityBuilder(data)
                 .type(PLAYER)
-                .bbox(new HitBox(new Point2D(5,5), BoundingShape.circle(12)))
-                .bbox(new HitBox(new Point2D(10,25), BoundingShape.box(10, 17)))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
                 .with(new PlayerComponent())
+                .bbox(new HitBox(new Point2D(5,5), BoundingShape.circle(12)))
+                //.viewWithBBox(new Circle(5,5,12, Color.RED))
+                .bbox(new HitBox(new Point2D(10,25), BoundingShape.box(10, 17)))
+                //.viewWithBBox(new Rectangle(16,38,1,1))
                 .build();
     }
 

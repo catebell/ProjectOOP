@@ -51,8 +51,4 @@
 
 ---
 
-## da fare
-* caricare livello
-* generare la piattaforma
-* inserire il giocatore
-* movimento
+

@@ -26,22 +26,25 @@
             "scaleInDock": 1
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ExemplesFXGL/src/main/resources/assets/levels/tmx/level2.tmx": {
-            "scale": 3,
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 130.33333333333331,
-                "y": 547.5
+                "x": 628,
+                "y": 579.5
             }
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ExemplesFXGL/src/main/resources/assets/levels/tmx/level2.tmx#tiles_spritesheet": {
             "scaleInDock": 1
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 429.3333333333333,
-                "y": 104.66666666666669
+                "x": 75.99999999999999,
+                "y": 117.16666666666664
             }
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx#TilesetBig": {
