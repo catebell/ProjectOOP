@@ -27,9 +27,6 @@ public class PlatformerFactory implements EntityFactory {
             .with(new IrremovableComponent())
             .build();
     }
-
-    /*Daniele fixa sta cosa che non so cosa farci*/
-
     @Spawns("platform")
     public Entity newPlatform(SpawnData data) {
         return entityBuilder(data)

@@ -51,9 +51,6 @@ public class PlayerComponent extends Component {
             }
         }
     }
-    public void overwritePosition(Point2D spawn){
-        ;
-    }
 
     public  void left(){
         getEntity().setScaleX(-1);
