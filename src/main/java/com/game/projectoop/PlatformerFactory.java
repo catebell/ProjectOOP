@@ -58,9 +58,7 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new IrremovableComponent())
                 .with(new PlayerComponent())
                 .bbox(new HitBox(new Point2D(5,5), BoundingShape.circle(12)))
-                //.viewWithBBox(new Circle(5,5,12, Color.RED))
                 .bbox(new HitBox(new Point2D(10,25), BoundingShape.box(10, 17)))
-                //.viewWithBBox(new Rectangle(16,38,1,1))
                 .build();
     }
 

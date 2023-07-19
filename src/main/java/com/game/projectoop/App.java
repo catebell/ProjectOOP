@@ -65,7 +65,7 @@ public class App extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).left(accX);
-                if(accX<1){ accX+=0.1;}
+                if(accX<1){ accX+=0.08;}
             }
 
             @Override
@@ -80,7 +80,7 @@ public class App extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).right(accX);
-                if(accX<1){ accX+=0.1;}
+                if(accX<1){ accX+=0.08;}
             }
 
             @Override
