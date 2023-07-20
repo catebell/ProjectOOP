@@ -43,6 +43,26 @@ public class App extends GameApplication {
         Level level = setLevelFromMap("TestLvl2.tmx");
     }
 
+    // [per più livelli, CONTROLLARE NOMI]
+    private void setLevel(int levelNum) {
+        if (player != null) {
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
+            player.setZIndex(Integer.MAX_VALUE);
+        }
+        Level level = setLevelFromMap("tmx/level" + levelNum  + ".tmx");
+    }
+
+    public void onPlayerDied() {
+        setLevel(); // [DI PROVA, da togliere dopo e usare quello sotto]
+        //setLevel(geti("level"));
+    }
+
+    protected void onUpdate(double tpf) {
+        if (player.getY() > getAppHeight()) {
+            setLevel(/*geti("level")*/);
+        }
+    }
+
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setHeight(24*30);
@@ -119,6 +139,7 @@ public class App extends GameApplication {
     @Override
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("acceleration",0.0);
+        vars.put("level",1);
     }
 
     @Override
@@ -158,16 +179,6 @@ public class App extends GameApplication {
         //GESTIONE COLLISIONI
     }
 
-    // [se facciamo più livelli]
-    /*private void setLevel(int levelNum) {
-        if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
-            player.setZIndex(Integer.MAX_VALUE);
-        }
-
-        Level level = setLevelFromMap("tmx/level" + levelNum  + ".tmx");
-    }*/
-
     // [vedi sopra]
     /*private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
@@ -177,10 +188,6 @@ public class App extends GameApplication {
 
         inc("level", +1);
 
-        setLevel(geti("level"));
-    }*/
-
-    /*public void onPlayerDied() {
         setLevel(geti("level"));
     }*/
 
