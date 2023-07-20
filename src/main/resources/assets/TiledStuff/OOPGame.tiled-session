@@ -3,14 +3,17 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx",
+    "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx",
     "expandedProjectPaths": [
         "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
-        ".",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels"
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1.5
+        },
         "C:/Users/Daniele Teli/Documents/FXGLGames/Mario/src/main/resources/assets/levels/tmx/level1.tmx": {
             "expandedObjectLayers": [
                 2
@@ -43,6 +46,41 @@
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ExemplesFXGL/src/main/resources/assets/levels/tmx/level2.tmx#tiles_spritesheet": {
             "scaleInDock": 1
         },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 284,
+                "y": 397.5
+            }
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx#industrial.v2": {
+            "scaleInDock": 1.5
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx#industrial.v2Big": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapCompTest.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 544.6666666666666,
+                "y": 298.33333333333337
+            }
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapCompTest.tmx#industrial.v2": {
+            "scaleInDock": 1.5
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapCompTest.tmx#industrial.v2Big": {
+            "scaleInDock": 1
+        },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx": {
             "expandedObjectLayers": [
                 2
@@ -62,10 +100,10 @@
                 2
             ],
             "scale": 0.75,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 614.6666666666666,
-                "y": 332.6666666666667
+                "x": 488,
+                "y": 328.6666666666667
             }
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx#TilesetBig": {
@@ -74,6 +112,14 @@
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TilesetBig.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 3
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/industrial.v2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/industrial.v2Big.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/level1.tmx": {
             "scale": 0.6867142857142857,
@@ -126,42 +172,47 @@
             "dynamicWrapping": false,
             "scaleInDock": 3,
             "scaleInEditor": 16
+        },
+        "industrial.v2.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
         }
     },
     "last.exportedFilePath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
-    "last.externalTilesetPath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/TiledStuff",
+    "last.externalTilesetPath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
     "last.imagePath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
-    "map.height": 24,
+    "map.height": 16,
     "map.lastUsedExportFilter": "All Files (*)",
     "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 30,
-    "map.tileWidth": 30,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
     "map.width": 36,
     "openFiles": [
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx"
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx"
     ],
     "project": "OOPGame.tiled-project",
+    "property.type": "int",
     "recentFiles": [
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapCompTest.tmx",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/industrial.v2.tsx",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/industrial.v2Big.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx",
+        "industrial.v2.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ExemplesFXGL/src/main/resources/assets/levels/tmx/TilesetBig.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ExemplesFXGL/src/main/resources/assets/levels/tmx/level2.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TilesetBig.tsx",
         "TilesetBig.tsx",
-        "TilesetT.tsx",
-        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels/TestLvl.tmx",
-        "C:/Users/Daniele Teli/Documents/FXGLGames/Mario/src/main/resources/assets/levels/tmx/level1.tmx",
-        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels/TilesetT.tsx",
-        "TestLvl.tmx",
-        "Tileset.tsx"
+        "TilesetT.tsx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.margin": 0,
     "tileset.spacing": 0,
     "tileset.tileSize": {
-        "height": 30,
-        "width": 30
+        "height": 32,
+        "width": 32
     },
     "tileset.transparentColor": "#000000",
     "tileset.useTransparentColor": true

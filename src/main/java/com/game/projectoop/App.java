@@ -1,26 +1,22 @@
 package com.game.projectoop;
 
 import com.almasb.fxgl.app.ApplicationMode;
-import com.almasb.fxgl.app.FXGLPane;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.app.scene.FXGLScene;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.core.util.LazyValue;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.view.KeyView;
-import com.almasb.fxgl.input.virtual.VirtualButton;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
+import java.util.List;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -41,10 +37,26 @@ public class App extends GameApplication {
     private void setLevel() {
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
-            player.setZIndex(1);
         }
         Level level = setLevelFromMap("MapComp.tmx");
-        System.out.println(level.getEntities());
+        List<Entity> layers = level.getEntities();
+        System.out.println(level.getProperties());
+        int backgrounds=0;
+        for (Entity E: layers) {
+            if(E.getTypeComponent().toString().equals("Type(TiledMapLayer)")){
+                if(backgrounds>=level.getProperties().getInt("backgrounds")){
+                    E.setZIndex(2);
+                }
+                else {
+                    backgrounds++;
+                    E.setZIndex(0);
+                }
+            }
+            System.out.println(E.getTypeComponent().toString()+" "+E.getTypeComponent().toString().equals("TiledMapLayer"));
+        }
+
+
+
         Viewport viewport = getGameScene().getViewport();
         viewport.setZoom(1.4);
         viewport.setBounds(0,0,level.getWidth(),level.getHeight());
@@ -109,7 +121,7 @@ public class App extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).left(accX);
-                if(accX<1){ accX+=0.07;}
+                if(accX<1){ accX-=0.07;}
             }
 
             @Override
@@ -129,8 +141,13 @@ public class App extends GameApplication {
 
             @Override
             protected void onActionEnd() {
-                dx=true;
-                stop=true;
+                if(player.getComponent(PhysicsComponent.class).isOnGround()) {
+                    dx = true;
+                    stop = true;
+                }
+                else{
+                    player.getComponent(PlayerComponent.class).stop();
+                }
             }
         },KeyCode.D);
 
@@ -188,7 +205,6 @@ public class App extends GameApplication {
         spawn("background");
 
         Viewport viewport = getGameScene().getViewport();
-        System.out.println(getAppHeight());
         viewport.bindToEntity(player,getAppWidth()/2.0,getAppHeight()/2.0);
         viewport.setLazy(true); //smoother camera movement
     }
