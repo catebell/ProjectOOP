@@ -51,4 +51,7 @@
 
 ---
 
-
+## to do
+* morte all'uscita dei confini
+* decelerazione in stop() ?
+* guardare le texture e gli sprite
