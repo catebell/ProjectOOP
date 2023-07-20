@@ -1,6 +1,6 @@
 package com.game.projectoop;
 
-import com.almasb.fxgl.animation.Interpolators;
+
 import com.almasb.fxgl.app.scene.LoadingScene;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
