@@ -34,6 +34,9 @@ public class App extends GameApplication {
     //? private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
     private Entity player;
     private double accX=0;
+    private boolean stop=false;
+    private boolean sx = false;
+    private boolean dx = false;
 
     private void setLevel() {
         if (player != null) {
@@ -65,6 +68,24 @@ public class App extends GameApplication {
         if (player.getY() > getAppHeight()) {
             setLevel(/*geti("level")*/);
         }
+
+        //check if player stopped walking
+        if(stop){
+            if(sx){
+                player.getComponent(PlayerComponent.class).left(accX);
+            }
+            if(dx){
+                player.getComponent(PlayerComponent.class).right(accX);
+            }
+            accX-=0.1; //decelerate
+            if(accX<=0){
+                player.getComponent(PlayerComponent.class).stop();
+                accX=0; //reset
+                stop=false;
+                sx=false;
+                dx=false;
+            }
+        }
     }
 
     @Override
@@ -88,13 +109,13 @@ public class App extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).left(accX);
-                if(accX<1){ accX+=0.08;}
+                if(accX<1){ accX+=0.07;}
             }
 
             @Override
             protected void onActionEnd() {
-                player.getComponent(PlayerComponent.class).stop();
-                accX=0;
+                sx=true;
+                stop=true;
             }
         }, KeyCode.A);
 
@@ -103,13 +124,13 @@ public class App extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).right(accX);
-                if(accX<1){ accX+=0.08;}
+                if(accX<1){ accX+=0.07;}
             }
 
             @Override
             protected void onActionEnd() {
-                player.getComponent(PlayerComponent.class).stop();
-                accX=0;
+                dx=true;
+                stop=true;
             }
         },KeyCode.D);
 

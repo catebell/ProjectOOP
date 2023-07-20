@@ -16,6 +16,7 @@ public class PlayerComponent extends Component {
     private AnimationChannel animIdle;
     private AnimationChannel animWalk;
     private int jumps = 2;
+    public double acceleration = 0.0;
 
     public PlayerComponent(){
         Image image = image("player.png");
@@ -56,12 +57,20 @@ public class PlayerComponent extends Component {
 
     public  void left(double acc){
         getEntity().setScaleX(-1);
-        physics.setVelocityX(-300*acc-25);
+        if(acc<1){
+            physics.setVelocityX(-300*acc-25);
+        }else{
+            physics.setVelocityX(-325);
+        }
     }
 
     public void right(double acc){
         getEntity().setScaleX(1);
-        physics.setVelocityX(300*acc+25);
+        if(acc<1){
+            physics.setVelocityX(300*acc+25);
+        }else{
+            physics.setVelocityX(325);
+        }
     }
     public void stop(){
         physics.setVelocityX(0);

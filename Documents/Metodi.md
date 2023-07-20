@@ -52,6 +52,5 @@
 ---
 
 ## to do
-* morte all'uscita dei confini
-* decelerazione in stop() ?
 * guardare le texture e gli sprite
+* isMovingX() per effetti visivi player (polvere ecc)
