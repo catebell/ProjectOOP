@@ -38,9 +38,13 @@ public class App extends GameApplication {
     private void setLevel() {
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
-            player.setZIndex(Integer.MAX_VALUE);
+            player.setZIndex(1);
         }
-        Level level = setLevelFromMap("TestLvl2.tmx");
+        Level level = setLevelFromMap("MapComp.tmx");
+        System.out.println(level.getEntities());
+        Viewport viewport = getGameScene().getViewport();
+        viewport.setZoom(1.4);
+        viewport.setBounds(0,0,level.getWidth(),level.getHeight());
     }
 
     // [per più livelli, CONTROLLARE NOMI]
@@ -65,10 +69,9 @@ public class App extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setHeight(24*30);
-        settings.setWidth(30*36);
+        settings.setHeight(720);
+        settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
-
         settings.setSceneFactory(new SceneFactory(){
             @Override
             public LoadingScene newLoadingScene() {
@@ -129,7 +132,6 @@ public class App extends GameApplication {
 
                             Entity keyEntity = btn.getObject("keyEntity");
                             keyEntity.setProperty("activated", true);
-
                             KeyView view = (KeyView) keyEntity.getViewComponent().getChildren().get(0);
                             view.setKeyColor(Color.RED);
                         });
@@ -165,8 +167,6 @@ public class App extends GameApplication {
         spawn("background");
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.setZoom(1.5);
-        viewport.setBounds(0,0,36*30,24*30);
         System.out.println(getAppHeight());
         viewport.bindToEntity(player,getAppWidth()/2.0,getAppHeight()/2.0);
         viewport.setLazy(true); //smoother camera movement
