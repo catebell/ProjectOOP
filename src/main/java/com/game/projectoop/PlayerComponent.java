@@ -40,7 +40,6 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-
         if(physics.isMovingX()){
             if(texture.getAnimationChannel() != animWalk) {
                 texture.loopAnimationChannel(animWalk);
