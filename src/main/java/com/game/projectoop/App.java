@@ -38,7 +38,7 @@ public class App extends GameApplication {
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
         }
-        Level level = setLevelFromMap("MapComp.tmx");
+        Level level = setLevelFromMap("TestLvl3.tmx");
         List<Entity> layers = level.getEntities();
         int backgrounds=0;
         for (Entity E: layers) {

@@ -22,7 +22,6 @@ public class PlayerComponent extends Component {
 
         animIdle = new AnimationChannel(image,4,32,42, Duration.seconds(1),1,1);
         animWalk = new AnimationChannel(image,4,32,42, Duration.seconds(0.66),0,3);
-
         texture = new AnimatedTexture(animIdle);
         texture.loop();
     }
@@ -56,7 +55,7 @@ public class PlayerComponent extends Component {
 
     public void move(double acc,int scaleX){
         getEntity().setScaleX(scaleX);
-        physics.setVelocityX(275*acc+25);
+        physics.setVelocityX(150*acc+25*scaleX);
     }
 
     public void stop(){
