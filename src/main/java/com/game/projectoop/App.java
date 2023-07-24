@@ -40,7 +40,6 @@ public class App extends GameApplication {
         }
         Level level = setLevelFromMap("MapComp.tmx");
         List<Entity> layers = level.getEntities();
-        System.out.println(level.getProperties());
         int backgrounds=0;
         for (Entity E: layers) {
             if(E.getTypeComponent().toString().equals("Type(TiledMapLayer)")){
@@ -52,11 +51,7 @@ public class App extends GameApplication {
                     E.setZIndex(0);
                 }
             }
-            System.out.println(E.getTypeComponent().toString()+" "+E.getTypeComponent().toString().equals("TiledMapLayer"));
         }
-
-
-
         Viewport viewport = getGameScene().getViewport();
         viewport.setZoom(1.4);
         viewport.setBounds(0,0,level.getWidth(),level.getHeight());
@@ -147,6 +142,7 @@ public class App extends GameApplication {
                 }
                 else{
                     player.getComponent(PlayerComponent.class).stop();
+                    accX=0;
                 }
             }
         },KeyCode.D);

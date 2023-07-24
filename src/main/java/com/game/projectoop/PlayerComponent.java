@@ -72,7 +72,9 @@ public class PlayerComponent extends Component {
         }
     }
     public void stop(){
-        physics.setVelocityX(0);
+        //if(physics.isOnGround()){
+            physics.setVelocityX(0);
+        //}
     }
     public void jump(){
         if(jumps==0){
