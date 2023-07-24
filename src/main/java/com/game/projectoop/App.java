@@ -30,7 +30,6 @@ public class App extends GameApplication {
     //? private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
     private Entity player;
     private double accX=0;
-    private boolean stop=false;
     private boolean sx = false;
     private boolean dx = false;
 
@@ -75,24 +74,6 @@ public class App extends GameApplication {
         if (player.getY() > getAppHeight()) {
             setLevel(/*geti("level")*/);
         }
-
-        //check if player stopped walking
-        /*if(stop){
-            if(sx){
-                player.getComponent(PlayerComponent.class).left(accX);
-            }
-            if(dx){
-                player.getComponent(PlayerComponent.class).right(accX);
-            }
-            accX-=0.1; //decelerate
-            if(accX<=0){
-                player.getComponent(PlayerComponent.class).stop();
-                accX=0; //reset
-                stop=false;
-                sx=false;
-                dx=false;
-            }
-        }*/
     }
 
     @Override
@@ -184,7 +165,7 @@ public class App extends GameApplication {
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.25);
         //altre impostazioni del genere
-        /* [what is this] loopBGM("BGM_dash_runner.wav");*/
+        /* [loop music] loopBGM("BGM_dash_runner.wav");*/
     }
 
     @Override
