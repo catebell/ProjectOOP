@@ -77,7 +77,7 @@ public class App extends GameApplication {
         }
 
         //check if player stopped walking
-        if(stop){
+        /*if(stop){
             if(sx){
                 player.getComponent(PlayerComponent.class).left(accX);
             }
@@ -92,7 +92,7 @@ public class App extends GameApplication {
                 sx=false;
                 dx=false;
             }
-        }
+        }*/
     }
 
     @Override
@@ -115,14 +115,18 @@ public class App extends GameApplication {
         getInput().addAction(new UserAction("Left"){
             @Override
             protected void onAction() {
-                player.getComponent(PlayerComponent.class).left(accX);
-                if(accX<1){ accX-=0.07;}
+                sx=true;
+                if(accX>-1){ accX-=0.1;}
+                player.getComponent(PlayerComponent.class).move(accX,-1);
             }
 
             @Override
             protected void onActionEnd() {
-                sx=true;
-                stop=true;
+                sx=false;
+                if(!dx){
+                    player.getComponent(PlayerComponent.class).stop();
+                    accX=0;
+                }
             }
         }, KeyCode.A);
 
@@ -130,17 +134,15 @@ public class App extends GameApplication {
         getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
-                player.getComponent(PlayerComponent.class).right(accX);
-                if(accX<1){ accX+=0.07;}
+                dx=true;
+                if(accX<1){ accX+=0.1;}
+                player.getComponent(PlayerComponent.class).move(accX,1);
             }
 
             @Override
             protected void onActionEnd() {
-                if(player.getComponent(PhysicsComponent.class).isOnGround()) {
-                    dx = true;
-                    stop = true;
-                }
-                else{
+                dx=false;
+                if(!sx){
                     player.getComponent(PlayerComponent.class).stop();
                     accX=0;
                 }

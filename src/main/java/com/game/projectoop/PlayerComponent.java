@@ -54,23 +54,11 @@ public class PlayerComponent extends Component {
         }
     }
 
-    public  void left(double acc){
-        getEntity().setScaleX(-1);
-        if(acc>-1){
-            physics.setVelocityX(275*acc+25);
-        }else{
-            physics.setVelocityX(-300);
-        }
+    public void move(double acc,int scaleX){
+        getEntity().setScaleX(scaleX);
+        physics.setVelocityX(275*acc+25);
     }
 
-    public void right(double acc){
-        getEntity().setScaleX(1);
-        if(acc<1){
-            physics.setVelocityX(275*acc+25);
-        }else{
-            physics.setVelocityX(300);
-        }
-    }
     public void stop(){
         //if(physics.isOnGround()){
             physics.setVelocityX(0);
