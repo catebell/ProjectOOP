@@ -18,10 +18,10 @@ public class PlayerComponent extends Component {
     private int jumps = 2;
 
     public PlayerComponent(){
-        Image image = image("player.png");
+        Image image = image("CharacterMovement.png");
 
-        animIdle = new AnimationChannel(image,4,32,42, Duration.seconds(1),1,1);
-        animWalk = new AnimationChannel(image,4,32,42, Duration.seconds(0.66),0,3);
+        animIdle = new AnimationChannel(image,8,32,32, Duration.seconds(1),0,2);
+        animWalk = new AnimationChannel(image,8,32,32, Duration.seconds(0.8),4*2,7*2);
         texture = new AnimatedTexture(animIdle);
         texture.loop();
     }
