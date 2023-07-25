@@ -16,8 +16,7 @@ import javafx.geometry.Point2D;
 
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
-import static com.game.projectoop.App.EntityType.PLATFORM;
-import static com.game.projectoop.App.EntityType.PLAYER;
+import static com.game.projectoop.App.EntityType.*;
 
 public class PlatformerFactory implements EntityFactory {
     @Spawns("background")
@@ -34,6 +33,51 @@ public class PlatformerFactory implements EntityFactory {
                 .type(PLATFORM)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
+                .build();
+    }
+
+    @Spawns("keyPrompt")
+    public Entity newPrompt(SpawnData data) {
+        return entityBuilder(data)
+                .type(KEY_PROMPT)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("LeftButton")
+    public Entity newLeftButton(SpawnData data) {
+        return entityBuilder(data)
+                .type(BUTTON)
+                .viewWithBBox(texture("KEYS/" + getInput().getAllBindings().get(getInput().getActionByName("Left")).toString() + ".png"))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("RightButton")
+    public Entity newRightButton(SpawnData data) {
+        return entityBuilder(data)
+                .type(BUTTON)
+                .viewWithBBox(texture("KEYS/" + getInput().getAllBindings().get(getInput().getActionByName("Right")).toString() + ".png"))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("JumpButton")
+    public Entity newJumpButton(SpawnData data) {
+        return entityBuilder(data)
+                .type(BUTTON)
+                .viewWithBBox(texture("KEYS/" + getInput().getAllBindings().get(getInput().getActionByName("Jump")).toString() + ".png"))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("UseButton")
+    public Entity newUseButton(SpawnData data) {
+        return entityBuilder(data)
+                .type(BUTTON)
+                .viewWithBBox(texture("KEYS/" + getInput().getAllBindings().get(getInput().getActionByName("Use")).toString() + ".png"))
+                .with(new CollidableComponent(true))
                 .build();
     }
 

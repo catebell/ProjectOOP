@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="36" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="21">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="36" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="22">
  <editorsettings>
   <export target="MapComp..tmx" format="tmx"/>
  </editorsettings>
@@ -72,6 +72,9 @@
 0,0,0,0,0,0,246,247,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,367,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="6" name="Triggers">
+  <object id="21" name="trigger_move" type="keyPrompt" x="44.626" y="247.377" width="79.7291" height="75.1832"/>
+ </objectgroup>
  <objectgroup id="5" name="Platforms">
   <object id="1" type="platform" x="3.75" y="319.894" width="190.828" height="2.98947"/>
   <object id="2" type="platform" x="190.954" y="322.973" width="3.62359" height="31.5253"/>

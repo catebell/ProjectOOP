@@ -48,7 +48,6 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        System.out.println(physics.getVelocityX());
         if(!physics.isOnGround()){
             isJumping=true;
         }

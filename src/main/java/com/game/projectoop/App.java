@@ -1,5 +1,6 @@
 package com.game.projectoop;
 
+import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
@@ -7,6 +8,7 @@ import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
@@ -15,6 +17,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +27,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
     public enum EntityType{
-        PLAYER,PLATFORM,BUTTON
+        PLAYER,PLATFORM,KEY_PROMPT,BUTTON
     }
 
     //? private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
@@ -140,10 +143,10 @@ public class App extends GameApplication {
             }
         },KeyCode.W);
 
-        getInput().addAction(new UserAction("Use") {
+        /*getInput().addAction(new UserAction("Use") {
             @Override
             protected void onActionBegin() {
-                getGameWorld().getEntitiesByType(EntityType.BUTTON)
+                getGameWorld().getEntitiesByType(EntityType.KEY_PROMPT)
                         .stream()
                         .filter(btn -> btn.hasComponent(CollidableComponent.class)&& player.isColliding(btn))
                         .forEach(btn -> {
@@ -155,7 +158,7 @@ public class App extends GameApplication {
                             view.setKeyColor(Color.RED);
                         });
             }
-        },KeyCode.E);
+        },KeyCode.E);*/
     }
     @Override
     protected void initGameVars(Map<String, Object> vars) {
@@ -175,7 +178,6 @@ public class App extends GameApplication {
         getGameWorld().addEntityFactory(new PlatformerFactory());
         player = null;
 
-
         setLevel(); //nextlevel(); [vedi sotto]
 
         // player must be spawned after call to nextLevel, otherwise player gets removed
@@ -194,7 +196,24 @@ public class App extends GameApplication {
     protected void initPhysics() {
         getPhysicsWorld().setGravity(0,1000);
 
-        //GESTIONE COLLISIONI
+        onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.KEY_PROMPT, (player, prompt) -> {
+
+            Entity entityLeft = getGameWorld().create("LeftButton", new SpawnData(prompt.getX(), prompt.getY()+17));
+            Entity entityRight = getGameWorld().create("RightButton", new SpawnData(prompt.getX()+17, prompt.getY()+17));
+            Entity entityJump = getGameWorld().create("JumpButton", new SpawnData(prompt.getX()+8.5, prompt.getY()));
+
+            spawnWithScale(entityLeft, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+            spawnWithScale(entityRight, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+            spawnWithScale(entityJump, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+
+
+            runOnce(() -> {
+                despawnWithScale(entityLeft, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
+                despawnWithScale(entityRight, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
+                despawnWithScale(entityJump, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
+
+            }, Duration.seconds(5));
+        });
     }
 
     // [vedi sopra]
