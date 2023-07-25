@@ -48,14 +48,21 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        if(physics.isMovingX()){
-            if(texture.getAnimationChannel() != animWalk) {
-                texture.loopAnimationChannel(animWalk);
-            }
+        System.out.println(physics.getVelocityX());
+        if(!physics.isOnGround()){
+            isJumping=true;
         }
-        else{
-            if(texture.getAnimationChannel() != animIdle){
-                texture.loopAnimationChannel(animIdle);
+
+        if(isJumping){
+            if(physics.isOnGround()){
+                landed=false;
+                texture.playAnimationChannel(animLanding);
+                texture.setOnCycleFinished(()->landed=true);
+                isJumping=false;
+            }
+            else
+            {
+                texture.loopAnimationChannel(animFly);
             }
         }else
         {
@@ -79,9 +86,7 @@ public class PlayerComponent extends Component {
     }
 
     public void stop(){
-        //if(physics.isOnGround()){
-            physics.setVelocityX(0);
-        //}
+        physics.setVelocityX(0);
     }
     public void jump(){
         if(jumps==0){

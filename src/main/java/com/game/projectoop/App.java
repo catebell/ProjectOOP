@@ -56,13 +56,12 @@ public class App extends GameApplication {
         viewport.setBounds(0,0,level.getWidth(),level.getHeight());
     }
 
-    // [per più livelli, CONTROLLARE NOMI]
     private void setLevel(int levelNum) {
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
             player.setZIndex(Integer.MAX_VALUE);
         }
-        Level level = setLevelFromMap("tmx/level" + levelNum  + ".tmx");
+        Level level = setLevelFromMap("TestLvl" + levelNum  + ".tmx");
     }
 
     public void onPlayerDied() {
@@ -81,6 +80,7 @@ public class App extends GameApplication {
         settings.setHeight(720);
         settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
+        settings.setTitle("OOP");
         settings.setSceneFactory(new SceneFactory(){
             @Override
             public LoadingScene newLoadingScene() {
