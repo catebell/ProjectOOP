@@ -41,7 +41,7 @@ public class PlatformerFactory implements EntityFactory {
     public Entity newPlayer(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
-        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16,32), BoundingShape.box(6,8)));
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16,32), BoundingShape.box(1,1)));
 
         // this avoids player sticking to walls
         physics.setFixtureDef(new FixtureDef().friction(0.0f));

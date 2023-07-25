@@ -87,7 +87,9 @@ public class App extends GameApplication {
                 return new MainLoadingScene();
             }
         });
+        //settings.setDeveloperMenuEnabled(true);
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
+
     }
 
     @Override

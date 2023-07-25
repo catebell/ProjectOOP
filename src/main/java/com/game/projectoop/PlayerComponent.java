@@ -15,13 +15,22 @@ public class PlayerComponent extends Component {
     private AnimatedTexture texture;
     private AnimationChannel animIdle;
     private AnimationChannel animWalk;
+    private AnimationChannel animJump;
+    private AnimationChannel animFly;
+    private AnimationChannel animLanding;
+
     private int jumps = 2;
+    private boolean isJumping=false;
+    private boolean landed=true;
 
     public PlayerComponent(){
         Image image = image("CharacterMovement.png");
 
         animIdle = new AnimationChannel(image,8,32,32, Duration.seconds(1),0,2);
-        animWalk = new AnimationChannel(image,8,32,32, Duration.seconds(0.8),4*2,7*2);
+        animWalk = new AnimationChannel(image,8,32,33, Duration.seconds(0.8),4*2,7*2);
+        animJump = new AnimationChannel(image,8,32,33,Duration.seconds(0.8),9,10);
+        animFly = new AnimationChannel(image,8,32,33,Duration.seconds(0.7),10,10);
+        animLanding = new AnimationChannel(image,8,32,33,Duration.seconds(0.2),4,8);
         texture = new AnimatedTexture(animIdle);
         texture.loop();
     }
@@ -30,7 +39,6 @@ public class PlayerComponent extends Component {
     public void onAdded() {
         entity.getTransformComponent().setScaleOrigin(new Point2D(16,21));
         entity.getViewComponent().addChild(texture);
-
         physics.onGroundProperty().addListener((obs,old,isOnGround)->{
             if(isOnGround){
                 jumps = 2;
@@ -49,6 +57,19 @@ public class PlayerComponent extends Component {
             if(texture.getAnimationChannel() != animIdle){
                 texture.loopAnimationChannel(animIdle);
             }
+        }else
+        {
+            if(landed) {
+                if (physics.isMovingX()) {
+                    if (texture.getAnimationChannel() != animWalk) {
+                        texture.loopAnimationChannel(animWalk);
+                    }
+                } else {
+                    if (texture.getAnimationChannel() != animIdle) {
+                        texture.loopAnimationChannel(animIdle);
+                    }
+                }
+            }
         }
     }
 
@@ -66,6 +87,7 @@ public class PlayerComponent extends Component {
         if(jumps==0){
             return;
         }
+
         physics.setVelocityY(-450);
         jumps--;
     }

@@ -52,5 +52,7 @@
 ---
 
 ## to do
-* guardare le texture e gli sprite
+* luce
+* pulsanti
+* 
 * isMovingX() per effetti visivi player (polvere ecc)
