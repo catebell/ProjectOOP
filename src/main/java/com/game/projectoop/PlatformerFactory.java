@@ -1,5 +1,6 @@
 package com.game.projectoop;
 
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.views.ScrollingBackgroundView;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
@@ -92,13 +93,12 @@ public class PlatformerFactory implements EntityFactory {
     }
 
     @Spawns("dialogueText")
-    public Entity newDialogueText(SpawnData data) throws IOException {
-        String m5x7 = "src/main/resources/assets/ui/fonts/m5x7.ttf";
+    public Entity newDialogueText(SpawnData data){
+        //String m5x7 = "src/main/resources/assets/ui/fonts/m5x7.ttf";
+        //Font.loadFont(Files.newInputStream(Paths.get(m5x7)),20)
         Text text = new Text(data.get("Text"));
-        text.setStyle("-fx-text-fill: red");
         text.setFill(Color.WHITE);
-        text.setFont(Font.loadFont(Files.newInputStream(Paths.get(m5x7)),20));
-
+        text.setFont(FXGL.geto("font"));
         return entityBuilder(data)
                 .type(TEXT)
                 .viewWithBBox(text)

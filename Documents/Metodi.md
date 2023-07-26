@@ -52,7 +52,7 @@
 ---
 
 ## to do
-* test dialoghi
+* test dialoghi (funz creazione dialoghi(mappa di liste) -> funz animazione(numDialogo)(data lunghezza dialogo genera tempo prima del despawn + tempo costante)
 * luce texture.darker/brighter per illuminare manca recuperare le texture
 * test minigame
 * isMovingX() per effetti visivi player (polvere ecc)

@@ -21,7 +21,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -172,9 +175,16 @@ public class App extends GameApplication {
     }
 
     @Override
-    protected void initGameVars(Map<String, Object> vars) {
-        vars.put("acceleration", 0.0);
+    protected void initGameVars(Map<String, Object> vars){
+        try{
+        InputStream file = Files.newInputStream(Paths.get("src/main/resources/assets/ui/fonts/m5x7.ttf"));
+        vars.put("font",Font.loadFont(file,20));
+        }
+        catch(IOException e){
+            System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHH");
+        }
         vars.put("level", 1);
+
     }
 
     @Override
@@ -227,18 +237,22 @@ public class App extends GameApplication {
             }, Duration.seconds(5));
         });
 
-        onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
-            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(), prompt.getY()).put("Text","testo di prova"));
+        onCollisionBegin(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
 
+            /*Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(),
+                    prompt.getY()).put("Text","testo di prova"));
             System.out.println(dialogueEntity.getProperties().toString());
-
-            dialogueEntity.setZIndex(3);
+            Entity dialogueEntity2 = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(),
+                    prompt.getY()).put("Text","testo prova"));
             spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()); //ELASTIC o BACK
+            despawnWithDelay(dialogueEntity,Duration.seconds(1.9));
             runOnce(() -> {
-                despawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
-            }, Duration.seconds(5));
+                 spawnWithScale(dialogueEntity2, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+
+            }, Duration.seconds(2));*/
         });
     }
+
 
 
     // [vedi sopra]
