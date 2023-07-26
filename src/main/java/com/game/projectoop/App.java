@@ -7,6 +7,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -17,6 +18,8 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.List;
@@ -26,13 +29,13 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 
 public class App extends GameApplication {
-    public enum EntityType{
-        PLAYER,PLATFORM,KEY_PROMPT,BUTTON
+    public enum EntityType {
+        PLAYER, PLATFORM, KEY_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT
     }
 
     //? private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
     private Entity player;
-    private double accX=0;
+    private double accX = 0;
     private boolean sx = false;
     private boolean dx = false;
 
@@ -42,13 +45,12 @@ public class App extends GameApplication {
         }
         Level level = setLevelFromMap("TestLvl3.tmx");
         List<Entity> layers = level.getEntities();
-        int backgrounds=0;
-        for (Entity E: layers) {
-            if(E.getTypeComponent().toString().equals("Type(TiledMapLayer)")){
-                if(backgrounds>=level.getProperties().getInt("backgrounds")){
+        int backgrounds = 0;
+        for (Entity E : layers) {
+            if (E.getTypeComponent().toString().equals("Type(TiledMapLayer)")) {
+                if (backgrounds >= level.getProperties().getInt("backgrounds")) {
                     E.setZIndex(2);
-                }
-                else {
+                } else {
                     backgrounds++;
                     E.setZIndex(0);
                 }
@@ -56,7 +58,7 @@ public class App extends GameApplication {
         }
         Viewport viewport = getGameScene().getViewport();
         viewport.setZoom(1.4);
-        viewport.setBounds(0,0,level.getWidth(),level.getHeight());
+        viewport.setBounds(0, 0, level.getWidth(), level.getHeight());
     }
 
     private void setLevel(int levelNum) {
@@ -64,7 +66,7 @@ public class App extends GameApplication {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
             player.setZIndex(Integer.MAX_VALUE);
         }
-        Level level = setLevelFromMap("TestLvl" + levelNum  + ".tmx");
+        Level level = setLevelFromMap("TestLvl" + levelNum + ".tmx");
     }
 
     public void onPlayerDied() {
@@ -84,7 +86,8 @@ public class App extends GameApplication {
         settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
         settings.setTitle("OOP");
-        settings.setSceneFactory(new SceneFactory(){
+        settings.setFontUI("m5x7.ttf");
+        settings.setSceneFactory(new SceneFactory() {
             @Override
             public LoadingScene newLoadingScene() {
                 return new MainLoadingScene();
@@ -92,26 +95,27 @@ public class App extends GameApplication {
         });
         //settings.setDeveloperMenuEnabled(true);
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
-
     }
 
     @Override
     protected void initInput() {
         //movement to the left
-        getInput().addAction(new UserAction("Left"){
+        getInput().addAction(new UserAction("Left") {
             @Override
             protected void onAction() {
-                sx=true;
-                if(accX>-1){ accX-=0.1;}
-                player.getComponent(PlayerComponent.class).move(accX,-1);
+                sx = true;
+                if (accX > -1) {
+                    accX -= 0.1;
+                }
+                player.getComponent(PlayerComponent.class).move(accX, -1);
             }
 
             @Override
             protected void onActionEnd() {
-                sx=false;
-                if(!dx){
+                sx = false;
+                if (!dx) {
                     player.getComponent(PlayerComponent.class).stop();
-                    accX=0;
+                    accX = 0;
                 }
             }
         }, KeyCode.A);
@@ -120,20 +124,22 @@ public class App extends GameApplication {
         getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
-                dx=true;
-                if(accX<1){ accX+=0.1;}
-                player.getComponent(PlayerComponent.class).move(accX,1);
+                dx = true;
+                if (accX < 1) {
+                    accX += 0.1;
+                }
+                player.getComponent(PlayerComponent.class).move(accX, 1);
             }
 
             @Override
             protected void onActionEnd() {
-                dx=false;
-                if(!sx){
+                dx = false;
+                if (!sx) {
                     player.getComponent(PlayerComponent.class).stop();
-                    accX=0;
+                    accX = 0;
                 }
             }
-        },KeyCode.D);
+        }, KeyCode.D);
 
         //jump
         getInput().addAction(new UserAction("Jump") {
@@ -141,7 +147,7 @@ public class App extends GameApplication {
             protected void onActionBegin() {
                 player.getComponent(PlayerComponent.class).jump();
             }
-        },KeyCode.W);
+        }, KeyCode.W);
 
         /*getInput().addAction(new UserAction("Use") {
             @Override
@@ -160,10 +166,11 @@ public class App extends GameApplication {
             }
         },KeyCode.E);*/
     }
+
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("acceleration",0.0);
-        vars.put("level",1);
+        vars.put("acceleration", 0.0);
+        vars.put("level", 1);
     }
 
     @Override
@@ -183,38 +190,60 @@ public class App extends GameApplication {
         // player must be spawned after call to nextLevel, otherwise player gets removed
         // before the update tick _actually_ adds the player to game world
         player = spawn("player", 50, 50);
-        set("player",player);
+        set("player", player);
 
         spawn("background");
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.bindToEntity(player,getAppWidth()/2.0,getAppHeight()/2.0);
+        viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setLazy(true); //smoother camera movement
     }
 
     @Override
     protected void initPhysics() {
-        getPhysicsWorld().setGravity(0,1000);
+        getPhysicsWorld().setGravity(0, 1000);
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.KEY_PROMPT, (player, prompt) -> {
 
-            Entity entityLeft = getGameWorld().create("LeftButton", new SpawnData(prompt.getX(), prompt.getY()+17));
-            Entity entityRight = getGameWorld().create("RightButton", new SpawnData(prompt.getX()+17, prompt.getY()+17));
-            Entity entityJump = getGameWorld().create("JumpButton", new SpawnData(prompt.getX()+8.5, prompt.getY()));
+            Entity entityLeft = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY() + 17).put(
+                    "Action", "Left"));
+            Entity entityRight = getGameWorld().create("button",
+                    new SpawnData(prompt.getX() + 17, prompt.getY() + 17).put("Action", "Right"));
+            Entity entityJump = getGameWorld().create("button",
+                    new SpawnData(prompt.getX() + 8.5, prompt.getY()).put("Action", "Jump"));
 
             spawnWithScale(entityLeft, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
             spawnWithScale(entityRight, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
             spawnWithScale(entityJump, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
 
-
             runOnce(() -> {
                 despawnWithScale(entityLeft, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
                 despawnWithScale(entityRight, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
                 despawnWithScale(entityJump, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
-
             }, Duration.seconds(5));
         });
+
+        onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
+            /*
+            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(), prompt.getY()));
+            dialogueEntity.setZIndex(3);
+            spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+            runOnce(() -> {
+                despawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
+            }, Duration.seconds(5));
+            */
+
+            Text textPixels = new Text("test");
+            textPixels.setTranslateX(prompt.getX()); // x = 50
+            textPixels.setTranslateY(prompt.getY()); // y = 100
+            textPixels.setStyle("-fx-text-fill: red");
+            textPixels.fillProperty().setValue(Color.RED);
+            getGameScene().addUINode(textPixels);
+        });
     }
+
+
+
 
     // [vedi sopra]
     /*private void nextLevel() {

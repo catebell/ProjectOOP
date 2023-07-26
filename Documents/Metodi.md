@@ -52,7 +52,7 @@
 ---
 
 ## to do
-* luce
-* pulsanti
-* 
+* test dialoghi
+* luce texture.darker/brighter per illuminare manca recuperare le texture
+* test minigame
 * isMovingX() per effetti visivi player (polvere ecc)
