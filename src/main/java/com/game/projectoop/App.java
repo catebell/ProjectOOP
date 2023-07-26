@@ -13,10 +13,12 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.ui.FontFactory;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -85,6 +87,10 @@ public class App extends GameApplication {
         settings.setFullScreenAllowed(true);
         settings.setTitle("OOP");
         settings.setFontUI("m5x7.ttf");
+        settings.setFontText("m5x7.ttf");
+        settings.setFontGame("m5x7.ttf");
+        settings.setFontMono("m5x7.ttf");
+
         settings.setSceneFactory(new SceneFactory() {
             @Override
             public LoadingScene newLoadingScene() {
@@ -222,25 +228,17 @@ public class App extends GameApplication {
         });
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
-            /*
-            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(), prompt.getY()));
+            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(), prompt.getY()).put("Text","testo di prova"));
+
+            System.out.println(dialogueEntity.getProperties().toString());
+
             dialogueEntity.setZIndex(3);
-            spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+            spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()); //ELASTIC o BACK
             runOnce(() -> {
                 despawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
             }, Duration.seconds(5));
-            */
-
-            Text textPixels = new Text("test");
-            textPixels.setTranslateX(prompt.getX()); // x = 50
-            textPixels.setTranslateY(prompt.getY()); // y = 100
-            textPixels.setStyle("-fx-text-fill: red");
-            textPixels.fillProperty().setValue(Color.RED);
-            getGameScene().addUINode(textPixels);
         });
     }
-
-
 
 
     // [vedi sopra]

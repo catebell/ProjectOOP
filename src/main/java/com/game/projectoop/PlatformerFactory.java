@@ -1,7 +1,5 @@
 package com.game.projectoop;
 
-import com.almasb.fxgl.app.services.FXGLAssetLoaderService;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.views.ScrollingBackgroundView;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
@@ -14,15 +12,13 @@ import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
-import com.almasb.fxgl.ui.FXGLTextFlow;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.game.projectoop.App.EntityType.*;
@@ -36,6 +32,7 @@ public class PlatformerFactory implements EntityFactory {
             .with(new IrremovableComponent())
             .build();
     }
+
     @Spawns("platform")
     public Entity newPlatform(SpawnData data) {
         return entityBuilder(data)
@@ -94,20 +91,17 @@ public class PlatformerFactory implements EntityFactory {
                 .build();
     }
 
-    /*@Spawns("dialogueText")
-    public Entity newDialogueText(SpawnData data){
-        *//*FXGLTextFlow text = new FXGLTextFlow(FXGL.getUIFactoryService());
-        Text test1 = new Text("testoaaaaaaaaaaaaaaaaaaaa");
+    @Spawns("dialogueText")
+    public Entity newDialogueText(SpawnData data) throws IOException {
+        String m5x7 = "src/main/resources/assets/ui/fonts/m5x7.ttf";
+        Text text = new Text(data.get("Text"));
         text.setStyle("-fx-text-fill: red");
-        text.append(test1);*//*
-        FXGL.getGameScene().addUINode(new Text("TESTO TESTO"));
+        text.setFill(Color.WHITE);
+        text.setFont(Font.loadFont(Files.newInputStream(Paths.get(m5x7)),20));
 
-            return entityBuilder(data)
-                    .type(TEXT)
-                    .viewWithBBox(text)
-                    .build();
-    }*/
-
+        return entityBuilder(data)
+                .type(TEXT)
+                .viewWithBBox(text)
+                .build();
+    }
 }
-// btn.setStyle("-fx-background-color: transparent");
-
