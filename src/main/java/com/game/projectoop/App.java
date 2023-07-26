@@ -20,8 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -232,23 +231,49 @@ public class App extends GameApplication {
             }, Duration.seconds(5));
         });
 
-        onCollisionBegin(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
-
-            /*Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(),
-                    prompt.getY()).put("Text","testo di prova"));
-            System.out.println(dialogueEntity.getProperties().toString());
-            Entity dialogueEntity2 = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(),
-                    prompt.getY()).put("Text","testo prova"));
-            spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()); //ELASTIC o BACK
-            despawnWithDelay(dialogueEntity,Duration.seconds(1.9));
-            runOnce(() -> {
-                 spawnWithScale(dialogueEntity2, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
-
-            }, Duration.seconds(2));*/
+        onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
+            startDialogue(2,prompt);
+            //startDialogue(1,prompt); //[partono in contemporanea se fatti andare troppo vicini]
         });
+
+        //la roba che spawna legata ai trigger, spawna dove sono fisicamente TUTTI i trigger? ce ne freghiamo perchè altrimenti bisogna fare spawn separati? Facciamo uno spawn per ogni "entità parlante"?
     }
 
+private HashMap<Integer,List<String>> dialogues(){
+        HashMap<Integer,List<String>> dialogues = new HashMap<>();
+        dialogues.put(1,List.of("first text","second text"));
+        dialogues.put(2,List.of("crying","shaking","throwing up"));
+        return dialogues;
+}
 
+protected void startDialogue(int dialNumber,Entity prompt){
+    HashMap<Integer,List<String>> dial = dialogues();
+    double time = 0.0;
+
+    for(String s : dial.get(dialNumber)){ //first dialogue
+        Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(),
+                prompt.getY()).put("Text",s));
+
+        //se vogliamo tenere gli effetti anche in out e/o ritardare la comparsa delle frasi
+        //System.out.println("s = " + s + " e elemento 0 = " + dial.get(1).get(0)); //DEBUG
+        /*if(dial.get(dialNumber).get(0).equals(s)){ //element 0 spawn in 0 time
+            runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time));
+            System.out.println("siamo al primo elemento");
+        }else{ //delay spawn
+            runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time+0.5));
+        }*/
+
+        runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time));
+        time += 0.3 * s.toCharArray().length;
+        //System.out.println("Lunghezza di " + s + " = " + s.toCharArray().length + " time = " + time); //DEBUG
+
+        if(dial.get(dialNumber).get(dial.get(dialNumber).size() - 1).equals(s)){ /*oppure con una deque per avere direttamente last element*/
+            runOnce(()->despawnWithScale(dialogueEntity,Duration.seconds(1),Interpolators.ELASTIC.EASE_IN()),Duration.seconds(time));
+        }else{
+            despawnWithDelay(dialogueEntity,Duration.seconds(time));
+        }
+    }
+}
 
     // [vedi sopra]
     /*private void nextLevel() {
