@@ -15,12 +15,8 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.game.projectoop.App.EntityType.*;
 
@@ -100,6 +96,7 @@ public class PlatformerFactory implements EntityFactory {
         text.setFill(Color.WHITE);
         text.setFont(FXGL.geto("font"));
         return entityBuilder(data)
+                .zIndex(3)
                 .type(TEXT)
                 .viewWithBBox(text)
                 .build();
