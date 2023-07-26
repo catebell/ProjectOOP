@@ -109,5 +109,5 @@ public class PlatformerFactory implements EntityFactory {
     }*/
 
 }
-
+// btn.setStyle("-fx-background-color: transparent");
 
