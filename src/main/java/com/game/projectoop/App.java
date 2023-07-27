@@ -7,7 +7,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.dsl.FXGL;
+
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.level.Level;
@@ -44,7 +44,7 @@ public class App extends GameApplication {
         }
         Level level = setLevelFromMap("TestLvl3.tmx");
         List<Entity> layers = level.getEntities();
-        int backgrounds = level.getProperties().getInt("backgrounds");
+        int backgrounds = 0;
         for (Entity E : layers) {
             if (E.getTypeComponent().toString().equals("Type(TiledMapLayer)")) {
                 if (backgrounds >= level.getProperties().getInt("backgrounds")) {
@@ -205,7 +205,7 @@ public class App extends GameApplication {
         set("player", player);
 
         spawn("background");
-        shadow = spawn("void");
+        // spawn("void");
         Viewport viewport = getGameScene().getViewport();
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setLazy(true); //smoother camera movement
