@@ -180,7 +180,8 @@ public class App extends GameApplication {
         catch(IOException e){
             System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHH");
         }
-        vars.put("Ppos",new Point2D(0,0));
+        vars.put("PlayerPosition",new Point2D(0,0));
+        vars.put("PlayerScaleX",1);
         vars.put("level", 1);
 
     }
@@ -205,7 +206,7 @@ public class App extends GameApplication {
         set("player", player);
 
         spawn("background");
-        // spawn("void");
+        spawn("void");
         Viewport viewport = getGameScene().getViewport();
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setLazy(true); //smoother camera movement

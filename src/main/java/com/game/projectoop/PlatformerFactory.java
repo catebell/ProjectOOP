@@ -75,6 +75,7 @@ public class PlatformerFactory implements EntityFactory {
                 .viewWithBBox(texture("KEYS/" + getInput().getAllBindings().get(getInput().getActionByName(data.get(
                         "Action"))).toString() + ".png"))
                 .with(new CollidableComponent(true))
+                .zIndex(4)
                 .build();
     }
 
@@ -95,7 +96,7 @@ public class PlatformerFactory implements EntityFactory {
         text.setFill(Color.WHITE);
         text.setFont(FXGL.geto("font"));
         return entityBuilder(data)
-                .zIndex(3)
+                .zIndex(4)
                 .type(TEXT)
                 .viewWithBBox(text)
                 .build();
@@ -106,7 +107,7 @@ public class PlatformerFactory implements EntityFactory {
         return entityBuilder()
                 .type(VOID)
                 .with(new VoidComponent())
-                .zIndex(10)
+                .zIndex(3)
                 .with(new IrremovableComponent())
                 .build();
     }

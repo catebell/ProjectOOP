@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
+    "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx",
     "expandedProjectPaths": [
         ".",
-        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels"
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
+        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -50,8 +50,8 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 383,
-                "y": 1427.5
+                "x": 1039.8333333333333,
+                "y": 719.8333333333333
             }
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx": {
@@ -115,6 +115,20 @@
             }
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx#TilesetBig": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx": {
+            "scale": 0.6259114583333333,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 570.3682130226751,
+                "y": 250.03536509257333
+            }
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx#hanging-terminal": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx#industrial.v2Big": {
             "scaleInDock": 1
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TilesetBig.tsx": {
@@ -208,26 +222,26 @@
     "map.tileWidth": 32,
     "map.width": 65,
     "openFiles": [
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
         "industrial.v2Big.tsx",
-        "SpreadSheetbig.tsx"
+        "SpreadSheetbig.tsx",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx"
     ],
     "project": "OOPGame.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "hanging-terminal.tsx",
-        "SpreadSheetbig.tsx",
-        "industrial.v2Big.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
+        "industrial.v2Big.tsx",
+        "SpreadSheetbig.tsx",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx",
+        "hanging-terminal.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapCompTest.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/industrial.v2.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/industrial.v2Big.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl2.tmx",
         "industrial.v2.tsx",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ExemplesFXGL/src/main/resources/assets/levels/tmx/TilesetBig.tsx"
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

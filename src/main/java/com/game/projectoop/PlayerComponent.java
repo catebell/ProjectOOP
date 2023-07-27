@@ -36,7 +36,7 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onAdded() {
-        FXGL.set("Ppos",entity.getPosition());
+        FXGL.set("PlayerPosition",entity.getPosition());
         entity.getTransformComponent().setScaleOrigin(new Point2D(16,21));
         entity.getViewComponent().addChild(texture);
         physics.onGroundProperty().addListener((obs,old,isOnGround)->{
@@ -48,7 +48,7 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        FXGL.set("Ppos",entity.getPosition());
+        FXGL.set("PlayerPosition",entity.getPosition());
         if(!physics.isOnGround()){
             isJumping=true;
         }
@@ -82,6 +82,7 @@ public class PlayerComponent extends Component {
 
     public void move(double acc,int scaleX){
         getEntity().setScaleX(scaleX);
+        FXGL.set("PlayerScaleX",scaleX);
         physics.setVelocityX(150*acc+25*scaleX);
     }
 
