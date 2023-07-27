@@ -69,7 +69,7 @@ public class PlatformerFactory implements EntityFactory {
     }
 
     @Spawns("button")
-    public Entity newLeftButton(SpawnData data) {
+    public Entity newButton(SpawnData data) {
         return entityBuilder(data)
                 .type(BUTTON)
                 .viewWithBBox(texture("KEYS/" + getInput().getAllBindings().get(getInput().getActionByName(data.get(
