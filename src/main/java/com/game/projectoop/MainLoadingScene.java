@@ -14,13 +14,13 @@ public class MainLoadingScene extends LoadingScene {
     public MainLoadingScene(){
         Rectangle backGround = new Rectangle(getAppWidth(),getAppHeight(), Color.BLACK);
 
-        Text text = getUIFactoryService().newText("loading",Color.WHITE,25);
-        centerText(text,getAppWidth()/2.0,getAppHeight()/2.0);
+        Text text = getUIFactoryService().newText("loading",Color.WHITE,80);
+        centerText(text,getAppWidth()/2.0+35,getAppHeight()/2.0);
 
         HBox hBox = new HBox(5);
 
         for(int i=0;i<3;i++){
-            Text dot = getUIFactoryService().newText(".",Color.WHITE,30);
+            Text dot = getUIFactoryService().newText(".",Color.WHITE,70);
             hBox.getChildren().add(dot);
 
             animationBuilder(this) //loading dots animations
@@ -31,7 +31,8 @@ public class MainLoadingScene extends LoadingScene {
                     .buildAndPlay();
         }
 
-        hBox.setTranslateX(getAppWidth() / 2.0 - 15); //loading dots centered
+
+        hBox.setTranslateX(getAppWidth() / 2.0 - 25 ); //loading dots centered
         hBox.setTranslateY(getAppHeight() / 2.0);
 
         getContentRoot().getChildren().setAll(backGround,text,hBox);

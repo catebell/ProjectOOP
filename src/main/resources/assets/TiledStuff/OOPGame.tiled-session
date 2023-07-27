@@ -228,7 +228,7 @@
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx"
     ],
     "project": "OOPGame.tiled-project",
-    "property.type": "int",
+    "property.type": "string",
     "recentFiles": [
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
         "industrial.v2Big.tsx",

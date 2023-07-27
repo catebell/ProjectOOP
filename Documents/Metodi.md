@@ -54,5 +54,11 @@
 ## to do
 * luce texture.darker/brighter per illuminare manca recuperare le texture
 * test minigame
-* isMovingX() per effetti visivi player (polvere ecc)
 * fix loading
+* raccolta torcia
+* inibione movienti intro
+* reset fatto bene
+
+## maybe to do
+* isMovingX() per effetti visivi player (polvere ecc)
+* angolazione torcia
