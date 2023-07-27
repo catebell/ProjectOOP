@@ -12,6 +12,7 @@ import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
+import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.PhysicsComponent;
@@ -250,6 +251,13 @@ public class App extends GameApplication {
             }, Duration.seconds(5));
         });
 
+        onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.USE_PROMPT, (player, prompt) -> {
+            Entity entityLeft = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put(
+                    "Action", "Use"));
+
+            spawnWithScale(entityLeft, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+        });
+
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
             startDialogue(2,prompt);
             //startDialogue(1,prompt); //[partono in contemporanea se fatti andare troppo vicini]
@@ -289,7 +297,8 @@ protected void startDialogue(int dialNumber,Entity prompt){
         //System.out.println("Lunghezza di " + s + " = " + s.toCharArray().length + " time = " + time); //DEBUG
 
         if(dial.get(dialNumber).get(dial.get(dialNumber).size() - 1).equals(s)){ /*oppure con una deque per avere direttamente last element*/
-            runOnce(()->despawnWithScale(dialogueEntity,Duration.seconds(1),Interpolators.ELASTIC.EASE_IN()),Duration.seconds(time));
+            runOnce(()->despawnWithScale(dialogueEntity,Duration.seconds(1),Interpolators.ELASTIC.EASE_IN()),
+                    Duration.seconds(time));
         }else{
             despawnWithDelay(dialogueEntity,Duration.seconds(time));
         }
