@@ -16,7 +16,6 @@ import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import java.io.IOException;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 import static com.game.projectoop.App.EntityType.*;
 
@@ -43,7 +42,7 @@ public class PlatformerFactory implements EntityFactory {
     public Entity newPlayer(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
-        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16,32), BoundingShape.box(1,1)));
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(6,32), BoundingShape.box(18,8)));
 
         // this avoids player sticking to walls
         physics.setFixtureDef(new FixtureDef().friction(0.0f));
@@ -99,6 +98,16 @@ public class PlatformerFactory implements EntityFactory {
                 .zIndex(3)
                 .type(TEXT)
                 .viewWithBBox(text)
+                .build();
+    }
+
+    @Spawns("void")
+    public Entity newVoid(SpawnData data){
+        return entityBuilder()
+                .type(VOID)
+                .with(new VoidComponent())
+                .zIndex(10)
+                .with(new IrremovableComponent())
                 .build();
     }
 }

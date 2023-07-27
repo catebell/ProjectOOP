@@ -1,5 +1,6 @@
 package com.game.projectoop;
 
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
@@ -12,12 +13,11 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 
 public class PlayerComponent extends Component {
     private PhysicsComponent physics;
-    private AnimatedTexture texture;
-    private AnimationChannel animIdle;
-    private AnimationChannel animWalk;
-    private AnimationChannel animJump;
-    private AnimationChannel animFly;
-    private AnimationChannel animLanding;
+    private final AnimatedTexture texture;
+    private final AnimationChannel animIdle;
+    private final AnimationChannel animWalk;
+    private final AnimationChannel animFly;
+    private final AnimationChannel animLanding;
 
     private int jumps = 2;
     private boolean isJumping=false;
@@ -27,8 +27,7 @@ public class PlayerComponent extends Component {
         Image image = image("CharacterMovement.png");
 
         animIdle = new AnimationChannel(image,8,32,32, Duration.seconds(1),0,2);
-        animWalk = new AnimationChannel(image,8,32,33, Duration.seconds(0.8),4*2,7*2);
-        animJump = new AnimationChannel(image,8,32,33,Duration.seconds(0.8),9,10);
+        animWalk = new AnimationChannel(image,8,32,33, Duration.seconds(0.8),8,7*2);
         animFly = new AnimationChannel(image,8,32,33,Duration.seconds(0.7),10,10);
         animLanding = new AnimationChannel(image,8,32,33,Duration.seconds(0.2),4,8);
         texture = new AnimatedTexture(animIdle);
@@ -37,6 +36,7 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onAdded() {
+        FXGL.set("Ppos",entity.getPosition());
         entity.getTransformComponent().setScaleOrigin(new Point2D(16,21));
         entity.getViewComponent().addChild(texture);
         physics.onGroundProperty().addListener((obs,old,isOnGround)->{
@@ -48,6 +48,7 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
+        FXGL.set("Ppos",entity.getPosition());
         if(!physics.isOnGround()){
             isJumping=true;
         }
@@ -56,7 +57,7 @@ public class PlayerComponent extends Component {
             if(physics.isOnGround()){
                 landed=false;
                 texture.playAnimationChannel(animLanding);
-                texture.setOnCycleFinished(()->landed=true);
+                texture.setOnCycleFinished(() -> landed = true);
                 isJumping=false;
             }
             else
@@ -91,7 +92,6 @@ public class PlayerComponent extends Component {
         if(jumps==0){
             return;
         }
-
         physics.setVelocityY(-450);
         jumps--;
     }

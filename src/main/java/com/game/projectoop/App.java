@@ -7,6 +7,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.level.Level;
@@ -27,11 +28,12 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
     public enum EntityType {
-        PLAYER, PLATFORM, KEY_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT
+        PLAYER, PLATFORM, KEY_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, VOID
     }
 
     //? private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
     private Entity player;
+    private Entity shadow;
     private double accX = 0;
     private boolean sx = false;
     private boolean dx = false;
@@ -42,7 +44,7 @@ public class App extends GameApplication {
         }
         Level level = setLevelFromMap("TestLvl3.tmx");
         List<Entity> layers = level.getEntities();
-        int backgrounds = 0;
+        int backgrounds = level.getProperties().getInt("backgrounds");
         for (Entity E : layers) {
             if (E.getTypeComponent().toString().equals("Type(TiledMapLayer)")) {
                 if (backgrounds >= level.getProperties().getInt("backgrounds")) {
@@ -53,6 +55,7 @@ public class App extends GameApplication {
                 }
             }
         }
+
         Viewport viewport = getGameScene().getViewport();
         viewport.setZoom(1.4);
         viewport.setBounds(0, 0, level.getWidth(), level.getHeight());
@@ -177,6 +180,7 @@ public class App extends GameApplication {
         catch(IOException e){
             System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHH");
         }
+        vars.put("Ppos",new Point2D(0,0));
         vars.put("level", 1);
 
     }
@@ -201,7 +205,7 @@ public class App extends GameApplication {
         set("player", player);
 
         spawn("background");
-
+        shadow = spawn("void");
         Viewport viewport = getGameScene().getViewport();
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setLazy(true); //smoother camera movement
@@ -242,7 +246,9 @@ public class App extends GameApplication {
 private HashMap<Integer,List<String>> dialogues(){
         HashMap<Integer,List<String>> dialogues = new HashMap<>();
         dialogues.put(1,List.of("first text","second text"));
-        dialogues.put(2,List.of("crying","shaking","throwing up"));
+        dialogues.put(2,List.of("Lorem ipsum dolor sit amet,\n consectetur adipiscing elit,","sed do eiusmod tempor " +
+                        "incididunt ut labore et dolore magna aliqua.",
+                "Ut enim ad minim veniam,","quis nostrud exercitation ullamco laboris nisi","ut aliquip ex ea commodo consequat."));
         return dialogues;
 }
 
