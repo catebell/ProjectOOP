@@ -131,4 +131,13 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new IrremovableComponent())
                 .build();
     }
+
+    @Spawns("minigame")
+    public Entity newMinigame(SpawnData data){
+        return entityBuilder(data)
+                .type(MINIGAME)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 }

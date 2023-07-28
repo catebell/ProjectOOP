@@ -12,6 +12,7 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.minigames.MiniGameSubScene;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.time.TimerAction;
 import javafx.animation.Interpolator;
@@ -30,7 +31,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
     public enum EntityType {
-        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT
+        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, MINIGAME
     }
     private Entity player;
     private Entity endlessVoid;
@@ -110,6 +111,7 @@ public class App extends GameApplication {
         setLevel();
         flashlight.setVisible(false);
         endlessVoid.setVisible(true);
+        tutorialOK=false;
         dialogue.forEach((d)->d.expire());
         tutorialOK=false;
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="36" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="28">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="36" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="30">
  <editorsettings>
   <export target="MapComp..tmx" format="tmx"/>
  </editorsettings>
@@ -80,17 +80,18 @@
    </properties>
   </object>
   <object id="27" type="flashlightPrompt" x="167.833" y="31.8333" width="16" height="291.25"/>
+  <object id="29" type="minigame" x="484.667" y="140.667" width="52.6667" height="58.6667"/>
  </objectgroup>
  <objectgroup id="5" name="Platforms">
   <object id="1" type="platform" x="3.75" y="319.894" width="190.828" height="2.98947"/>
-  <object id="2" type="platform" x="190.954" y="322.973" width="3.62359" height="31.5253"/>
+  <object id="2" type="platform" x="112.621" y="322.973" width="81.9569" height="31.5253"/>
   <object id="4" type="platform" x="192.947" y="351.782" width="702.955" height="2.7177"/>
   <object id="6" type="platform" x="959.632" y="352.031" width="64.2735" height="1.99298"/>
   <object id="7" type="platform" x="1055.54" y="351.782" width="64.1376" height="2.53652"/>
-  <object id="8" type="platform" x="290.603" y="263.728" width="200.43" height="15.8985"/>
-  <object id="10" type="platform" x="481.204" y="200.315" width="350.401" height="15.9438"/>
-  <object id="12" type="platform" x="426.489" y="279.309" width="14.4944" height="8.69664"/>
-  <object id="17" type="platform" x="297.85" y="277.135" width="15.9438" height="10.5084"/>
+  <object id="8" type="platform" x="286.603" y="263.728" width="200.93" height="15.8985"/>
+  <object id="10" type="platform" x="479.204" y="200.315" width="352.401" height="15.9438"/>
+  <object id="12" type="platform" x="424.489" y="279.809" width="14.4944" height="8.69664"/>
+  <object id="17" type="platform" x="295.35" y="278.135" width="15.9438" height="10.5084"/>
   <object id="18" type="platform" x="544.979" y="96.3182" width="223.214" height="64.4999"/>
   <object id="20" type="platform" x="744.64" y="212.999" width="15.9438" height="10.8708"/>
   <object id="26" type="platform" x="-1.83333" y="-4" width="1157.83" height="7.83333"/>
