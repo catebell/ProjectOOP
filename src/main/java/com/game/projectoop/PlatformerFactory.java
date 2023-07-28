@@ -30,6 +30,15 @@ public class PlatformerFactory implements EntityFactory {
             .build();
     }
 
+    @Spawns("minigameBackground")
+    public Entity newminigameBackground(SpawnData data){
+        return entityBuilder()
+                .view(new ScrollingBackgroundView(texture("WhiteBG.png").getImage(),getAppWidth(),getAppHeight()))
+                .zIndex(10) //depth -1 -> background
+                .with(new IrremovableComponent())
+                .build();
+    }
+
     @Spawns("platform")
     public Entity newPlatform(SpawnData data) {
         return entityBuilder(data)

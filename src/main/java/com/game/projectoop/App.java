@@ -297,6 +297,14 @@ public class App extends GameApplication {
             //startDialogue(1,prompt); //[partono in contemporanea se fatti andare troppo vicini]
         });
 
+        onCollisionOneTimeOnly(EntityType.PLAYER,EntityType.MINIGAME,(player,prompt)->{
+            getSceneService().pushSubScene(new SubSceneMinigame());
+/*          Entity flashlightButton = getGameWorld().create("button",new SpawnData(prompt.getX(),prompt.getBottomY()-65).put("Action","Flashlight"));
+            spawnWithScale(flashlightButton, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+
+            runOnce(()->despawnWithScale(flashlightButton,Duration.seconds(1), Interpolators.ELASTIC.EASE_IN()),Duration.seconds(5));*/
+        });
+
         //la roba che spawna legata ai trigger, spawna dove sono fisicamente TUTTI i trigger? ce ne freghiamo perchè altrimenti bisogna fare spawn separati? Facciamo uno spawn per ogni "entità parlante"?
     }
 
