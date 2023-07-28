@@ -22,19 +22,18 @@ public class InteractionEvent extends Event {
     public static final EventType<InteractionEvent> PICKUP
             = new EventType<>(ANY, "PICKUP");
 
-    public InteractionEvent(EventType<? extends Event> eventType, Optional<Entity> InteractionEnt) {
+    public InteractionEvent(EventType<? extends Event> eventType, Optional<Entity> interactionEnt) {
         super(eventType);
         if(eventType.equals(TUTORIAL)){
-            if (InteractionEnt.isPresent()) {
-                despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(InteractionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
+            if (interactionEnt.isPresent()) {
+                despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
                 getGameWorld().getEntitiesByType(VOID).get(0).setVisible(false);
                 getGameWorld().getEntitiesByType(FLASHLIGHT).get(0).setVisible(true);
-                runOnce(()->tutorialKeys(InteractionEnt.get()),Duration.seconds(1));
+                runOnce(()->tutorialKeys(interactionEnt.get()),Duration.seconds(1));
             }
-
         }
-
     }
+
     private void tutorialKeys(Entity prompt){
             Entity entityLeft = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY() + 17).put(
                     "Action", "Left"));

@@ -7,9 +7,6 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-
-
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -17,8 +14,7 @@ import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.time.TimerAction;
-import javafx.event.Event;
-import javafx.event.EventType;
+import javafx.animation.Interpolator;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
@@ -34,7 +30,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
     public enum EntityType {
-        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, TUTORIAL_PROMPT, VOID,FLASHLIGHT
+        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT
     }
     private Entity player;
     private Entity endlessVoid;
@@ -43,7 +39,45 @@ public class App extends GameApplication {
     private boolean sx = false;
     private boolean dx = false;
     boolean tutorialOK = false;
-    private ArrayList<TimerAction> dialogue = new ArrayList<>();
+    private final ArrayList<TimerAction> dialogue = new ArrayList<>();
+
+    private HashMap<Integer,List<String>> dialogues(){
+        HashMap<Integer,List<String>> dialogues = new HashMap<>();
+        dialogues.put(1,List.of("first text","second text"));
+        dialogues.put(2,List.of("Lorem ipsum dolor sit amet,\n consectetur adipiscing elit,","sed do eiusmod tempor\n" +
+                        "incididunt ut labore et dolore magna aliqua.",
+                "Ut enim ad minim veniam,","quis nostrud exercitation ullamco laboris nisi","ut aliquip ex ea commodo consequat."));
+        return dialogues;
+    }
+
+    protected void startDialogue(int dialNumber,Entity prompt){
+        HashMap<Integer,List<String>> dial = dialogues();
+        double time = 0.0;
+
+        for(String s : dial.get(dialNumber)) {//first dialogue
+            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(), prompt.getY()).put("Text", s));
+
+            //effects in out for each sentence and/or spawn delay
+            //System.out.println("s = " + s + " and element 0 = " + dial.get(1).get(0)); //DEBUG
+            /*if(dial.get(dialNumber).get(0).equals(s)){ //element 0 spawn in 0 time
+                runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time));
+                System.out.println("first element");
+            }else{ //delay spawn
+                runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time+0.5));
+            }*/
+
+            dialogue.add(runOnce(() -> spawnWithScale(dialogueEntity, Duration.seconds(1),
+                    Interpolators.ELASTIC.EASE_OUT()), Duration.seconds(time)));
+            time += 0.2 * s.toCharArray().length;
+            //System.out.println("length of " + s + " = " + s.toCharArray().length + " time = " + time); //DEBUG
+
+            if (dial.get(dialNumber).get(dial.get(dialNumber).size() - 1).equals(s)) { /*oppure con una deque per avere direttamente last element*/
+                runOnce(() -> despawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN()), Duration.seconds(time));
+            } else {
+                despawnWithDelay(dialogueEntity, Duration.seconds(time));
+            }
+        }
+    }
 
     private void setLevel() {
         if (player != null) {
@@ -77,6 +111,7 @@ public class App extends GameApplication {
         flashlight.setVisible(false);
         endlessVoid.setVisible(true);
         dialogue.forEach((d)->d.expire());
+        tutorialOK=false;
     }
 
     public void onPlayerDied() {
@@ -84,7 +119,7 @@ public class App extends GameApplication {
     }
 
     protected void onUpdate(double tpf) {
-        if (player.getY() > getAppHeight() || player.getX() > getAppWidth() - 100 || player.getX() < -100) {
+        if (player.getY() > getAppHeight() || player.getX() > getAppWidth() - 100 || player.getX() < -100) { //player out of boundaries
             onPlayerDied();
         }
     }
@@ -105,10 +140,9 @@ public class App extends GameApplication {
                 return new MainLoadingScene();
             }
         });
-        //settings.setDeveloperMenuEnabled(true); //DEBUG
+        settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
-
 
     @Override
     protected void initInput() {
@@ -171,12 +205,10 @@ public class App extends GameApplication {
             protected void onActionBegin() {
                 getGameWorld().getEntitiesByType(EntityType.USE_PROMPT).stream().filter(prompt -> prompt.hasComponent(CollidableComponent.class) && player.isColliding(prompt))
                         .forEach((prompt) -> {
-                                    if (prompt.getString("Use").equals("Tutorial")) {
+                                    if (prompt.getString("Use").equals("Tutorial")) { //only for tutorial actions
                                         tutorialOK = true;
-                                        getEventBus().setLoggingEnabled(true);
                                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.TUTORIAL,
                                                 Optional.of(prompt)));
-
                                     }
                                 });
             }
@@ -208,7 +240,6 @@ public class App extends GameApplication {
         vars.put("PlayerPosition",new Point2D(0,0));
         vars.put("PlayerScaleX",1);
         vars.put("level", 1);
-
     }
 
     @Override
@@ -221,20 +252,24 @@ public class App extends GameApplication {
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new PlatformerFactory());
+
         spawn("background");
         endlessVoid = spawn("void");
         flashlight = spawn("flashlight");
         flashlight.setVisible(false);
         player = null;
+
         setLevel(); //nextlevel(); [vedi sotto]
+
         // player must be spawned after call to nextLevel, otherwise player gets removed
         // before the update tick _actually_ adds the player to game world
         player = spawn("player", 50, 50);
-        set("player", player);
-        Viewport viewport = getGameScene().getViewport();
-        viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
-        viewport.setZoom(1.4);
 
+        set("player", player);
+
+        Viewport viewport = getGameScene().getViewport();
+        viewport.bindToEntity(player, getAppWidth()/2.0, getAppHeight()/2.0);
+        viewport.setZoom(1.4);
         viewport.setLazy(true); //smoother camera movement
     }
 
@@ -243,10 +278,16 @@ public class App extends GameApplication {
         getPhysicsWorld().setGravity(0, 1000);
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.USE_PROMPT, (player, prompt) -> {
-            Entity entityLeft = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put(
+            Entity useButton = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put(
                     "Action", "Use"));
+            spawnWithScale(useButton, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+        });
 
-            spawnWithScale(entityLeft, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+        onCollisionOneTimeOnly(EntityType.PLAYER,EntityType.FLASHLIGHT_PROMPT,(player,prompt)->{
+            Entity flashlightButton = getGameWorld().create("button",new SpawnData(prompt.getX(),prompt.getBottomY()-65).put("Action","Flashlight"));
+            spawnWithScale(flashlightButton, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+
+            runOnce(()->despawnWithScale(flashlightButton,Duration.seconds(1), Interpolators.ELASTIC.EASE_IN()),Duration.seconds(5));
         });
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
@@ -256,45 +297,6 @@ public class App extends GameApplication {
 
         //la roba che spawna legata ai trigger, spawna dove sono fisicamente TUTTI i trigger? ce ne freghiamo perchè altrimenti bisogna fare spawn separati? Facciamo uno spawn per ogni "entità parlante"?
     }
-
-private HashMap<Integer,List<String>> dialogues(){
-        HashMap<Integer,List<String>> dialogues = new HashMap<>();
-        dialogues.put(1,List.of("first text","second text"));
-        dialogues.put(2,List.of("Lorem ipsum dolor sit amet,\n consectetur adipiscing elit,","sed do eiusmod tempor " +
-                        "incididunt ut labore et dolore magna aliqua.",
-                "Ut enim ad minim veniam,","quis nostrud exercitation ullamco laboris nisi","ut aliquip ex ea commodo consequat."));
-        return dialogues;
-}
-
-protected void startDialogue(int dialNumber,Entity prompt){
-    HashMap<Integer,List<String>> dial = dialogues();
-    double time = 0.0;
-
-    for(String s : dial.get(dialNumber)) {//first dialogue
-            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(), prompt.getY()).put("Text", s));
-
-            //se vogliamo tenere gli effetti anche in out e/o ritardare la comparsa delle frasi
-            //System.out.println("s = " + s + " e elemento 0 = " + dial.get(1).get(0)); //DEBUG
-            /*if(dial.get(dialNumber).get(0).equals(s)){ //element 0 spawn in 0 time
-                runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time));
-                System.out.println("siamo al primo elemento");
-            }else{ //delay spawn
-                runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time+0.5));
-            }*/
-
-            dialogue.add(runOnce(() -> spawnWithScale(dialogueEntity, Duration.seconds(1),
-                    Interpolators.ELASTIC.EASE_OUT()), Duration.seconds(time)));
-            time += 0.2 * s.toCharArray().length;
-            //System.out.println("Lunghezza di " + s + " = " + s.toCharArray().length + " time = " + time); //DEBUG
-
-            if (dial.get(dialNumber).get(dial.get(dialNumber).size() - 1).equals(s)) { /*oppure con una deque per avere direttamente last element*/
-                runOnce(() -> despawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN()), Duration.seconds(time));
-            } else {
-                despawnWithDelay(dialogueEntity, Duration.seconds(time));
-            }
-        }
-    }
-
 
     // [vedi sopra]
     /*private void nextLevel() {
@@ -307,8 +309,6 @@ protected void startDialogue(int dialNumber,Entity prompt){
 
         setLevel(geti("level"));
     }*/
-
-
 
     public static void main(String[] args) {
         launch(args);

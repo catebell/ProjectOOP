@@ -60,12 +60,19 @@ public class PlatformerFactory implements EntityFactory {
 
     }
 
-
-
     @Spawns("usePrompt")
     public Entity newUsePrompt(SpawnData data) {
         return entityBuilder(data)
                 .type(USE_PROMPT)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("flashlightPrompt")
+    public Entity newFlashlightPrompt(SpawnData data) {
+        return entityBuilder(data)
+                .type(FLASHLIGHT_PROMPT)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
                 .build();
