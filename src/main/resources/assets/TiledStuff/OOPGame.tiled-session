@@ -5,9 +5,9 @@
     },
     "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx",
     "expandedProjectPaths": [
-        ".",
+        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
-        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -118,11 +118,11 @@
             "scaleInDock": 1
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx": {
-            "scale": 0.6259114583333333,
-            "selectedLayer": 4,
+            "scale": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 570.3682130226751,
-                "y": 250.03536509257333
+                "x": 142.5,
+                "y": 194.75
             }
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx#hanging-terminal": {

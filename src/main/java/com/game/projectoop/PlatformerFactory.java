@@ -60,14 +60,7 @@ public class PlatformerFactory implements EntityFactory {
 
     }
 
-    @Spawns("tutorialPrompt")
-    public Entity newTutorialPrompt(SpawnData data) {
-        return entityBuilder(data)
-                .type(TUTORIAL_PROMPT)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new CollidableComponent(true))
-                .build();
-    }
+
 
     @Spawns("usePrompt")
     public Entity newUsePrompt(SpawnData data) {
@@ -125,6 +118,7 @@ public class PlatformerFactory implements EntityFactory {
     @Spawns("flashlight")
     public Entity newFlashlight(SpawnData data){
         return entityBuilder()
+                .type(FLASHLIGHT)
                 .with(new FlashlightComponent())
                 .zIndex(3)
                 .with(new IrremovableComponent())
