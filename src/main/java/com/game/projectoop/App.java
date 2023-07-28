@@ -12,10 +12,8 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.minigames.MiniGameSubScene;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.time.TimerAction;
-import javafx.animation.Interpolator;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
@@ -31,7 +29,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
     public enum EntityType {
-        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, MINIGAME
+        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT
     }
     private Entity player;
     private Entity endlessVoid;
@@ -97,7 +95,7 @@ public class App extends GameApplication {
                 }
             }
         }
-        getGameScene().getViewport().setBounds(0, 0, level.getWidth(), level.getHeight());
+        getGameScene().getViewport().setBounds(0, 0, level.getWidth(), level.getHeight()+10);
     }
 
     private void setLevel(int levelNum) {
@@ -142,7 +140,7 @@ public class App extends GameApplication {
                 return new MainLoadingScene();
             }
         });
-        settings.setDeveloperMenuEnabled(true); //DEBUG
+        //settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
 
@@ -212,7 +210,13 @@ public class App extends GameApplication {
                                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.TUTORIAL,
                                                 Optional.of(prompt)));
                                     }
-                                });
+
+                                    if (prompt.getString("Use").equals("Minigame")) { //only for starting minigames
+                                        System.out.println("Ha visto che Use = Minigame"); //DEBUG
+                                        getEventBus().fireEvent(new InteractionEvent(InteractionEvent.MINIGAME,
+                                                Optional.of(prompt)));
+                                    }
+                        });
             }
         }, KeyCode.E);
 
@@ -296,16 +300,6 @@ public class App extends GameApplication {
             startDialogue(2,prompt);
             //startDialogue(1,prompt); //[partono in contemporanea se fatti andare troppo vicini]
         });
-
-        onCollisionOneTimeOnly(EntityType.PLAYER,EntityType.MINIGAME,(player,prompt)->{
-            getSceneService().pushSubScene(new SubSceneMinigame());
-/*          Entity flashlightButton = getGameWorld().create("button",new SpawnData(prompt.getX(),prompt.getBottomY()-65).put("Action","Flashlight"));
-            spawnWithScale(flashlightButton, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
-
-            runOnce(()->despawnWithScale(flashlightButton,Duration.seconds(1), Interpolators.ELASTIC.EASE_IN()),Duration.seconds(5));*/
-        });
-
-        //la roba che spawna legata ai trigger, spawna dove sono fisicamente TUTTI i trigger? ce ne freghiamo perchè altrimenti bisogna fare spawn separati? Facciamo uno spawn per ogni "entità parlante"?
     }
 
     // [vedi sopra]

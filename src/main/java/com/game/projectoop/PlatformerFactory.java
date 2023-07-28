@@ -25,7 +25,7 @@ public class PlatformerFactory implements EntityFactory {
     public Entity newBackground(SpawnData data){
         return entityBuilder()
             .view(new ScrollingBackgroundView(texture("background/blackBackground.png").getImage(),getAppWidth(),getAppHeight()))
-            .zIndex(-1) //depth -1 -> background
+            .zIndex(-1)
             .with(new IrremovableComponent())
             .build();
     }
@@ -34,7 +34,7 @@ public class PlatformerFactory implements EntityFactory {
     public Entity newminigameBackground(SpawnData data){
         return entityBuilder()
                 .view(new ScrollingBackgroundView(texture("WhiteBG.png").getImage(),getAppWidth(),getAppHeight()))
-                .zIndex(10) //depth -1 -> background
+                .zIndex(5)
                 .with(new IrremovableComponent())
                 .build();
     }
@@ -138,15 +138,6 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new FlashlightComponent())
                 .zIndex(3)
                 .with(new IrremovableComponent())
-                .build();
-    }
-
-    @Spawns("minigame")
-    public Entity newMinigame(SpawnData data){
-        return entityBuilder(data)
-                .type(MINIGAME)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new CollidableComponent(true))
                 .build();
     }
 }

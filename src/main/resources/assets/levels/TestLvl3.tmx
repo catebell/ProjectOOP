@@ -80,7 +80,11 @@
    </properties>
   </object>
   <object id="27" type="flashlightPrompt" x="167.833" y="31.8333" width="16" height="291.25"/>
-  <object id="29" type="minigame" x="484.667" y="140.667" width="52.6667" height="58.6667"/>
+  <object id="29" type="usePrompt" x="484.667" y="140.667" width="52.6667" height="58.6667">
+   <properties>
+    <property name="Use" value="Minigame"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="5" name="Platforms">
   <object id="1" type="platform" x="3.75" y="319.894" width="190.828" height="2.98947"/>

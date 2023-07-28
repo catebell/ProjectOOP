@@ -21,6 +21,8 @@ public class InteractionEvent extends Event {
             = new EventType<>(ANY, "TUTORIAL");
     public static final EventType<InteractionEvent> PICKUP
             = new EventType<>(ANY, "PICKUP");
+    public static final EventType<InteractionEvent> MINIGAME
+            =new EventType<>(ANY,"MINIGAME");
 
     public InteractionEvent(EventType<? extends Event> eventType, Optional<Entity> interactionEnt) {
         super(eventType);
@@ -31,6 +33,11 @@ public class InteractionEvent extends Event {
                 getGameWorld().getEntitiesByType(FLASHLIGHT).get(0).setVisible(true);
                 runOnce(()->tutorialKeys(interactionEnt.get()),Duration.seconds(1));
             }
+        }
+
+        if(eventType.equals(MINIGAME)){
+            getSceneService().pushSubScene(new SubSceneMinigame());
+            despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
         }
     }
 
