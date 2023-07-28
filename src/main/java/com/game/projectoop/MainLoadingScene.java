@@ -15,7 +15,7 @@ public class MainLoadingScene extends LoadingScene {
         Rectangle backGround = new Rectangle(getAppWidth(),getAppHeight(), Color.BLACK);
 
         Text text = getUIFactoryService().newText("loading",Color.WHITE,80);
-        centerText(text,getAppWidth()/2.0+35,getAppHeight()/2.0);
+        centerText(text,getAppWidth()/2.0 + 35,getAppHeight()/2.0 + 50);
 
         HBox hBox = new HBox(5);
 
@@ -32,8 +32,8 @@ public class MainLoadingScene extends LoadingScene {
         }
 
 
-        hBox.setTranslateX(getAppWidth() / 2.0 - 25 ); //loading dots centered
-        hBox.setTranslateY(getAppHeight() / 2.0);
+        hBox.setTranslateX(getAppWidth()/2.0 - 25); //loading dots centered
+        hBox.setTranslateY(getAppHeight()/2.0);
 
         getContentRoot().getChildren().setAll(backGround,text,hBox);
     }
