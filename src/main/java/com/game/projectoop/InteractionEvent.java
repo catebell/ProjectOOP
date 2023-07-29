@@ -36,8 +36,12 @@ public class InteractionEvent extends Event {
         }
 
         if(eventType.equals(MINIGAME)){
-            getSceneService().pushSubScene(new SubSceneMinigame());
-            despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
+            //richiamo il minigame e gli do i parametri
+            getMiniGameService().startCircuitBreaker(5,5,30,100,Duration.seconds(0.1),result -> {
+                System.out.println(result.isSuccess() ? "Success" : "Fail");});
+           // getSceneService().pushSubScene(new SubSceneMinigame());
+           // despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent
+            // .isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
         }
     }
 
