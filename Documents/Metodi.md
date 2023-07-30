@@ -57,3 +57,5 @@
 * isMovingX() per effetti visivi player (polvere ecc)
 * angolazione torcia
 * CRACCARE IL CAZZO DI CODICE DEI MINIGAME
+* aggiungere il personaggio nei cryopod
+* modificare il salto piu tieni premuto piu va in alto
