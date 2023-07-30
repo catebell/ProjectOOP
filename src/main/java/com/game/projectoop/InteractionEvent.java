@@ -4,6 +4,8 @@ import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
+import com.almasb.fxgl.minigames.MiniGame;
+import com.almasb.fxgl.minigames.circuitbreaker.CircuitBreakerMiniGame;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.util.Duration;
@@ -38,7 +40,7 @@ public class InteractionEvent extends Event {
         if(eventType.equals(MINIGAME)){
             //richiamo il minigame e gli do i parametri
             getMiniGameService().startCircuitBreaker(5,5,30,100,Duration.seconds(0.1),result -> {
-                System.out.println(result.isSuccess() ? "Success" : "Fail");});
+                despawnWithScale(getGameWorld().getSingleton(FLASHLIGHT));});
            // getSceneService().pushSubScene(new SubSceneMinigame());
            // despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent
             // .isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());

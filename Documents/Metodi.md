@@ -52,8 +52,8 @@
 ---
 
 ## to do
-* test minigame
 
 ## maybe to do
 * isMovingX() per effetti visivi player (polvere ecc)
 * angolazione torcia
+* CRACCARE IL CAZZO DI CODICE DEI MINIGAME

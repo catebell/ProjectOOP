@@ -150,7 +150,7 @@ public class App extends GameApplication {
         getInput().addAction(new UserAction("Left") {
             @Override
             protected void onAction() {
-                if(tutorialOK){
+                if(tutorialOK && !dx){
                     sx = true;
                     if (accX > -1) {
                         accX -= 0.1;
@@ -173,7 +173,7 @@ public class App extends GameApplication {
         getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
-                if(tutorialOK){
+                if(tutorialOK && !sx){
                     dx = true;
                     if (accX < 1) {
                         accX += 0.1;
