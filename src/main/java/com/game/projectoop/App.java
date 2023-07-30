@@ -18,6 +18,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+
+import javax.security.auth.callback.TextInputCallback;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -29,11 +31,12 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
     public enum EntityType {
-        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT
+        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER, BATTERY, PLATFORM_ANIM, EXIT
     }
     private Entity player;
     private Entity endlessVoid;
     private Entity flashlight;
+
     private double accX = 0;
     private boolean sx = false;
     private boolean dx = false;
@@ -212,8 +215,12 @@ public class App extends GameApplication {
                                     }
 
                                     if (prompt.getString("Use").equals("Minigame")) { //only for starting minigames
-                                        System.out.println("Ha visto che Use = Minigame"); //DEBUG
                                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.MINIGAME,
+                                                Optional.of(prompt)));
+                                    }
+
+                                    if (prompt.getString("Use").equals("Lever")) { //only for pulling levers
+                                        getEventBus().fireEvent(new InteractionEvent(InteractionEvent.LEVER,
                                                 Optional.of(prompt)));
                                     }
                         });
@@ -269,7 +276,7 @@ public class App extends GameApplication {
 
         // player must be spawned after call to nextLevel, otherwise player gets removed
         // before the update tick _actually_ adds the player to game world
-        player = spawn("player", 50, 50);
+        player = spawn("player", 50,50);
 
         set("player", player);
 

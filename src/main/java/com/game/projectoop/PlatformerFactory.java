@@ -30,21 +30,21 @@ public class PlatformerFactory implements EntityFactory {
             .build();
     }
 
-    @Spawns("minigameBackground")
-    public Entity newminigameBackground(SpawnData data){
-        return entityBuilder()
-                .view(new ScrollingBackgroundView(texture("WhiteBG.png").getImage(),getAppWidth(),getAppHeight()))
-                .zIndex(5)
-                .with(new IrremovableComponent())
-                .build();
-    }
-
     @Spawns("platform")
     public Entity newPlatform(SpawnData data) {
         return entityBuilder(data)
                 .type(PLATFORM)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
+                .build();
+    }
+
+    @Spawns("exit")
+    public Entity newExit(SpawnData data) {
+        return entityBuilder(data)
+                .type(EXIT)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
                 .build();
     }
 
@@ -138,6 +138,54 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new FlashlightComponent())
                 .zIndex(3)
                 .with(new IrremovableComponent())
+                .build();
+    }
+
+    @Spawns("hal")
+    public Entity newHal(SpawnData data){
+        return entityBuilder(data)
+                .type(HAL)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .with(new IrremovableComponent())
+                .with(new HalComponent())
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("platforma")
+    public Entity newPlatformA(SpawnData data){
+        return entityBuilder(data)
+                .type(PLATFORM_ANIM)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .with(new IrremovableComponent())
+                .with(new AnimPlatformComponent())
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("lever")
+    public Entity newLever(SpawnData data){
+        return entityBuilder(data)
+                .type(LEVER)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .with(new IrremovableComponent())
+                .with(new LeverComponent())
+                .zIndex(1)
+                .build();
+    }
+
+    @Spawns("battery")
+    public Entity newBattery(SpawnData data){
+        return entityBuilder(data)
+                .type(BATTERY)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .with(new IrremovableComponent())
+                .with(new BatteryComponent())
+                .zIndex(1)
                 .build();
     }
 }
