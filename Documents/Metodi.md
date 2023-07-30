@@ -52,6 +52,16 @@
 ---
 
 ## to do
+* spostare dialogi in event
+* centrare i dialogi
+* creare i dialogi
+* creare sprite monitor per parte finale
+* tune minigame
+* leve accendono luci
+* leve accendono minigame
+* minigame accende ascensore
+* caricamento ascensore
+* animazione ascensore apertura
 
 ## maybe to do
 * isMovingX() per effetti visivi player (polvere ecc)

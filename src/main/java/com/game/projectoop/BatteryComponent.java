@@ -18,8 +18,8 @@ public class BatteryComponent extends Component {
         Image image = image("BatteryMovement.png");
 
         animActivation = new AnimationChannel(image, 4, 32, 32, Duration.seconds(0.66), 0, 3);
-        animOFF = new AnimationChannel(image,4,32,32,Duration.seconds(1),0,0);
-        animON = new AnimationChannel(image,4,32,32,Duration.seconds(1),3,3);
+        animOFF = new AnimationChannel(image, 4, 32, 32, Duration.seconds(1), 0, 0);
+        animON = new AnimationChannel(image, 4, 32, 32, Duration.seconds(1), 3, 3);
 
         texture = new AnimatedTexture(animOFF);
         texture.loop();

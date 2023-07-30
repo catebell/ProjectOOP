@@ -9,8 +9,6 @@ package com.game.projectoop;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.input.KeyTrigger;
-import com.almasb.fxgl.minigames.MiniGame;
-import com.almasb.fxgl.minigames.MiniGameSubScene;
 import com.almasb.fxgl.minigames.sweetspot.SweetSpotMiniGame;
 import com.almasb.fxgl.minigames.sweetspot.SweetSpotView;
 import javafx.scene.control.Button;
@@ -32,6 +30,10 @@ import static javafx.scene.input.KeyCode.*;
 public class MinigameTest extends GameApplication {
 
     private Text debugText;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -81,12 +83,6 @@ public class MinigameTest extends GameApplication {
             });
         });
 
-        addUINode(new VBox(
-                btn1, btn2, btn3, btn4, btn5
-        ), 50, 70);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+        addUINode(new VBox(btn1, btn2, btn3, btn4, btn5), 50, 70);
     }
 }

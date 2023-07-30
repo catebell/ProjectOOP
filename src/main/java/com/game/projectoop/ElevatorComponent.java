@@ -8,18 +8,20 @@ import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 
-public class AnimPlatformComponent extends Component {
+public class ElevatorComponent extends Component {
     private final AnimatedTexture texture;
     private final AnimationChannel animActivation;
     private final AnimationChannel animOFF;
     private final AnimationChannel animON;
 
-    public AnimPlatformComponent() {
-        Image image = image("PlatformMovement.png");
+    private boolean isON;
 
-        animActivation = new AnimationChannel(image, 4, 32, 32, Duration.seconds(0.66), 3, 1);
-        animOFF = new AnimationChannel(image, 4, 32, 32, Duration.seconds(1), 3, 3);
-        animON = new AnimationChannel(image, 4, 32, 32, Duration.seconds(1), 0, 0);
+    public ElevatorComponent() {
+        Image image = image("ElevatorAnim.png");
+
+        animActivation = new AnimationChannel(image, 5, 64, 64, Duration.seconds(1), 0, 4);
+        animOFF = new AnimationChannel(image, 5, 64, 64, Duration.seconds(1), 0, 0);
+        animON = new AnimationChannel(image, 5, 64, 64, Duration.seconds(1), 4, 4);
 
         texture = new AnimatedTexture(animOFF);
         texture.loop();
@@ -32,6 +34,17 @@ public class AnimPlatformComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        //[to do] texture.loopAnimationChannel(animON); e quando si attiva la leva mettere l'animazione
+        if (isON) {
+            texture.loopAnimationChannel(animON);
+        }
+    }
+
+    public void activation() {
+        texture.playAnimationChannel(animActivation);
+        texture.setOnCycleFinished(() -> isON = true);
+    }
+
+    public boolean isON() {
+        return isON;
     }
 }

@@ -15,40 +15,38 @@ public class LeverComponent extends Component {
     private final AnimationChannel animOFF;
     private final AnimationChannel animON;
 
-    private boolean isActive = false;
+    private boolean isPulled;
 
-    public LeverComponent(){
+    public LeverComponent() {
         Image image = image("LeverMovement.png");
 
         animPull = new AnimationChannel(image, 5, 32, 32, Duration.seconds(0.5), 0, 4);
-        animOFF = new AnimationChannel(image,5,32,32,Duration.seconds(1),0,0);
-        animON = new AnimationChannel(image,5,32,32,Duration.seconds(1),4,4);
-
+        animOFF = new AnimationChannel(image, 5, 32, 32, Duration.seconds(1), 0, 0);
+        animON = new AnimationChannel(image, 5, 32, 32, Duration.seconds(1), 4, 4);
         texture = new AnimatedTexture(animOFF);
         texture.loop();
     }
 
     @Override
     public void onAdded() {
-        entity.getTransformComponent().setScaleOrigin(new Point2D(16,21));
+        entity.getTransformComponent().setScaleOrigin(new Point2D(16, 21));
+        isPulled = false;
         entity.getViewComponent().addChild(texture);
     }
 
     @Override
     public void onUpdate(double tpf) {
-        if(isActive){
+        if (isPulled) {
             texture.loopAnimationChannel(animON);
         }
     }
 
     public void pull() {
-        if(!isActive){
-            texture.playAnimationChannel(animPull);
-            texture.setOnCycleFinished(() -> isActive = true);
-        }
+        texture.playAnimationChannel(animPull);
+        texture.setOnCycleFinished(() -> isPulled = true);
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean isPulled() {
+        return isPulled;
     }
 }
