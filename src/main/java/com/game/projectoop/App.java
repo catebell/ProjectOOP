@@ -104,12 +104,14 @@ public class App extends GameApplication {
         flashlight = spawn("flashlight");
         flashlight.setVisible(false);
         player = null;
+        setLevel(); //nextlevel(); [vedi sotto]
+        Viewport viewport = getGameScene().getViewport();
         // player must be spawned after call to nextLevel, otherwise player gets removed
         // before the update tick _actually_ adds the player to game world
         player = spawn("player", new Point2D(905, 595));
         set("player", player);
 
-        Viewport viewport = getGameScene().getViewport();
+
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setZoom(1.4);
         viewport.setLazy(true); //smoother camera movement
@@ -235,7 +237,7 @@ public class App extends GameApplication {
     }
 
     protected void onUpdate(double tpf) {
-        if (!getGameScene().getViewport().getVisibleArea().contains(player.getPosition())) {
+        if (player.getX()<0 || player.getRightX()> maxWidth || player.getY()<0 || player.getBottomY()> maxHeight) {
             //player out of boundaries
             onPlayerDied();
         }
@@ -259,6 +261,8 @@ public class App extends GameApplication {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(905, 595));
         }
         Level level = setLevelFromMap("Cryo.tmx");
+        maxWidth = level.getWidth();
+        maxHeight = level.getHeight();
         List<Entity> layers = level.getEntities();
         int backgrounds = 0;
         for (Entity E : layers) {
