@@ -294,12 +294,12 @@
   <object id="40" type="platform" x="0.166667" y="1280" width="2082" height="18.375"/>
  </objectgroup>
  <objectgroup id="5" name="Triggers">
-  <object id="1" name="SpawnZone" type="usePrompt" x="899.667" y="593.167" width="31.3333" height="46.7727">
+  <object id="1" name="SpawnZone" type="usePrompt" x="899.667" y="565.667" width="31.3333" height="74.2727">
    <properties>
     <property name="Use" value="Tutorial"/>
    </properties>
   </object>
-  <object id="2" name="Dialogue1" type="dialoguePrompt" x="806.333" y="531.333" width="80.6667" height="106"/>
+  <object id="2" name="Dialogue1" type="dialoguePrompt" x="806.333" y="533.333" width="80.6667" height="106"/>
   <object id="4" name="Dialogue1" type="dialoguePrompt" x="999.33" y="531.667" width="80.6667" height="109.333"/>
   <object id="28" name="Minigame" type="usePrompt" x="156" y="1215.5" width="40" height="65">
    <properties>
