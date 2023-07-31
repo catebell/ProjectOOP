@@ -9,6 +9,7 @@ import javafx.util.Duration;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 
 public class LightsComponent extends Component {
+
     private final AnimatedTexture texture;
     private final AnimationChannel animOFF;
     private final AnimationChannel animON;
@@ -18,8 +19,8 @@ public class LightsComponent extends Component {
     public LightsComponent() {
         Image image = image("Lights.png");
 
-        animOFF = new AnimationChannel(image, 2, 32, 32, Duration.seconds(1), 0, 0);
-        animON = new AnimationChannel(image, 2, 32, 32, Duration.seconds(1), 1, 1);
+        animOFF = new AnimationChannel(image, 3, 32, 32, Duration.seconds(1), 0, 0);
+        animON = new AnimationChannel(image, 3, 32, 32, Duration.seconds(1), 1, 1);
 
         texture = new AnimatedTexture(animOFF);
         texture.loop();
@@ -33,12 +34,15 @@ public class LightsComponent extends Component {
     @Override
     public void onUpdate(double tpf) {
         if (isON) {
+
             texture.loopAnimationChannel(animON);
         }
     }
 
     public void activation() {
-        texture.setOnCycleFinished(() -> isON = true);
+        texture.loopAnimationChannel(animON);
+        System.out.println(texture);
+        isON = true;
     }
 
     public boolean isON() {

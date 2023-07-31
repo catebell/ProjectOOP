@@ -148,7 +148,8 @@ public class PlatformerFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(HAL)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new CollidableComponent(true)).with(new IrremovableComponent())
+                .with(new CollidableComponent(true))
+                .with(new IrremovableComponent())
                 .with(new HalComponent())
                 .zIndex(1)
                 .build();
@@ -159,7 +160,6 @@ public class PlatformerFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(PLATFORM_ANIM)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
                 .with(new AnimPlatformComponent())
                 .zIndex(1)
@@ -185,7 +185,7 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
                 .with(new BatteryComponent())
-                .zIndex(1)
+                .zIndex(0)
                 .build();
     }
 
@@ -194,9 +194,10 @@ public class PlatformerFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(LIGHT)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new CollidableComponent(true)).with(new IrremovableComponent())
+                .with(new CollidableComponent(true))
+                .with(new IrremovableComponent())
                 .with(new LightsComponent())
-                .zIndex(1)
+                .zIndex(0)
                 .build();
     }
 

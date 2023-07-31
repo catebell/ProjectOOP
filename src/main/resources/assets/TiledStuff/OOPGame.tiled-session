@@ -3,13 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
+    "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
     "expandedProjectPaths": [
         ".",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/tmx",
         "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels"
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels"
     ],
     "file.lastUsedOpenFilter": "Tutti i file (*)",
     "fileStates": {
@@ -52,17 +50,26 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 4,
-            "selectedLayer": 5,
+            "scale": 3,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 95.625,
-                "y": 1294.125
+                "x": 190.83333333333331,
+                "y": 1239.1666666666665
             }
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#HangingMonitor": {
+            "scaleInDock": 1
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#SpreadSheetbig": {
             "scaleInDock": 1
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#cryo-pod": {
+            "scaleInDock": 4
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#cryo-pod-2": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#cryo-pods": {
             "scaleInDock": 1
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#industrial.v2Big": {
@@ -167,6 +174,10 @@
             "scaleInDock": 1,
             "scaleInEditor": 3
         },
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/cryo-pod.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/industrial.v2.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -199,22 +210,9 @@
             "scaleInDock": 2,
             "scaleInEditor": 1
         },
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 5,
-            "viewCenter": {
-                "x": 1054,
-                "y": 891.3333333333333
-            }
-        },
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#SpreadSheetbig": {
-            "scaleInDock": 1
-        },
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#cryo-pod": {
-            "scaleInDock": 1
-        },
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#industrial.v2Big": {
-            "scaleInDock": 1
+        "HangingMonitor.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 11
         },
         "SpreadSheetbig.tsx": {
             "scaleInDock": 1,
@@ -248,9 +246,16 @@
             "scaleInDock": 3,
             "scaleInEditor": 16
         },
+        "cryo-pod-4.tsx": {
+            "scaleInDock": 1
+        },
         "cryo-pod.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 4
+        },
+        "cyberpunk-corridor-foreground.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "hanging-terminal.tsx": {
             "scaleInDock": 1,
@@ -270,7 +275,7 @@
         }
     },
     "last.exportedFilePath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
-    "last.externalTilesetPath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
+    "last.externalTilesetPath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/TiledStuff",
     "last.imagePath": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/textures/ToUSE",
     "map.height": 20,
     "map.lastUsedExportFilter": "All Files (*)",
@@ -279,23 +284,24 @@
     "map.tileWidth": 32,
     "map.width": 15,
     "openFiles": [
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx"
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
+        "HangingMonitor.tsx"
     ],
     "project": "OOPGame.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx",
+        "HangingMonitor.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
+        "cyberpunk-corridor-foreground.tsx",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/cryo-pod.tsx",
+        "cryo-pod.tsx",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/TestLvl3.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Testmingame.tmx",
         "spriteBKG.tsx",
-        "cryo-pod.tsx",
         "industrial.v2Big.tsx",
         "SpreadSheetbig.tsx",
         "hanging-terminal.tsx",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapCompTest.tmx",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/industrial.v2.tsx"
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/MapComp.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

@@ -52,10 +52,10 @@
 ---
 
 ## to do
+* Spawn and despawn di hal
 * spostare dialogi in event
 * centrare i dialogi
 * creare i dialogi
-* creare sprite monitor per parte finale
 * leve accendono luci
 * leve accendono minigame
 * minigame accende ascensore

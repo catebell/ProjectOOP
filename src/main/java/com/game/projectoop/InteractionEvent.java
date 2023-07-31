@@ -4,8 +4,10 @@ import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
+import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.event.Event;
 import javafx.event.EventType;
+import javafx.geometry.Rectangle2D;
 import javafx.util.Duration;
 
 import java.util.Optional;
@@ -32,8 +34,8 @@ public class InteractionEvent extends Event {
 
         if (eventType.equals(MINIGAME)) {
             //call to minigame and passing parameters
-            getMiniGameService().startCircuitBreaker(8, 8, 15, 80, Duration.seconds(0.1), result -> {
-                if (result.isSuccess() || !result.isSuccess()) { //[to do] da cambiare
+            getMiniGameService().startCircuitBreaker(5, 5, 15, 80, Duration.seconds(0.1), result -> {
+                if (result.isSuccess()) { //[to do] da cambiare
                     despawnWithScale(getGameWorld().getSingleton(FLASHLIGHT), Duration.seconds(0));
                     despawnWithScale(getGameWorld().getSingleton(VOID), Duration.seconds(0));
                     getGameWorld().getEntitiesByType(BATTERY)
@@ -61,14 +63,23 @@ public class InteractionEvent extends Event {
                                         if (!lever.getComponent(LeverComponent.class).isPulled()) {
                                             despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
                                             lever.getComponent(LeverComponent.class).pull();
+                                            FXGL.inc("Levers",-1);
+                                            if(FXGL.geti("Levers")==0){
+                                                unlockMinigame();
+                                            }
+                                            if(lever.getString("Activates").equals("platform")){
+                                                getGameWorld().getEntitiesByType(PLATFORM_ANIM).forEach(platform->
+                                                    platform.getComponent(AnimPlatformComponent.class).activation());
 
-                                            if(getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(LIGHT)).isPresent()){
-                                                if (!getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(LIGHT)).get().getComponent(LightsComponent.class).isON()) {
-                                                    getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(LIGHT)).get().getComponent(LightsComponent.class).activation();
-                                                }
                                             }
                                         }
                                     });
+                getGameWorld().getEntitiesByType(LIGHT).stream().filter((light) -> light.isColliding(interactionEnt.get()))
+                        .forEach(light -> {
+                            if (!light.getComponent(LightsComponent.class).isON()) {
+                                light.getComponent(LightsComponent.class).activation();
+                            }
+                        });
             }
         }
     }
@@ -87,5 +98,8 @@ public class InteractionEvent extends Event {
             despawnWithScale(entityRight, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
             despawnWithScale(entityJump, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
         }, Duration.seconds(5));
+    }
+    private void unlockMinigame(){
+        FXGL.inc("levelState",+1);
     }
 }
