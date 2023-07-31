@@ -127,7 +127,7 @@ public class App extends GameApplication {
         });
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
-            startDialogue(2, prompt);
+            startDialogue(2, prompt,0,0);
             //startDialogue(1,prompt); //[partono in contemporanea se fatti andare troppo vicini]
         });
     }
@@ -275,12 +275,12 @@ public class App extends GameApplication {
         setLevel(geti("level"));
     }*/
 
-    protected void startDialogue(int dialNumber, Entity prompt) {
+    protected void startDialogue(int dialNumber, Entity prompt,int offsetX,int offsetY) {
         HashMap<Integer, List<String>> dial = dialogues();
         double time = 0.0;
 
         for (String s : dial.get(dialNumber)) {//first dialogue
-            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX(), prompt.getY()).put("Text", s));
+            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX()+offsetX, prompt.getY()+offsetY).put("Text", s));
 
             //effects in out for each sentence and/or spawn delay
             //System.out.println("s = " + s + " and element 0 = " + dial.get(1).get(0)); //DEBUG
