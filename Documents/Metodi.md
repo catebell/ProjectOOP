@@ -56,7 +56,6 @@
 * centrare i dialogi
 * creare i dialogi
 * creare sprite monitor per parte finale
-* tune minigame
 * leve accendono luci
 * leve accendono minigame
 * minigame accende ascensore
