@@ -40,7 +40,7 @@ public class PlayerComponent extends Component {
         entity.getViewComponent().addChild(texture);
         physics.onGroundProperty().addListener((obs, old, isOnGround) -> {
             if (isOnGround) {
-                jumps = 1;
+                jumps = 7;
             }
         });
     }
@@ -87,7 +87,7 @@ public class PlayerComponent extends Component {
     }
 
     public void jump() {
-        if (jumps == 0) {
+        if (jumps == 0 || !physics.isOnGround()) {
             return;
         }
         physics.setVelocityY(-500);
