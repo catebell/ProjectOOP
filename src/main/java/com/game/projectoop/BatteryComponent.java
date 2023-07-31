@@ -14,7 +14,9 @@ public class BatteryComponent extends Component {
     private final AnimationChannel animOFF;
     private final AnimationChannel animON;
 
-    public BatteryComponent(){
+    private boolean isON;
+
+    public BatteryComponent() {
         Image image = image("BatteryMovement.png");
 
         animActivation = new AnimationChannel(image, 4, 32, 32, Duration.seconds(0.66), 0, 3);
@@ -32,6 +34,17 @@ public class BatteryComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        //[to do] texture.loopAnimationChannel(animON); e finito il minigioco mettere l'animazione
+        if (isON) {
+            texture.loopAnimationChannel(animON);
+        }
+    }
+
+    public void activation() {
+        texture.playAnimationChannel(animActivation);
+        texture.setOnCycleFinished(() -> isON = true);
+    }
+
+    public boolean isON() {
+        return isON;
     }
 }

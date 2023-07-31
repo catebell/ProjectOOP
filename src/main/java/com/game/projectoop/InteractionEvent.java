@@ -32,10 +32,23 @@ public class InteractionEvent extends Event {
 
         if (eventType.equals(MINIGAME)) {
             //call to minigame and passing parameters
-            getMiniGameService().startCircuitBreaker(5,5,30,100,Duration.seconds(0.1),result -> {
-                if(result.isSuccess() || !result.isSuccess()){ //[to do] da cambiare
-                    despawnWithScale(getGameWorld().getSingleton(FLASHLIGHT),Duration.seconds(0));
-                    despawnWithScale(getGameWorld().getSingleton(VOID),Duration.seconds(0));
+            getMiniGameService().startCircuitBreaker(8, 8, 15, 80, Duration.seconds(0.1), result -> {
+                if (result.isSuccess() || !result.isSuccess()) { //[to do] da cambiare
+                    despawnWithScale(getGameWorld().getSingleton(FLASHLIGHT), Duration.seconds(0));
+                    despawnWithScale(getGameWorld().getSingleton(VOID), Duration.seconds(0));
+                    getGameWorld().getEntitiesByType(BATTERY)
+                            .stream()
+                            .filter((battery) -> battery.isColliding(interactionEnt.get()))
+                            .forEach(battery -> {
+                                                    if (!battery.getComponent(BatteryComponent.class).isON()) {
+                                                        battery.getComponent(BatteryComponent.class).activation();
+                                                    }
+                                                });
+                    if(getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).isPresent()){
+                        if (!getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).isON()) {
+                            getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).activation();
+                        }
+                    }
                 }
             });
         }
