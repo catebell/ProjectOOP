@@ -61,6 +61,12 @@ public class InteractionEvent extends Event {
                                         if (!lever.getComponent(LeverComponent.class).isPulled()) {
                                             despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
                                             lever.getComponent(LeverComponent.class).pull();
+
+                                            if(getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(LIGHT)).isPresent()){
+                                                if (!getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(LIGHT)).get().getComponent(LightsComponent.class).isON()) {
+                                                    getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(LIGHT)).get().getComponent(LightsComponent.class).activation();
+                                                }
+                                            }
                                         }
                                     });
             }

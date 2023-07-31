@@ -15,7 +15,7 @@ public class LeverComponent extends Component {
     private final AnimationChannel animOFF;
     private final AnimationChannel animON;
 
-    private boolean isPulled;
+    private boolean isPulled=false;
 
     public LeverComponent() {
         Image image = image("LeverMovement.png");

@@ -14,7 +14,7 @@ public class ElevatorComponent extends Component {
     private final AnimationChannel animOFF;
     private final AnimationChannel animON;
 
-    private boolean isON;
+    private boolean isON=false;
 
     public ElevatorComponent() {
         Image image = image("ElevatorAnim.png");

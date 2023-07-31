@@ -8,20 +8,18 @@ import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 
-public class BatteryComponent extends Component {
+public class LightsComponent extends Component {
     private final AnimatedTexture texture;
-    private final AnimationChannel animActivation;
     private final AnimationChannel animOFF;
     private final AnimationChannel animON;
 
     private boolean isON=false;
 
-    public BatteryComponent() {
-        Image image = image("BatteryMovement.png");
+    public LightsComponent() {
+        Image image = image("Lights.png");
 
-        animActivation = new AnimationChannel(image, 4, 32, 32, Duration.seconds(0.66), 0, 3);
-        animOFF = new AnimationChannel(image, 4, 32, 32, Duration.seconds(1), 0, 0);
-        animON = new AnimationChannel(image, 4, 32, 32, Duration.seconds(1), 3, 3);
+        animOFF = new AnimationChannel(image, 2, 32, 32, Duration.seconds(1), 0, 0);
+        animON = new AnimationChannel(image, 2, 32, 32, Duration.seconds(1), 1, 1);
 
         texture = new AnimatedTexture(animOFF);
         texture.loop();
@@ -40,7 +38,6 @@ public class BatteryComponent extends Component {
     }
 
     public void activation() {
-        texture.playAnimationChannel(animActivation);
         texture.setOnCycleFinished(() -> isON = true);
     }
 

@@ -195,7 +195,7 @@ public class PlatformerFactory implements EntityFactory {
                 .type(LIGHT)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true)).with(new IrremovableComponent())
-                .with(new LightComponent())
+                .with(new LightsComponent())
                 .zIndex(1)
                 .build();
     }

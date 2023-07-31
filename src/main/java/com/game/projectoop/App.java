@@ -37,10 +37,18 @@ public class App extends GameApplication {
     private boolean sx = false;
     private boolean dx = false;
 
+    private HashMap<Integer, List<String>> dialogues() {
+        HashMap<Integer, List<String>> dialogues = new HashMap<>();
+        dialogues.put(1, List.of("first text", "second text"));
+        dialogues.put(2, List.of("Lorem ipsum dolor sit amet,\n consectetur adipiscing elit,", "sed do eiusmod tempor\n" + "incididunt ut labore et dolore magna aliqua.", "Ut enim ad minim veniam,", "quis nostrud exercitation ullamco laboris nisi", "ut aliquip ex ea commodo consequat."));
+        return dialogues;
+    }
+
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
         BATTERY, PLATFORM_ANIM, EXIT, LIGHT, ELEVATOR
     }
+
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setHeight(720);
@@ -293,13 +301,6 @@ public class App extends GameApplication {
                 despawnWithDelay(dialogueEntity, Duration.seconds(time));
             }
         }
-    }
-
-    private HashMap<Integer, List<String>> dialogues() {
-        HashMap<Integer, List<String>> dialogues = new HashMap<>();
-        dialogues.put(1, List.of("first text", "second text"));
-        dialogues.put(2, List.of("Lorem ipsum dolor sit amet,\n consectetur adipiscing elit,", "sed do eiusmod tempor\n" + "incididunt ut labore et dolore magna aliqua.", "Ut enim ad minim veniam,", "quis nostrud exercitation ullamco laboris nisi", "ut aliquip ex ea commodo consequat."));
-        return dialogues;
     }
 
     public static void main(String[] args) {
