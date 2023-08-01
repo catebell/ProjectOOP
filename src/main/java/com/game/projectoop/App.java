@@ -40,7 +40,6 @@ public class App extends GameApplication {
     private double accX = 0;
     private boolean sx = false;
     private boolean dx = false;
-    private boolean loadingDone = false;
     private final ArrayList<TimerAction> dialogueQueue = new ArrayList<>();
     private HashMap<Integer, List<String>> dialogues() {
         HashMap<Integer, List<String>> dialogues = new HashMap<>();
@@ -115,21 +114,16 @@ public class App extends GameApplication {
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setZoom(1.4);
         viewport.setLazy(true); //smoother camera movement
-        loadingDone=true;
     }
 
     @Override
     protected void initPhysics() {
         getPhysicsWorld().setGravity(0, 1000);
 
-
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.USE_PROMPT, (player, prompt) -> {
             Entity useButton = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put("Action", "Use"));
             spawnWithScale(useButton, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
-            System.out.println("IM IN");
         });
-
-
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.FLASHLIGHT_PROMPT, (player, prompt) -> {
             Entity flashlightButton = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getBottomY() - 65).put("Action", "Flashlight"));
@@ -206,9 +200,7 @@ public class App extends GameApplication {
             @Override
             protected void onActionBegin() {
                 getGameWorld().getEntitiesByType(EntityType.USE_PROMPT).stream().filter(prompt -> prompt.hasComponent(CollidableComponent.class) && player.isColliding(prompt)).forEach((prompt) -> {
-                    if (prompt.getString("Use").equals("Tutorial") && !tutorialOK) { //only for
-                        // tutorial
-                        // actions
+                    if (prompt.getString("Use").equals("Tutorial") && !tutorialOK) { //only for tutorial actions
                         tutorialOK = true;
                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.TUTORIAL, Optional.of(prompt)));
                     }
@@ -232,7 +224,6 @@ public class App extends GameApplication {
                     endlessVoid.setVisible(false);
                     flashlight.setVisible(false);
                 } else {
-
                     flashlight.setVisible(true);
                     endlessVoid.setVisible(false);
                 }

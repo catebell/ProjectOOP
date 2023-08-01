@@ -70,7 +70,6 @@ public class InteractionEvent extends Event {
                                             if(lever.getString("Activates").equals("platform")){
                                                 getGameWorld().getEntitiesByType(PLATFORM_ANIM).forEach(platform->
                                                     platform.getComponent(AnimPlatformComponent.class).activation());
-
                                             }
                                         }
                                     });
@@ -85,9 +84,11 @@ public class InteractionEvent extends Event {
     }
 
     private void tutorialKeys(Entity prompt) {
-        Entity entityLeft = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY() + 17).put("Action", "Left"));
-        Entity entityRight = getGameWorld().create("button", new SpawnData(prompt.getX() + 17, prompt.getY() + 17).put("Action", "Right"));
-        Entity entityJump = getGameWorld().create("button", new SpawnData(prompt.getX() + 8.5, prompt.getY()).put("Action", "Jump"));
+        Entity entityLeft = getGameWorld().create("button", new SpawnData(prompt.getX() - 8.5, prompt.getY() + 17).put("Action", "Left"));
+        Entity entityRight = getGameWorld().create("button", new SpawnData(prompt.getX() + 8.5, prompt.getY() + 17).put("Action", "Right"));
+        Entity entityJump = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put("Action", "Jump"));
+
+        Entity entityOnOff = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put("Action", "Flashlight"));
 
         spawnWithScale(entityLeft, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
         spawnWithScale(entityRight, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
@@ -97,7 +98,11 @@ public class InteractionEvent extends Event {
             despawnWithScale(entityLeft, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
             despawnWithScale(entityRight, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
             despawnWithScale(entityJump, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
-        }, Duration.seconds(5));
+        }, Duration.seconds(3));
+
+        runOnce(()->spawnWithScale(entityOnOff, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(4));
+        runOnce(()->despawnWithScale(entityOnOff,Duration.seconds(1),Interpolators.ELASTIC.EASE_IN()),Duration.seconds(7));
+
         runOnce(() ->{
             onCollisionEnd(App.EntityType.PLAYER, App.EntityType.NOT_VISIBLE, (player, prompto) -> {
                 if(getGameWorld().getClosestEntity(prompt,
