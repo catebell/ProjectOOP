@@ -211,5 +211,23 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new ElevatorComponent())
                 .zIndex(0)
                 .build();
+    }
+
+    @Spawns("notVisible")
+    public Entity newNotVisible(SpawnData data){
+        return entityBuilder(data)
+                .type(NOT_VISIBLE)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+    @Spawns("visible")
+    public Entity newVisible(SpawnData data){
+        return entityBuilder(data)
+                .type(VISIBLE)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 }
-}
+

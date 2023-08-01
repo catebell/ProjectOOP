@@ -41,7 +41,6 @@ public class LightsComponent extends Component {
 
     public void activation() {
         texture.loopAnimationChannel(animON);
-        System.out.println(texture);
         isON = true;
     }
 

@@ -5,6 +5,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.time.TimerAction;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.geometry.Rectangle2D;
@@ -36,8 +37,7 @@ public class InteractionEvent extends Event {
             //call to minigame and passing parameters
             getMiniGameService().startCircuitBreaker(5, 5, 15, 80, Duration.seconds(0.1), result -> {
                 if (result.isSuccess()) { //[to do] da cambiare
-                    despawnWithScale(getGameWorld().getSingleton(FLASHLIGHT), Duration.seconds(0));
-                    despawnWithScale(getGameWorld().getSingleton(VOID), Duration.seconds(0));
+                    despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
                     getGameWorld().getEntitiesByType(BATTERY)
                             .stream()
                             .filter((battery) -> battery.isColliding(interactionEnt.get()))
@@ -98,8 +98,33 @@ public class InteractionEvent extends Event {
             despawnWithScale(entityRight, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
             despawnWithScale(entityJump, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
         }, Duration.seconds(5));
+        runOnce(() ->{
+            onCollisionEnd(App.EntityType.PLAYER, App.EntityType.NOT_VISIBLE, (player, prompto) -> {
+                if(getGameWorld().getClosestEntity(prompt,
+                        (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).isPresent()){
+                    getGameWorld().getClosestEntity(prompt,
+                            (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).get().setVisible(false);
+                }
+
+            });
+            onCollisionBegin(App.EntityType.PLAYER, App.EntityType.VISIBLE, (player, prompto) -> {
+                if(getGameWorld().getClosestEntity(prompt,
+                        (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).isPresent()){
+                    getGameWorld().getClosestEntity(prompt,
+                            (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).get().setVisible(true);
+                }
+            });
+        },Duration.seconds(8));
+
     }
     private void unlockMinigame(){
-        FXGL.inc("levelState",+1);
+        Entity minigame = getGameWorld().getSingleton((entity)->entity.isType(USE_PROMPT) && entity.getString("Use").equals(
+                        "Minigame"));
+        Entity setters =
+                getGameWorld().getSingleton((entity -> entity.isType(NOT_VISIBLE) && entity.isColliding(minigame)));
+        setters.setAnchoredPosition(0,0);
+        setters = getGameWorld().getSingleton((entity -> entity.isType(VISIBLE) && entity.isColliding(minigame)));
+        setters.setAnchoredPosition(0,0);
+        minigame.setAnchoredPosition(0,0);
     }
 }

@@ -41,7 +41,6 @@ public class DialogueEvent extends Event {
 
             if (eventType.equals(DIALOGUE1)) {
                 startDialogue(1, promptEnt.get(), 0, 0);
-                System.out.println(queue);
             }
             if (eventType.equals(DIALOGUE2)) {
                 startDialogue(2, promptEnt.get(), 0, 0);

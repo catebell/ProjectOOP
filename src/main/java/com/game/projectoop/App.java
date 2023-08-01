@@ -7,6 +7,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -50,7 +51,7 @@ public class App extends GameApplication {
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
-        BATTERY, PLATFORM_ANIM, EXIT, LIGHT, ELEVATOR
+        BATTERY, PLATFORM_ANIM, EXIT, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE
     }
 
     @Override
@@ -69,7 +70,7 @@ public class App extends GameApplication {
                 return new MainLoadingScene();
             }
         });
-        settings.setDeveloperMenuEnabled(true); //DEBUG
+        //settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
 
@@ -89,7 +90,6 @@ public class App extends GameApplication {
             System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHH");
         }
         vars.put("Levers",2);
-        vars.put("levelState",0);
         vars.put("PlayerPosition", new Point2D(0, 0));
         vars.put("PlayerScaleX", 1);
         vars.put("level", 1);
@@ -110,7 +110,7 @@ public class App extends GameApplication {
         // before the update tick _actually_ adds the player to game world
         player = spawn("player", new Point2D(905, 595));
         set("player", player);
-
+        initMinigame();
 
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setZoom(1.4);
@@ -122,10 +122,14 @@ public class App extends GameApplication {
     protected void initPhysics() {
         getPhysicsWorld().setGravity(0, 1000);
 
+
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.USE_PROMPT, (player, prompt) -> {
             Entity useButton = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put("Action", "Use"));
             spawnWithScale(useButton, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
+            System.out.println("IM IN");
         });
+
+
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.FLASHLIGHT_PROMPT, (player, prompt) -> {
             Entity flashlightButton = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getBottomY() - 65).put("Action", "Flashlight"));
@@ -137,7 +141,6 @@ public class App extends GameApplication {
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
             getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE1,Optional.of(prompt),
                     Optional.of(dialogueQueue)));
-            System.out.println(dialogueQueue);
             //startDialogue(2, prompt,0,0);
             //startDialogue(1,prompt); //[partono in contemporanea se fatti andare troppo vicini]
         });
@@ -210,7 +213,7 @@ public class App extends GameApplication {
                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.TUTORIAL, Optional.of(prompt)));
                     }
 
-                    if (prompt.getString("Use").equals("Minigame") && geti("levelState")==2) { //only for starting
+                    if (prompt.getString("Use").equals("Minigame")) { //only for starting
                         // minigames
                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.MINIGAME, Optional.of(prompt)));
                     }
@@ -229,6 +232,7 @@ public class App extends GameApplication {
                     endlessVoid.setVisible(false);
                     flashlight.setVisible(false);
                 } else {
+
                     flashlight.setVisible(true);
                     endlessVoid.setVisible(false);
                 }
@@ -244,7 +248,6 @@ public class App extends GameApplication {
     }
 
     public void onPlayerDied() {
-        System.out.println("AAAAAAAAAAAAAAAAAA");
         getGameController().gotoLoading(this::resetLvl);
     }
 
@@ -290,6 +293,21 @@ public class App extends GameApplication {
         setLevel(geti("level"));
     }*/
 
+    private void initMinigame(){
+       Entity minigame =
+               getGameWorld().getSingleton((entity -> entity.isType(EntityType.USE_PROMPT) && entity.getString("Use").equals("Minigame")));
+
+       Entity setters = getGameWorld().getSingleton((entity -> entity.isType(EntityType.VISIBLE) && entity.isColliding(minigame)));
+       setters.setLocalAnchor(new Point2D(-setters.getX(),-setters.getY()));
+       setters.setAnchoredPosition(-750,0);
+
+       setters = getGameWorld().getSingleton((entity -> entity.isType(EntityType.NOT_VISIBLE) && entity.isColliding(minigame)));
+        setters.setLocalAnchor(new Point2D(-setters.getX(),-setters.getY()));
+        setters.setAnchoredPosition(-750,0);
+
+        minigame.setLocalAnchor(new Point2D(-minigame.getX(),-minigame.getY()));
+        minigame.setAnchoredPosition(-750,0);
+    }
 
 
     public static void main(String[] args) {
