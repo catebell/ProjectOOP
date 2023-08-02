@@ -5,10 +5,8 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.time.TimerAction;
 import javafx.event.Event;
-import javafx.event.EventTarget;
 import javafx.event.EventType;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,11 +25,14 @@ public class DialogueEvent extends Event {
 
     private HashMap<Integer, List<String>> dialogues() {
         HashMap<Integer, List<String>> dialogues = new HashMap<>();
-        dialogues.put(1, List.of("first text", "second text"));
-        dialogues.put(2, List.of("Lorem ipsum dolor sit amet,\n consectetur adipiscing elit,", "sed do eiusmod tempor\n" + "incididunt ut labore et dolore magna aliqua.", "Ut enim ad minim veniam,", "quis nostrud exercitation ullamco laboris nisi", "ut aliquip ex ea commodo consequat."));
+        dialogues.put(1, List.of("first dialogue", "second text"));
+        dialogues.put(2, List.of("second dialogue", "second text"));
+        dialogues.put(3, List.of("third dialogue", "second text"));
+        dialogues.put(4, List.of("fourth dialogue", "second text"));
+
         return dialogues;
     }
-    private ArrayList<TimerAction> queue;
+    private final ArrayList<TimerAction> queue;
     public DialogueEvent(EventType<? extends Event> eventType, Optional<Entity> promptEnt,
                          Optional<ArrayList<TimerAction>> dialogueQueue) {
         super(eventType);
@@ -42,6 +43,7 @@ public class DialogueEvent extends Event {
             if (eventType.equals(DIALOGUE1)) {
                 startDialogue(1, promptEnt.get(), 0, 0);
             }
+
             if (eventType.equals(DIALOGUE2)) {
                 startDialogue(2, promptEnt.get(), 0, 0);
             }
@@ -49,30 +51,25 @@ public class DialogueEvent extends Event {
             if (eventType.equals(DIALOGUE3)) {
                 startDialogue(3, promptEnt.get(), 0, 0);
             }
+
             if (eventType.equals(DIALOGUE4)) {
                 startDialogue(4, promptEnt.get(), 0, 0);
             }
-
-
         }
     }
-
 
     protected void startDialogue(int dialNumber, Entity prompt, int offsetX, int offsetY) {
         HashMap<Integer, List<String>> dial = dialogues();
         double time = 0.0;
 
-        for (String s : dial.get(dialNumber)) {//first dialogue
-            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(prompt.getX()+offsetX, prompt.getY()+offsetY).put("Text", s));
+        Optional<Entity> spawnD = getGameWorld().getEntitiesByType(App.EntityType.DIALOGUE_SPAWN).stream()
+                .filter(dialogueSpawn -> dialogueSpawn.getInt("Number")==dialNumber)
+                .findFirst();
 
-            //effects in out for each sentence and/or spawn delay
-            //System.out.println("s = " + s + " and element 0 = " + dial.get(1).get(0)); //DEBUG
-            /*if(dial.get(dialNumber).get(0).equals(s)){ //element 0 spawn in 0 time
-                runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time));
-                System.out.println("first element");
-            }else{ //delay spawn
-                runOnce(()->spawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT()),Duration.seconds(time+0.5));
-            }*/
+        getGameWorld().getEntitiesByType(App.EntityType.HAL).forEach(hal -> hal.setVisible(hal.getInt("Number") == dialNumber));
+
+        for (String s : dial.get(dialNumber)) {//first dialogue
+            Entity dialogueEntity = getGameWorld().create("dialogueText", new SpawnData(spawnD.get().getX()+offsetX, spawnD.get().getY()+offsetY).put("Text", s));
 
             queue.add(runOnce(() -> spawnWithScale(dialogueEntity, Duration.seconds(1),
                     Interpolators.ELASTIC.EASE_OUT()), Duration.seconds(time)));

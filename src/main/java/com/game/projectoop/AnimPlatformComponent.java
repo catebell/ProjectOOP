@@ -8,8 +8,6 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
-
-import java.nio.file.attribute.AclEntryType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class AnimPlatformComponent extends Component {
     private final AnimationChannel animOFF;
     private final AnimationChannel animON;
     private boolean isOn=false;
-    private List<Entity> list=new ArrayList<>();
+    private final List<Entity> list=new ArrayList<>();
     private boolean gotem=false;
     public AnimPlatformComponent() {
         Image image = image("PlatformMovement.png");

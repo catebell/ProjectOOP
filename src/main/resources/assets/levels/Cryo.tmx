@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="65" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="96">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="65" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="106">
  <properties>
   <property name="backgrounds" type="int" value="2"/>
  </properties>
@@ -18,7 +18,7 @@
  <tileset firstgid="2184" name="HangingMonitor" tilewidth="32" tileheight="32" tilecount="144" columns="12">
   <image source="HangingMonitor.png" width="400" height="400"/>
  </tileset>
- <layer id="6" name="BackBackGround" width="65" height="45" visible="0">
+ <layer id="6" name="BackBackGround" width="65" height="45">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -67,7 +67,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="2" name="Background" width="65" height="45" visible="0">
+ <layer id="2" name="Background" width="65" height="45">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -116,7 +116,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="1" name="Platforms" width="65" height="45" visible="0">
+ <layer id="1" name="Platforms" width="65" height="45">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -165,7 +165,7 @@
 229,198,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,233,234
 </data>
  </layer>
- <layer id="3" name="Foreground" width="65" height="45" visible="0">
+ <layer id="3" name="Foreground" width="65" height="45">
   <data encoding="csv">
 0,0,0,0,0,0,367,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,367,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,367,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,367,0,0,0,0,0,0,0,0,0,
@@ -214,7 +214,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="7" name="ForeForeGround" width="65" height="45" visible="0">
+ <layer id="7" name="ForeForeGround" width="65" height="45">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,367,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,367,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -263,7 +263,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="8" name="Platforms" visible="0">
+ <objectgroup id="8" name="Platforms">
   <object id="5" type="platform" x="352" y="255.333" width="1408.83" height="20.3333"/>
   <object id="8" type="platform" x="352.168" y="384.417" width="1408.83" height="20.3333"/>
   <object id="9" type="platform" x="352.085" y="511.833" width="1408.83" height="20.3333"/>
@@ -289,7 +289,7 @@
   <object id="81" type="platform" x="800" y="1216" width="32" height="4"/>
   <object id="82" type="platform" x="832" y="1216" width="32" height="4"/>
  </objectgroup>
- <objectgroup id="16" name="Animations" visible="0">
+ <objectgroup id="16" name="Animations">
   <object id="47" type="lever" x="895.909" y="1088" width="32" height="32">
    <properties>
     <property name="Activates" value="null"/>
@@ -303,39 +303,91 @@
    </properties>
   </object>
   <object id="66" type="battery" x="160" y="1216" width="32" height="32"/>
-  <object id="67" type="hal" x="1182" y="575" width="32" height="32"/>
-  <object id="69" type="hal" x="1824" y="672" width="32" height="32"/>
-  <object id="70" type="hal" x="1568" y="1248" width="32" height="32"/>
+  <object id="67" type="hal" x="1184" y="576" width="32" height="32">
+   <properties>
+    <property name="Number" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="69" type="hal" x="1824" y="672" width="32" height="32">
+   <properties>
+    <property name="Number" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="70" type="hal" x="1583" y="1230" width="32" height="32">
+   <properties>
+    <property name="Number" type="int" value="3"/>
+   </properties>
+  </object>
   <object id="74" type="elevator" x="32.0422" y="1216.09" width="64.052" height="63.9167"/>
   <object id="79" type="platforma" x="800" y="1216" width="32" height="4"/>
   <object id="80" type="platforma" x="832" y="1216" width="32" height="4"/>
+  <object id="102" type="dialogueSpawn" x="163.292" y="1189.46" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="103" type="dialogueSpawn" x="1568.42" y="1203.08" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="104" type="dialogueSpawn" x="1808.75" y="643.583" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="105" type="dialogueSpawn" x="1144.75" y="544.917" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="5" name="Triggers" visible="0">
-  <object id="1" name="SpawnZone" type="usePrompt" x="899.667" y="593.167" width="31.3333" height="46.7727">
+  <object id="1" name="SpawnZone" type="usePrompt" x="899.667" y="577.167" width="31.3333" height="62.7727">
    <properties>
     <property name="Use" value="Tutorial"/>
    </properties>
   </object>
-  <object id="2" name="Dialogue1" type="dialoguePrompt" x="806.333" y="531.333" width="80.6667" height="106"/>
-  <object id="4" name="Dialogue1" type="dialoguePrompt" x="999.33" y="531.667" width="80.6667" height="109.333"/>
-  <object id="28" name="Minigame" type="usePrompt" x="156" y="1215.5" width="40" height="65">
+  <object id="2" name="Dialogue1" type="dialoguePrompt" x="806.333" y="531.333" width="80.6667" height="106">
+   <properties>
+    <property name="Number" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4" name="Dialogue1" type="dialoguePrompt" x="999.33" y="531.667" width="80.6667" height="109.333">
+   <properties>
+    <property name="Number" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="28" name="Minigame" type="usePrompt" x="138" y="1227.5" width="58" height="53">
    <properties>
     <property name="Use" value="Minigame"/>
    </properties>
   </object>
-  <object id="31" name="Lever" type="usePrompt" x="888.909" y="1074.18" width="48.1818" height="45.8182">
+  <object id="31" name="Lever" type="usePrompt" x="886.909" y="1065.51" width="50.1818" height="54.4849">
    <properties>
     <property name="Use" value="Lever"/>
    </properties>
   </object>
-  <object id="32" name="Lever" type="usePrompt" x="982.125" y="1231.88" width="55.875" height="48.125">
+  <object id="32" name="Lever" type="usePrompt" x="974.792" y="1231.88" width="55.875" height="48.125">
    <properties>
     <property name="Use" value="Lever"/>
    </properties>
   </object>
-  <object id="43" name="Dialogue2" type="dialoguePrompt" x="1567" y="543.5" width="190.5" height="95.5"/>
-  <object id="44" name="Dialogue4" type="dialoguePrompt" x="162.75" y="1147.25" width="339.5" height="135.5"/>
-  <object id="45" name="Dialogue3" type="dialoguePrompt" x="1459.75" y="1218.75" width="617.5" height="59.5"/>
+  <object id="43" name="Dialogue2" type="dialoguePrompt" x="1567" y="543.5" width="190.5" height="95.5">
+   <properties>
+    <property name="Number" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="44" name="Dialogue4" type="dialoguePrompt" x="161.417" y="1187.58" width="220.5" height="93.5">
+   <properties>
+    <property name="Number" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="45" name="Dialogue3" type="dialoguePrompt" x="1459.75" y="1218.75" width="617.5" height="59.5">
+   <properties>
+    <property name="Number" type="int" value="3"/>
+   </properties>
+  </object>
   <object id="72" name="Exit" type="exit" x="32.0333" y="1216" width="64.052" height="63.9167"/>
  </objectgroup>
  <objectgroup id="17" name="Desetters" visible="0">
@@ -344,7 +396,7 @@
   <object id="86" type="notVisible" x="982.063" y="1231.94" width="55.875" height="48.125"/>
   <object id="87" type="notVisible" x="156.667" y="1215.83" width="40" height="65"/>
  </objectgroup>
- <objectgroup id="20" name="Setters">
+ <objectgroup id="20" name="Setters" visible="0">
   <object id="92" type="visible" x="899.583" y="593.239" width="31.3333" height="46.7727"/>
   <object id="93" type="visible" x="889.159" y="1074.34" width="48.1818" height="45.8182"/>
   <object id="94" type="visible" x="982.063" y="1231.94" width="55.875" height="48.125"/>

@@ -4,13 +4,9 @@ import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
-import com.almasb.fxgl.physics.PhysicsComponent;
-import com.almasb.fxgl.time.TimerAction;
 import javafx.event.Event;
 import javafx.event.EventType;
-import javafx.geometry.Rectangle2D;
 import javafx.util.Duration;
-
 import java.util.Optional;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -84,9 +80,9 @@ public class InteractionEvent extends Event {
     }
 
     private void tutorialKeys(Entity prompt) {
-        Entity entityLeft = getGameWorld().create("button", new SpawnData(prompt.getX() - 8.5, prompt.getY() + 17).put("Action", "Left"));
-        Entity entityRight = getGameWorld().create("button", new SpawnData(prompt.getX() + 8.5, prompt.getY() + 17).put("Action", "Right"));
-        Entity entityJump = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put("Action", "Jump"));
+        Entity entityLeft = getGameWorld().create("button", new SpawnData(prompt.getX() - 8.5, prompt.getY()).put("Action", "Left"));
+        Entity entityRight = getGameWorld().create("button", new SpawnData(prompt.getX() + 8.5, prompt.getY()).put("Action", "Right"));
+        Entity entityJump = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY() - 17).put("Action", "Jump"));
 
         Entity entityOnOff = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put("Action", "Flashlight"));
 
@@ -109,19 +105,23 @@ public class InteractionEvent extends Event {
                         (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).isPresent()){
                     getGameWorld().getClosestEntity(prompt,
                             (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).get().setVisible(false);
+                    System.out.println("invisibilizzato");
                 }
-
+                System.out.println("uscito");
             });
+
             onCollisionBegin(App.EntityType.PLAYER, App.EntityType.VISIBLE, (player, prompto) -> {
                 if(getGameWorld().getClosestEntity(prompt,
                         (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).isPresent()){
                     getGameWorld().getClosestEntity(prompt,
                             (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).get().setVisible(true);
                 }
+                System.out.println("entrato");
             });
         },Duration.seconds(8));
 
     }
+
     private void unlockMinigame(){
         Entity minigame = getGameWorld().getSingleton((entity)->entity.isType(USE_PROMPT) && entity.getString("Use").equals(
                         "Minigame"));

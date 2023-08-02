@@ -53,8 +53,7 @@
 
 ## to do
 * Spawn and despawn di hal
-* spostare dialogi in event
-* centrare i dialogi e pulsanti
+* sistemare despawn E in minigame
 * creare i dialogi
 * minigame accende ascensore
 * caricamento ascensore

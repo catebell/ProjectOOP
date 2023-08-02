@@ -100,11 +100,19 @@ public class PlatformerFactory implements EntityFactory {
     }
 
     @Spawns("dialoguePrompt")
-    public Entity newDialogue(SpawnData data) {
+    public Entity newDialoguePrompt(SpawnData data) {
         return entityBuilder(data)
                 .type(DIALOGUE_PROMPT)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("dialogueSpawn")
+    public Entity newDialogueSpawn(SpawnData data) {
+        return entityBuilder(data)
+                .type(DIALOGUE_SPAWN)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .build();
     }
 

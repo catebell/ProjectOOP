@@ -7,7 +7,6 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -15,12 +14,10 @@ import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.time.TimerAction;
-import javafx.event.Event;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -41,15 +38,10 @@ public class App extends GameApplication {
     private boolean sx = false;
     private boolean dx = false;
     private final ArrayList<TimerAction> dialogueQueue = new ArrayList<>();
-    private HashMap<Integer, List<String>> dialogues() {
-        HashMap<Integer, List<String>> dialogues = new HashMap<>();
-        dialogues.put(1, List.of("first text", "second text"));
-        dialogues.put(2, List.of("Lorem ipsum dolor sit amet,\n consectetur adipiscing elit,", "sed do eiusmod tempor\n" + "incididunt ut labore et dolore magna aliqua.", "Ut enim ad minim veniam,", "quis nostrud exercitation ullamco laboris nisi", "ut aliquip ex ea commodo consequat."));
-        return dialogues;
-    }
+    List<Boolean> dialogDone = new ArrayList<>(List.of(false,false,false,false));
 
     public enum EntityType {
-        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
+        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
         BATTERY, PLATFORM_ANIM, EXIT, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE
     }
 
@@ -110,6 +102,8 @@ public class App extends GameApplication {
         player = spawn("player", new Point2D(905, 595));
         set("player", player);
         initMinigame();
+        getGameWorld().getEntitiesByType(EntityType.HAL)
+                        .forEach(hal->hal.setVisible(false));
 
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setZoom(1.4);
@@ -133,10 +127,25 @@ public class App extends GameApplication {
         });
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
-            getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE1,Optional.of(prompt),
-                    Optional.of(dialogueQueue)));
-            //startDialogue(2, prompt,0,0);
-            //startDialogue(1,prompt); //[partono in contemporanea se fatti andare troppo vicini]
+            if (prompt.getInt("Number")==1 && !dialogDone.get(0)) {
+                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE1,Optional.of(prompt), Optional.of(dialogueQueue)));
+                dialogDone.set(0,true);
+            }
+
+            if (prompt.getInt("Number")==2 && dialogDone.get(0)) {
+                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE2,Optional.of(prompt), Optional.of(dialogueQueue)));
+                dialogDone.set(1,true);
+            }
+
+            if (prompt.getInt("Number")==3 && dialogDone.get(1)) {
+                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE3,Optional.of(prompt), Optional.of(dialogueQueue)));
+                dialogDone.set(2,true);
+            }
+
+            if (prompt.getInt("Number")==4 && dialogDone.get(2)) {
+                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE4,Optional.of(prompt), Optional.of(dialogueQueue)));
+                dialogDone.set(3,true);
+            }
         });
     }
 
