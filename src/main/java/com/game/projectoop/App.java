@@ -42,7 +42,7 @@ public class App extends GameApplication {
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
-        BATTERY, PLATFORM_ANIM, EXIT, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE
+        BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT
     }
 
     @Override
@@ -61,7 +61,7 @@ public class App extends GameApplication {
                 return new MainLoadingScene();
             }
         });
-        //settings.setDeveloperMenuEnabled(true); //DEBUG
+        settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
     }
 
@@ -102,6 +102,7 @@ public class App extends GameApplication {
         player = spawn("player", new Point2D(905, 595));
         set("player", player);
         initMinigame();
+        initExit();
         getGameWorld().getEntitiesByType(EntityType.HAL)
                         .forEach(hal->hal.setVisible(false));
 
@@ -222,6 +223,10 @@ public class App extends GameApplication {
                     if (prompt.getString("Use").equals("Lever")) { //only for pulling levers
                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.LEVER, Optional.of(prompt)));
                     }
+
+                    if(prompt.getString("Use").equals("Elevator")) {
+                        getEventBus().fireEvent(new InteractionEvent(InteractionEvent.EXIT,Optional.of(prompt)));
+                    }
                 });
             }
         }, KeyCode.E);
@@ -302,11 +307,27 @@ public class App extends GameApplication {
        setters.setAnchoredPosition(-750,0);
 
        setters = getGameWorld().getSingleton((entity -> entity.isType(EntityType.NOT_VISIBLE) && entity.isColliding(minigame)));
+       setters.setLocalAnchor(new Point2D(-setters.getX(),-setters.getY()));
+       setters.setAnchoredPosition(-750,0);
+
+       minigame.setLocalAnchor(new Point2D(-minigame.getX(),-minigame.getY()));
+       minigame.setAnchoredPosition(-750,0);
+    }
+
+    private void initExit(){
+        Entity exit =
+                getGameWorld().getSingleton((entity -> entity.isType(EntityType.USE_PROMPT) && entity.getString("Use").equals("Elevator")));
+
+        Entity setters = getGameWorld().getSingleton((entity -> entity.isType(EntityType.VISIBLE) && entity.isColliding(exit)));
         setters.setLocalAnchor(new Point2D(-setters.getX(),-setters.getY()));
         setters.setAnchoredPosition(-750,0);
 
-        minigame.setLocalAnchor(new Point2D(-minigame.getX(),-minigame.getY()));
-        minigame.setAnchoredPosition(-750,0);
+        setters = getGameWorld().getSingleton((entity -> entity.isType(EntityType.NOT_VISIBLE) && entity.isColliding(exit)));
+        setters.setLocalAnchor(new Point2D(-setters.getX(),-setters.getY()));
+        setters.setAnchoredPosition(-750,0);
+
+        exit.setLocalAnchor(new Point2D(-exit.getX(),-exit.getY()));
+        exit.setAnchoredPosition(-750,0);
     }
 
 

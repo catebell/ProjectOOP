@@ -11,8 +11,6 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 public class BatteryComponent extends Component {
     private final AnimatedTexture texture;
     private final AnimationChannel animActivation;
-    private final AnimationChannel animOFF;
-    private final AnimationChannel animON;
 
     private boolean isON=false;
 
@@ -20,23 +18,14 @@ public class BatteryComponent extends Component {
         Image image = image("BatteryMovement.png");
 
         animActivation = new AnimationChannel(image, 4, 32, 32, Duration.seconds(0.66), 0, 3);
-        animOFF = new AnimationChannel(image, 4, 32, 32, Duration.seconds(1), 0, 0);
-        animON = new AnimationChannel(image, 4, 32, 32, Duration.seconds(1), 3, 3);
 
-        texture = new AnimatedTexture(animOFF);
-        texture.loop();
+        texture = new AnimatedTexture(animActivation);
+        texture.stop();
     }
 
     @Override
     public void onAdded() {
         entity.getViewComponent().addChild(texture);
-    }
-
-    @Override
-    public void onUpdate(double tpf) {
-        if (isON) {
-            texture.loopAnimationChannel(animON);
-        }
     }
 
     public void activation() {

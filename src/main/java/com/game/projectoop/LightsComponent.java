@@ -11,19 +11,16 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 public class LightsComponent extends Component {
 
     private final AnimatedTexture texture;
-    private final AnimationChannel animOFF;
-    private final AnimationChannel animON;
+    private final AnimationChannel anim;
 
     private boolean isON=false;
 
     public LightsComponent() {
         Image image = image("Lights.png");
 
-        animOFF = new AnimationChannel(image, 3, 32, 32, Duration.seconds(1), 0, 0);
-        animON = new AnimationChannel(image, 3, 32, 32, Duration.seconds(1), 1, 1);
+        anim = new AnimationChannel(image, 2, 32, 32, Duration.seconds(1), 0, 1);
 
-        texture = new AnimatedTexture(animOFF);
-        texture.loop();
+        texture = new AnimatedTexture(anim);
     }
 
     @Override
@@ -31,16 +28,8 @@ public class LightsComponent extends Component {
         entity.getViewComponent().addChild(texture);
     }
 
-    @Override
-    public void onUpdate(double tpf) {
-        if (isON) {
-
-            texture.loopAnimationChannel(animON);
-        }
-    }
-
     public void activation() {
-        texture.loopAnimationChannel(animON);
+        texture.playAnimationChannel(anim);
         isON = true;
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="65" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="106">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="65" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="112">
  <properties>
   <property name="backgrounds" type="int" value="2"/>
  </properties>
@@ -263,7 +263,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="8" name="Platforms">
+ <objectgroup id="8" name="Platforms" visible="0">
   <object id="5" type="platform" x="352" y="255.333" width="1408.83" height="20.3333"/>
   <object id="8" type="platform" x="352.168" y="384.417" width="1408.83" height="20.3333"/>
   <object id="9" type="platform" x="352.085" y="511.833" width="1408.83" height="20.3333"/>
@@ -289,7 +289,7 @@
   <object id="81" type="platform" x="800" y="1216" width="32" height="4"/>
   <object id="82" type="platform" x="832" y="1216" width="32" height="4"/>
  </objectgroup>
- <objectgroup id="16" name="Animations">
+ <objectgroup id="16" name="Animations" visible="0">
   <object id="47" type="lever" x="895.909" y="1088" width="32" height="32">
    <properties>
     <property name="Activates" value="null"/>
@@ -318,7 +318,7 @@
     <property name="Number" type="int" value="3"/>
    </properties>
   </object>
-  <object id="74" type="elevator" x="32.0422" y="1216.09" width="64.052" height="63.9167"/>
+  <object id="74" type="elevator" x="28.0031" y="1212" width="72" height="72"/>
   <object id="79" type="platforma" x="800" y="1216" width="32" height="4"/>
   <object id="80" type="platforma" x="832" y="1216" width="32" height="4"/>
   <object id="102" type="dialogueSpawn" x="163.292" y="1189.46" width="17.1667" height="16.8333">
@@ -389,17 +389,24 @@
    </properties>
   </object>
   <object id="72" name="Exit" type="exit" x="32.0333" y="1216" width="64.052" height="63.9167"/>
+  <object id="106" name="Elevator" type="usePrompt" x="11.3333" y="1196.17" width="97.6667" height="99.6667">
+   <properties>
+    <property name="Use" value="Elevator"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup id="17" name="Desetters" visible="0">
+ <objectgroup id="17" name="Desetters" class="notVisible">
   <object id="83" type="notVisible" x="899.583" y="593.239" width="31.3333" height="46.7727"/>
   <object id="85" type="notVisible" x="889.159" y="1074.34" width="48.1818" height="45.8182"/>
   <object id="86" type="notVisible" x="982.063" y="1231.94" width="55.875" height="48.125"/>
-  <object id="87" type="notVisible" x="156.667" y="1215.83" width="40" height="65"/>
+  <object id="108" type="notVisible" x="154.667" y="1209.5" width="40" height="65"/>
+  <object id="111" type="notVisible" x="19.3333" y="1203.83" width="90" height="81.6667"/>
  </objectgroup>
  <objectgroup id="20" name="Setters" visible="0">
   <object id="92" type="visible" x="899.583" y="593.239" width="31.3333" height="46.7727"/>
   <object id="93" type="visible" x="889.159" y="1074.34" width="48.1818" height="45.8182"/>
   <object id="94" type="visible" x="982.063" y="1231.94" width="55.875" height="48.125"/>
   <object id="95" type="visible" x="156.667" y="1215.83" width="40" height="65"/>
+  <object id="107" type="visible" x="18.6667" y="1203.5" width="90" height="81.6667"/>
  </objectgroup>
 </map>

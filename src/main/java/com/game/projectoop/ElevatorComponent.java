@@ -11,20 +11,19 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 public class ElevatorComponent extends Component {
     private final AnimatedTexture texture;
     private final AnimationChannel animActivation;
-    private final AnimationChannel animOFF;
-    private final AnimationChannel animON;
+    private final AnimationChannel animOpening;
 
     private boolean isON=false;
+    private boolean isOpen=false;
 
     public ElevatorComponent() {
-        Image image = image("ElevatorAnim.png");
+        Image image = image("elevator.png");
 
-        animActivation = new AnimationChannel(image, 5, 64, 64, Duration.seconds(1), 0, 4);
-        animOFF = new AnimationChannel(image, 5, 64, 64, Duration.seconds(1), 0, 0);
-        animON = new AnimationChannel(image, 5, 64, 64, Duration.seconds(1), 4, 4);
+        animActivation = new AnimationChannel(image, 5, 72, 72, Duration.seconds(1), 0, 4);
+        animOpening = new AnimationChannel(image,5,72,72,Duration.seconds(0.5),5,9);
 
-        texture = new AnimatedTexture(animOFF);
-        texture.loop();
+        texture = new AnimatedTexture(animActivation);
+        texture.stop();
     }
 
     @Override
@@ -32,19 +31,21 @@ public class ElevatorComponent extends Component {
         entity.getViewComponent().addChild(texture);
     }
 
-    @Override
-    public void onUpdate(double tpf) {
-        if (isON) {
-            texture.loopAnimationChannel(animON);
-        }
-    }
-
     public void activation() {
         texture.playAnimationChannel(animActivation);
         texture.setOnCycleFinished(() -> isON = true);
     }
 
+    public void open() {
+        texture.playAnimationChannel(animOpening);
+        texture.setOnCycleFinished(() -> isOpen = true);
+    }
+
     public boolean isON() {
         return isON;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
     }
 }

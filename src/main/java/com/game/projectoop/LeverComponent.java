@@ -12,8 +12,6 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 public class LeverComponent extends Component {
     private final AnimatedTexture texture;
     private final AnimationChannel animPull;
-    private final AnimationChannel animOFF;
-    private final AnimationChannel animON;
 
     private boolean isPulled=false;
 
@@ -21,10 +19,8 @@ public class LeverComponent extends Component {
         Image image = image("LeverMovement.png");
 
         animPull = new AnimationChannel(image, 5, 32, 32, Duration.seconds(0.5), 0, 4);
-        animOFF = new AnimationChannel(image, 5, 32, 32, Duration.seconds(1), 0, 0);
-        animON = new AnimationChannel(image, 5, 32, 32, Duration.seconds(1), 4, 4);
-        texture = new AnimatedTexture(animOFF);
-        texture.loop();
+        texture = new AnimatedTexture(animPull);
+        texture.stop();
     }
 
     @Override
@@ -32,13 +28,6 @@ public class LeverComponent extends Component {
         entity.getTransformComponent().setScaleOrigin(new Point2D(16, 21));
         isPulled = false;
         entity.getViewComponent().addChild(texture);
-    }
-
-    @Override
-    public void onUpdate(double tpf) {
-        if (isPulled) {
-            texture.loopAnimationChannel(animON);
-        }
     }
 
     public void pull() {

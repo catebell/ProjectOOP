@@ -17,6 +17,7 @@ public class InteractionEvent extends Event {
     public static final EventType<InteractionEvent> TUTORIAL = new EventType<>(ANY, "TUTORIAL");
     public static final EventType<InteractionEvent> MINIGAME = new EventType<>(ANY, "MINIGAME");
     public static final EventType<InteractionEvent> LEVER = new EventType<>(ANY, "LEVER");
+    public static final EventType<InteractionEvent> EXIT = new EventType<>(ANY,"EXIT");
 
     public InteractionEvent(EventType<? extends Event> eventType, Optional<Entity> interactionEnt) {
         super(eventType);
@@ -32,7 +33,7 @@ public class InteractionEvent extends Event {
         if (eventType.equals(MINIGAME)) {
             //call to minigame and passing parameters
             getMiniGameService().startCircuitBreaker(5, 5, 15, 80, Duration.seconds(0.1), result -> {
-                if (result.isSuccess()) { //[to do] da cambiare
+                if (result.isSuccess()||!result.isSuccess()) { //[to do] da cambiare
                     despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
                     getGameWorld().getEntitiesByType(BATTERY)
                             .stream()
@@ -42,11 +43,16 @@ public class InteractionEvent extends Event {
                                                         battery.getComponent(BatteryComponent.class).activation();
                                                     }
                                                 });
+
                     if(getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).isPresent()){
+                        System.out.println("attivazione"); //DEBUG
                         if (!getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).isON()) {
                             getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).activation();
+                            System.out.println("attivato");
+
                         }
                     }
+                    unlockExit();
                 }
             });
         }
@@ -77,6 +83,17 @@ public class InteractionEvent extends Event {
                         });
             }
         }
+
+        if(eventType.equals(EXIT)){
+            /*getGameWorld().getEntitiesByType(App.EntityType.ELEVATOR)
+                    .forEach(elevator -> {
+                        elevator.getComponent(ElevatorComponent.class).open();
+                    });*/
+            if (!getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).isOpen()) {
+                System.out.println("chiamo open");
+                getGameWorld().getClosestEntity(interactionEnt.get(), e -> e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).open();
+            }
+        }
     }
 
     private void tutorialKeys(Entity prompt) {
@@ -105,9 +122,8 @@ public class InteractionEvent extends Event {
                         (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).isPresent()){
                     getGameWorld().getClosestEntity(prompt,
                             (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).get().setVisible(false);
-                    System.out.println("invisibilizzato");
+                    System.out.println("E invisibilizzato");
                 }
-                System.out.println("uscito");
             });
 
             onCollisionBegin(App.EntityType.PLAYER, App.EntityType.VISIBLE, (player, prompto) -> {
@@ -116,13 +132,14 @@ public class InteractionEvent extends Event {
                     getGameWorld().getClosestEntity(prompt,
                             (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).get().setVisible(true);
                 }
-                System.out.println("entrato");
             });
         },Duration.seconds(8));
 
     }
 
     private void unlockMinigame(){
+        System.out.println("unlocked minigame");
+
         Entity minigame = getGameWorld().getSingleton((entity)->entity.isType(USE_PROMPT) && entity.getString("Use").equals(
                         "Minigame"));
         Entity setters =
@@ -131,5 +148,17 @@ public class InteractionEvent extends Event {
         setters = getGameWorld().getSingleton((entity -> entity.isType(VISIBLE) && entity.isColliding(minigame)));
         setters.setAnchoredPosition(0,0);
         minigame.setAnchoredPosition(0,0);
+    }
+
+    private void unlockExit(){
+        System.out.println("unlocked exit");
+        Entity exit = getGameWorld().getSingleton((entity)->entity.isType(USE_PROMPT) && entity.getString("Use").equals(
+                "Elevator"));
+        Entity setters =
+                getGameWorld().getSingleton((entity -> entity.isType(NOT_VISIBLE) && entity.isColliding(exit)));
+        setters.setAnchoredPosition(0,0);
+        setters = getGameWorld().getSingleton((entity -> entity.isType(VISIBLE) && entity.isColliding(exit)));
+        setters.setAnchoredPosition(0,0);
+        exit.setAnchoredPosition(0,0);
     }
 }
