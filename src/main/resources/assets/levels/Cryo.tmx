@@ -342,7 +342,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Triggers" visible="0">
+ <objectgroup id="5" name="Triggers">
   <object id="1" name="SpawnZone" type="usePrompt" x="899.667" y="577.167" width="31.3333" height="62.7727">
    <properties>
     <property name="Use" value="Tutorial"/>
@@ -395,7 +395,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="17" name="Desetters" class="notVisible">
+ <objectgroup id="17" name="Desetters" class="notVisible" visible="0">
   <object id="83" type="notVisible" x="899.583" y="593.239" width="31.3333" height="46.7727"/>
   <object id="85" type="notVisible" x="889.159" y="1074.34" width="48.1818" height="45.8182"/>
   <object id="86" type="notVisible" x="982.063" y="1231.94" width="55.875" height="48.125"/>

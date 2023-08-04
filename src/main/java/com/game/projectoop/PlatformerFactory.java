@@ -66,6 +66,7 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
                 .with(new PlayerComponent())
+                .with(new SmokeComponent())
                 .zIndex(1)
                 .bbox(new HitBox(new Point2D(6, 4), BoundingShape.box(18, 26)))
                 .build();

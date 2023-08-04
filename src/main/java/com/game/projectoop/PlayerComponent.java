@@ -1,5 +1,7 @@
 package com.game.projectoop;
 
+import com.almasb.fxgl.audio.Audio;
+import com.almasb.fxgl.audio.Sound;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
@@ -9,7 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
-import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
+import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class PlayerComponent extends Component {
     private final AnimatedTexture texture;
@@ -21,6 +23,7 @@ public class PlayerComponent extends Component {
     private int jumps = 2;
     private boolean isJumping = false;
     private boolean landed = true;
+    private boolean landingSmoke = false;
 
     public PlayerComponent() {
         Image image = image("CharacterMovement.png");
@@ -54,6 +57,8 @@ public class PlayerComponent extends Component {
 
         if (isJumping) {
             if (physics.isOnGround()) {
+                landingSmoke=true;
+                landingSmoke=false;
                 landed = false;
                 texture.playAnimationChannel(animLanding);
                 texture.setOnCycleFinished(() -> landed = true);
@@ -92,5 +97,9 @@ public class PlayerComponent extends Component {
         }
         physics.setVelocityY(-500);
         jumps--;
+    }
+
+    public boolean isJumping() {
+        return isJumping;
     }
 }

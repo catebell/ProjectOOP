@@ -7,6 +7,11 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.audio.Audio;
+import com.almasb.fxgl.audio.Music;
+import com.almasb.fxgl.audio.Sound;
+import com.almasb.fxgl.core.asset.AssetType;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -25,6 +30,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.almasb.fxgl.dsl.FXGLForKtKt.getAssetLoader;
 
 public class App extends GameApplication {
 
@@ -39,6 +45,7 @@ public class App extends GameApplication {
     private boolean dx = false;
     private final ArrayList<TimerAction> dialogueQueue = new ArrayList<>();
     List<Boolean> dialogDone = new ArrayList<>(List.of(false,false,false,false));
+    //[HELLO WTF] Sound sound = new Sound(FXGL.getAssetLoader().load(AssetType.SOUND,"FootstepsConcrete2.wav"));
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
@@ -329,7 +336,6 @@ public class App extends GameApplication {
         exit.setLocalAnchor(new Point2D(-exit.getX(),-exit.getY()));
         exit.setAnchoredPosition(-750,0);
     }
-
 
     public static void main(String[] args) {
         launch(args);
