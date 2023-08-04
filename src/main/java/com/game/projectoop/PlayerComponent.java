@@ -82,7 +82,7 @@ public class PlayerComponent extends Component {
     }
 
     public void move(double acc, int scaleX) {
-        getEntity().setScaleX(scaleX);
+        getEntity().getTransformComponent().setScaleX(scaleX);
         FXGL.set("PlayerScaleX", scaleX);
         physics.setVelocityX(150 * acc + 25 * scaleX);
     }

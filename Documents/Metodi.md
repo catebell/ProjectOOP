@@ -52,13 +52,13 @@
 ---
 
 ## to do
-* Spawn and despawn di hal
-* sistemare despawn E in minigame
 * creare i dialogi
+* cariamento ascensore
+* demofinished 
+* isMovingX() per effetti visivi player (polvere ecc)
+* modificare il salto piu tieni premuto piu va in alto
 
 ## maybe to do
-* isMovingX() per effetti visivi player (polvere ecc)
 * angolazione torcia
 * CRACCARE IL CAZZO DI CODICE DEI MINIGAME
-* aggiungere il personaggio nei cryopod
-* modificare il salto piu tieni premuto piu va in alto
+
