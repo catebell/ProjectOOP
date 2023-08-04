@@ -55,9 +55,6 @@
 * Spawn and despawn di hal
 * sistemare despawn E in minigame
 * creare i dialogi
-* minigame accende ascensore
-* caricamento ascensore
-* animazione ascensore apertura
 
 ## maybe to do
 * isMovingX() per effetti visivi player (polvere ecc)
