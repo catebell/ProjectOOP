@@ -17,6 +17,7 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.particle.ParticleEmitter;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.time.TimerAction;
 import javafx.geometry.Point2D;
@@ -49,7 +50,7 @@ public class App extends GameApplication {
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
-        BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT
+        BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE
     }
 
     @Override
@@ -102,6 +103,7 @@ public class App extends GameApplication {
         flashlight = spawn("flashlight");
         flashlight.setVisible(false);
         player = null;
+        spawn("smoke");
         setLevel(); //nextlevel(); [vedi sotto]
         Viewport viewport = getGameScene().getViewport();
         // player must be spawned after call to nextLevel, otherwise player gets removed
@@ -114,7 +116,7 @@ public class App extends GameApplication {
                         .forEach(hal->hal.setVisible(false));
 
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
-        viewport.setZoom(1.4);
+        viewport.setZoom(2);
         viewport.setLazy(true); //smoother camera movement
     }
 

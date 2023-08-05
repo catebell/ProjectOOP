@@ -12,8 +12,7 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
-import static com.almasb.fxgl.dsl.FXGLForKtKt.random;
+import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class SmokeComponent extends Component {
     private final AnimatedTexture texture;
@@ -23,7 +22,7 @@ public class SmokeComponent extends Component {
     private final Image image3 = image("SmokeJump3.png");
 
     ArrayList<AnimationChannel> animLandings = new ArrayList<>(List.of(
-            new AnimationChannel(image1, 9, 52, 32, Duration.seconds(0.5), 0, 8),
+            new AnimationChannel(image1, 9, 32, 32, Duration.seconds(0.5), 0, 8),
             new AnimationChannel(image2, 9, 32, 32, Duration.seconds(0.5), 0, 8),
             new AnimationChannel(image3, 9, 32, 32, Duration.seconds(0.5), 0, 8)
     ));
@@ -34,17 +33,23 @@ public class SmokeComponent extends Component {
 
     @Override
     public void onAdded() {
-        entity.getTransformComponent().setScaleOrigin(new Point2D(16, 21));
-
         entity.getViewComponent().addChild(texture);
+        entity.setScaleOrigin(new Point2D(25,32));
+        entity.setScaleX(FXGL.geti("PlayerScaleX"));
     }
 
     @Override
     public void onUpdate(double tpf) {
         Entity player = FXGL.getGameWorld().getEntitiesByType(App.EntityType.PLAYER).get(0);
+        entity.setScaleX(FXGL.geti("PlayerScaleX"));
+        entity.getTransformComponent().setPosition(((Point2D) FXGL.geto("PlayerPosition")).getX()-15,
+                ((Point2D) FXGL.geto("PlayerPosition")).getY());
+
         if(player.getComponent(PlayerComponent.class).isJumping()) {
+            texture.stop();
             ready=true;
         }
+
 
         if(!player.getComponent(PlayerComponent.class).isJumping() && ready){
             //texture.playAnimationChannel(animLandings.get(random(0,2)));

@@ -66,7 +66,6 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
                 .with(new PlayerComponent())
-                .with(new SmokeComponent())
                 .zIndex(1)
                 .bbox(new HitBox(new Point2D(6, 4), BoundingShape.box(18, 26)))
                 .build();
@@ -236,6 +235,16 @@ public class PlatformerFactory implements EntityFactory {
                 .type(VISIBLE)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("smoke")
+    public Entity newSmoke(SpawnData data){
+        return entityBuilder(data)
+                .type(SMOKE)
+                .with(new SmokeComponent())
+                .zIndex(1)
+                .with(new IrremovableComponent())
                 .build();
     }
 }
