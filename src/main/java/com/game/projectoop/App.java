@@ -71,6 +71,7 @@ public class App extends GameApplication {
         });
         settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
+        settings.setAppIcon("SleepyGuy.png");
     }
 
     @Override
@@ -116,7 +117,7 @@ public class App extends GameApplication {
                         .forEach(hal->hal.setVisible(false));
 
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
-        viewport.setZoom(2);
+        viewport.setZoom(1.4);
         viewport.setLazy(true); //smoother camera movement
     }
 
