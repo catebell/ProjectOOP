@@ -213,10 +213,10 @@
         },
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx": {
             "scale": 1.5,
-            "selectedLayer": 7,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 149.33333333333331,
-                "y": 1305.6666666666665
+                "x": 240,
+                "y": 1384.3333333333333
             }
         },
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#HangingMonitor": {
@@ -313,9 +313,9 @@
     "project": "OOPGame.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
         "HangingMonitor.tsx",
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
         "cyberpunk-corridor-foreground.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/cryo-pod.tsx",
         "cryo-pod.tsx",

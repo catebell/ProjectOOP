@@ -24,6 +24,8 @@ public class PlayerComponent extends Component {
     private boolean isJumping = false;
     private boolean landed = true;
     private boolean landingSmoke = false;
+    private boolean isOnGround;
+    //Sound sound = getAssetLoader().loadSound("FootstepsConcrete2.wav");
 
     public PlayerComponent() {
         Image image = image("CharacterMovement.png");
@@ -51,12 +53,14 @@ public class PlayerComponent extends Component {
     @Override
     public void onUpdate(double tpf) {
         FXGL.set("PlayerPosition", entity.getPosition());
+        isOnGround= physics.isOnGround();
         if (!physics.isOnGround()) {
             isJumping = true;
         }
 
         if (isJumping) {
             if (physics.isOnGround()) {
+                //getAudioPlayer().playSound(sound);
                 landingSmoke=true;
                 landingSmoke=false;
                 landed = false;
@@ -102,4 +106,6 @@ public class PlayerComponent extends Component {
     public boolean isJumping() {
         return isJumping;
     }
+
+    public boolean isOnGround(){return isOnGround;}
 }

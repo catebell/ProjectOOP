@@ -52,7 +52,7 @@
 ---
 
 ## to do
-* creare i dialogi
+* despawn dialoghi se andiamo avanti
 * cariamento ascensore
 * demofinished 
 * isMovingX() per effetti visivi player (polvere ecc)

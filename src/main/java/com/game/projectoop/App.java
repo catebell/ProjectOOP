@@ -7,19 +7,15 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.audio.Audio;
-import com.almasb.fxgl.audio.Music;
-import com.almasb.fxgl.audio.Sound;
-import com.almasb.fxgl.core.asset.AssetType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.particle.ParticleEmitter;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.time.TimerAction;
+import javafx.event.Event;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
@@ -31,7 +27,6 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.almasb.fxgl.dsl.FXGLForKtKt.getAssetLoader;
 
 public class App extends GameApplication {
 
@@ -46,7 +41,9 @@ public class App extends GameApplication {
     private boolean dx = false;
     private final ArrayList<TimerAction> dialogueQueue = new ArrayList<>();
     List<Boolean> dialogDone = new ArrayList<>(List.of(false,false,false,false));
-    //[HELLO WTF] Sound sound = new Sound(FXGL.getAssetLoader().load(AssetType.SOUND,"FootstepsConcrete2.wav"));
+    double startingY=0.0;
+    double endingY=0.0;
+    boolean wasFalling=false;
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
@@ -69,7 +66,7 @@ public class App extends GameApplication {
                 return new MainLoadingScene();
             }
         });
-        settings.setDeveloperMenuEnabled(true); //DEBUG
+        //settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
         settings.setAppIcon("SleepyGuy.png");
     }
@@ -77,6 +74,7 @@ public class App extends GameApplication {
     @Override
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.25);
+
         //altre impostazioni del genere
         /* [loop music] loopBGM("BGM_dash_runner.wav");*/
     }
@@ -93,6 +91,7 @@ public class App extends GameApplication {
         vars.put("PlayerPosition", new Point2D(0, 0));
         vars.put("PlayerScaleX", 1);
         vars.put("level", 1);
+        vars.put("dialPlaying",0);
     }
 
     @Override
@@ -259,6 +258,21 @@ public class App extends GameApplication {
         if (player.getX()<0 || player.getRightX()> maxWidth || player.getY()<0 || player.getBottomY()> maxHeight) {
             //player out of boundaries
             onPlayerDied();
+        }
+
+        if(!player.getComponent(PlayerComponent.class).isOnGround() && !wasFalling){
+            startingY=player.getY();
+            System.out.println("starting " + startingY);
+            wasFalling=true;
+        }
+
+        if(player.getComponent(PlayerComponent.class).isOnGround() && wasFalling){
+            System.out.println("current " + player.getY());
+            System.out.println("ending-starting " + (player.getY()-startingY));
+            wasFalling=false;
+            if(Math.abs(player.getY()-startingY)>150.0){
+                onPlayerDied();
+            }
         }
     }
 
