@@ -283,6 +283,9 @@ public class App extends GameApplication {
         endlessVoid.setVisible(true);
         tutorialOK = false;
         dialogueQueue.forEach(TimerAction::expire);
+        for(boolean b : dialogDone){
+            dialogDone.set(dialogDone.indexOf(b),false);
+        }
     }
 
     private void setLevel() {

@@ -85,12 +85,7 @@ public class InteractionEvent extends Event {
         }
 
         if(eventType.equals(EXIT)){
-            /*getGameWorld().getEntitiesByType(App.EntityType.ELEVATOR)
-                    .forEach(elevator -> {
-                        elevator.getComponent(ElevatorComponent.class).open();
-                    });*/
             if (!getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).isOpen()) {
-                System.out.println("chiamo open");
                 getGameWorld().getClosestEntity(interactionEnt.get(), e -> e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).open();
             }
         }
@@ -122,7 +117,6 @@ public class InteractionEvent extends Event {
                         (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).isPresent()){
                     getGameWorld().getClosestEntity(prompt,
                             (ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(prompto)).get().setVisible(false);
-                    System.out.println("E invisibilizzato");
                 }
             });
 
