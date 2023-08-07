@@ -39,6 +39,7 @@ public class AnimPlatformComponent extends Component {
             list.add(getGameWorld().getClosestEntity(entity,(platform)->platform.isType(App.EntityType.PLATFORM)).get());
             list.get(0).getComponent(PhysicsComponent.class).overwritePosition(new Point2D(-150, -150));
             gotem=true;
+            System.out.println(list);
         }
     }
 

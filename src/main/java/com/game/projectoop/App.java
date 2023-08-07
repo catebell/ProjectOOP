@@ -30,6 +30,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
 
+    private HashMap<Integer, List<String>> dialogues;
     private int maxWidth = 0;
     private int maxHeight = 0;
     boolean tutorialOK = false;
@@ -73,6 +74,21 @@ public class App extends GameApplication {
 
     @Override
     protected void onPreInit() {
+        dialogues = new HashMap<>();
+            dialogues.put(1, List.of(
+                    "   Good Evening 666.\nPlease, follow my voice.",
+                    "As you must have guessed,\n    we're facing some...",
+                    "   technical difficulties.",
+                    " The ship's power's out.",
+                    " Now, keep going this way\nand reach the ground floor."));
+            dialogues.put(2, List.of(
+                    "The main generator needs\n    manual rebooting;",
+                    "  Therefore, I took the\nliberty of waking you up.",
+                    "  Don't worry, just keep\nfollowing my instructions."));
+            dialogues.put(3, List.of(
+                    "There are two levers down there.", "  You'll need to pull them both."));
+            dialogues.put(4, List.of(
+                    "Good job. Now, fix this circuit\n   to activate the elevator."));
         getSettings().setGlobalMusicVolume(0.25);
 
         //altre impostazioni del genere
@@ -112,9 +128,6 @@ public class App extends GameApplication {
         set("player", player);
         initMinigame();
         initExit();
-        getGameWorld().getEntitiesByType(EntityType.HAL)
-                        .forEach(hal->hal.setVisible(false));
-
         viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setZoom(1.4);
         viewport.setLazy(true); //smoother camera movement
@@ -137,23 +150,30 @@ public class App extends GameApplication {
         });
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.DIALOGUE_PROMPT, (player, prompt) -> {
+            if(!dialogueQueue.isEmpty()){
+                dialogueQueue.forEach(TimerAction::expire);
+            }
             if (prompt.getInt("Number")==1 && !dialogDone.get(0)) {
-                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE1,Optional.of(prompt), Optional.of(dialogueQueue)));
+                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE1,Optional.of(prompt),
+                        Optional.of(dialogueQueue),dialogues));
                 dialogDone.set(0,true);
             }
 
             if (prompt.getInt("Number")==2 && dialogDone.get(0)) {
-                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE2,Optional.of(prompt), Optional.of(dialogueQueue)));
+                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE2,Optional.of(prompt),
+                        Optional.of(dialogueQueue),dialogues));
                 dialogDone.set(1,true);
             }
 
             if (prompt.getInt("Number")==3 && dialogDone.get(1)) {
-                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE3,Optional.of(prompt), Optional.of(dialogueQueue)));
+                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE3,Optional.of(prompt),
+                        Optional.of(dialogueQueue),dialogues));
                 dialogDone.set(2,true);
             }
 
             if (prompt.getInt("Number")==4 && dialogDone.get(2)) {
-                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE4,Optional.of(prompt), Optional.of(dialogueQueue)));
+                getEventBus().fireEvent(new DialogueEvent(DialogueEvent.DIALOGUE4,Optional.of(prompt),
+                        Optional.of(dialogueQueue),dialogues));
                 dialogDone.set(3,true);
             }
         });
@@ -254,33 +274,10 @@ public class App extends GameApplication {
         }, KeyCode.T);
     }
 
-    protected void onUpdate(double tpf) {
-        if (player.getX()<0 || player.getRightX()> maxWidth || player.getY()<0 || player.getBottomY()> maxHeight) {
-            //player out of boundaries
-            onPlayerDied();
-        }
-
-        if(!player.getComponent(PlayerComponent.class).isOnGround() && !wasFalling){
-            startingY=player.getY();
-            System.out.println("starting " + startingY);
-            wasFalling=true;
-        }
-
-        if(player.getComponent(PlayerComponent.class).isOnGround() && wasFalling){
-            System.out.println("current " + player.getY());
-            System.out.println("ending-starting " + (player.getY()-startingY));
-            wasFalling=false;
-            if(Math.abs(player.getY()-startingY)>150.0){
-                onPlayerDied();
-            }
-        }
-    }
-
-    public void onPlayerDied() {
-        getGameController().gotoLoading(this::resetLvl);
-    }
 
     public void resetLvl() {
+        getGameWorld().getEntitiesByType(App.EntityType.HAL).forEach(FXGL::despawnWithScale);
+        getGameWorld().getEntitiesByType(App.EntityType.LEVER).forEach(FXGL::despawnWithScale);
         setLevel();
         flashlight.setVisible(false);
         endlessVoid.setVisible(true);
@@ -307,6 +304,8 @@ public class App extends GameApplication {
                 }
             }
         }
+        getGameWorld().getEntitiesByType(EntityType.HAL)
+                .forEach(hal->hal.setVisible(false));
         getGameScene().getViewport().setBounds(0, 0, level.getWidth(), level.getHeight() + 10);
     }
 
