@@ -1,5 +1,6 @@
 package com.game.projectoop;
 
+import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
@@ -12,6 +13,8 @@ public class ElevatorComponent extends Component {
     private final AnimatedTexture texture;
     private final AnimationChannel animActivation;
     private final AnimationChannel animOpening;
+    private final LazyValue<DemoFinishedScene> demoFinishedScene = new LazyValue<>(DemoFinishedScene::new);
+
 
     private boolean isON=false;
     private boolean isOpen=false;
@@ -39,6 +42,7 @@ public class ElevatorComponent extends Component {
     public void open() {
         texture.playAnimationChannel(animOpening);
         texture.setOnCycleFinished(() -> isOpen = true);
+        texture.setOnCycleFinished(()->demoFinishedScene.get().onDemoFinish());
     }
 
     public boolean isON() {

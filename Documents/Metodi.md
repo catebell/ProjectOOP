@@ -52,9 +52,6 @@
 ---
 
 ## to do
-* despawn dialoghi se andiamo avanti
-* cariamento ascensore
-* demofinished 
 * isMovingX() per effetti visivi player (polvere ecc)
 * modificare il salto piu tieni premuto piu va in alto
 * https://github.com/AlmasB/FXGL/issues/775 FIX GROUNDSENSOR
