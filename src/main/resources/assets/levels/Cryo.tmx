@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="65" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="117">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="65" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="122">
  <properties>
   <property name="backgrounds" type="int" value="2"/>
  </properties>
@@ -15,7 +15,7 @@
  <tileset firstgid="2182" name="cryo-pod-2" tilewidth="32" tileheight="32" tilecount="2" columns="1">
   <image source="cryo-pod-2.png" trans="000000" width="59" height="87"/>
  </tileset>
- <tileset firstgid="2184" name="HangingMonitor" tilewidth="32" tileheight="32" tilecount="144" columns="12">
+ <tileset firstgid="2184" name="HangingMonitor" tilewidth="32" tileheight="32" tilecount="0" columns="12">
   <image source="HangingMonitor.png" width="400" height="400"/>
  </tileset>
  <layer id="6" name="BackBackGround" width="65" height="45">
@@ -263,7 +263,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="16" name="Animations" visible="0">
+ <objectgroup id="16" name="Animations">
   <object id="47" type="lever" x="895.909" y="1088" width="32" height="32">
    <properties>
     <property name="Activates" value="null"/>
@@ -316,10 +316,21 @@
    </properties>
   </object>
   <object id="115" type="monitor" x="128" y="1184" width="32" height="32"/>
+  <object id="117" type="useSpawn" x="55.4167" y="1191.08" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="118" type="useSpawn" x="189.417" y="1228.58" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="3"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="5" name="Triggers">
   <object id="1" name="SpawnZone" type="usePrompt" x="899.667" y="577.167" width="31.3333" height="62.7727">
    <properties>
+    <property name="Number" type="int" value="0"/>
     <property name="Use" value="Tutorial"/>
    </properties>
   </object>
@@ -335,16 +346,19 @@
   </object>
   <object id="28" name="Minigame" type="usePrompt" x="138" y="1227.5" width="58" height="53">
    <properties>
+    <property name="Number" type="int" value="3"/>
     <property name="Use" value="Minigame"/>
    </properties>
   </object>
   <object id="31" name="Lever" type="usePrompt" x="886.909" y="1065.51" width="50.1818" height="54.4849">
    <properties>
+    <property name="Number" type="int" value="2"/>
     <property name="Use" value="Lever"/>
    </properties>
   </object>
-  <object id="32" name="Lever" type="usePrompt" x="974.792" y="1231.88" width="55.875" height="48.125">
+  <object id="32" name="Lever" type="usePrompt" x="984.292" y="1219.21" width="48.375" height="60.7917">
    <properties>
+    <property name="Number" type="int" value="1"/>
     <property name="Use" value="Lever"/>
    </properties>
   </object>
@@ -366,7 +380,23 @@
   <object id="72" name="Exit" type="exit" x="32.0333" y="1216" width="64.052" height="63.9167"/>
   <object id="106" name="Elevator" type="usePrompt" x="11.3333" y="1196.17" width="97.6667" height="99.6667">
    <properties>
+    <property name="Number" type="int" value="4"/>
     <property name="Use" value="Elevator"/>
+   </properties>
+  </object>
+  <object id="119" type="useSpawn" x="999.917" y="1205.08" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="120" type="useSpawn" x="903.417" y="1054.33" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="121" type="useSpawn" x="903.083" y="570.25" width="17.1667" height="16.8333">
+   <properties>
+    <property name="Number" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>

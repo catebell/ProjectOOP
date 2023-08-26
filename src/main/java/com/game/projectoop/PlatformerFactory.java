@@ -80,12 +80,11 @@ public class PlatformerFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("flashlightPrompt")
-    public Entity newFlashlightPrompt(SpawnData data) {
+    @Spawns("useSpawn")
+    public Entity newUseSpawn(SpawnData data) {
         return entityBuilder(data)
-                .type(FLASHLIGHT_PROMPT)
+                .type(USE_SPAWN)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new CollidableComponent(true))
                 .build();
     }
 
@@ -96,6 +95,15 @@ public class PlatformerFactory implements EntityFactory {
                 .viewWithBBox(texture("KEYS/" + getInput().getAllBindings().get(getInput().getActionByName(data.get("Action"))).toString() + ".png"))
                 .with(new CollidableComponent(true))
                 .zIndex(4)
+                .build();
+    }
+
+    @Spawns("flashlightPrompt")
+    public Entity newFlashlightPrompt(SpawnData data) {
+        return entityBuilder(data)
+                .type(FLASHLIGHT_PROMPT)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
                 .build();
     }
 

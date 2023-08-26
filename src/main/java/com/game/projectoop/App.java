@@ -51,15 +51,12 @@ public class App extends GameApplication {
         settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
         settings.setTitle("OOP");
-        settings.setVersion("0.64 TURBO-ALPHA");
         settings.setDefaultCursor(new CursorInfo("cursors/point and click cursor.png",0,0));
         settings.setFontUI("m5x7.ttf");
         settings.setFontText("m5x7.ttf");
         settings.setFontGame("m5x7.ttf");
         settings.setFontMono("m5x7.ttf");
-        settings.setMainMenuEnabled(true);
-        settings.setSceneFactory(
-                new SceneFactory() {
+        settings.setSceneFactory(new SceneFactory() {
             @Override
             public LoadingScene newLoadingScene() {
                 return new MainLoadingScene();
@@ -68,7 +65,6 @@ public class App extends GameApplication {
         //settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
         settings.setAppIcon("SleepyGuy.png");
-
     }
 
     @Override
@@ -138,7 +134,7 @@ public class App extends GameApplication {
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.USE_PROMPT, (player, prompt) -> {
             Optional<Entity> spawnU = getGameWorld().getEntitiesByType(EntityType.USE_SPAWN).stream()
-                    .filter(useSpawn -> useSpawn.getInt("Number")==prompt.getInt("Number"))
+                    .filter(spawn -> spawn.getInt("Number")==prompt.getInt("Number"))
                     .findFirst();
 
             Entity useButton = getGameWorld().create("button", new SpawnData(spawnU.get().getX(), spawnU.get().getY()).put("Action", "Use"));
