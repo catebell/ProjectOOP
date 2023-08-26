@@ -242,5 +242,14 @@ public class PlatformerFactory implements EntityFactory {
                 .with(new IrremovableComponent())
                 .build();
     }
+
+    @Spawns("monitor")
+    public Entity newMonitor(SpawnData data){
+        return entityBuilder(data)
+                .type(MONITOR)
+                .with(new MonitorComponent())
+                .zIndex(2)
+                .build();
+    }
 }
 

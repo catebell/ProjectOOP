@@ -5,10 +5,10 @@
     },
     "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
     "expandedProjectPaths": [
-        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels",
-        ".",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels"
+        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
+        "."
     ],
     "file.lastUsedOpenFilter": "Tutti i file (*)",
     "fileStates": {
@@ -51,11 +51,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 0.5,
-            "selectedLayer": 9,
+            "scale": 3,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 435,
-                "y": 585
+                "x": 258.16666666666663,
+                "y": 1207.8333333333333
             }
         },
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#HangingMonitor": {
@@ -313,8 +313,8 @@
     "project": "OOPGame.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
+        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
         "HangingMonitor.tsx",
         "cyberpunk-corridor-foreground.tsx",
         "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/cryo-pod.tsx",

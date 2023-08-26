@@ -2,6 +2,7 @@ package com.game.projectoop;
 
 import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.app.ApplicationMode;
+import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
@@ -48,7 +49,7 @@ public class App extends GameApplication {
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
-        BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE
+        BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE, MONITOR
     }
 
     @Override
@@ -61,7 +62,9 @@ public class App extends GameApplication {
         settings.setFontText("m5x7.ttf");
         settings.setFontGame("m5x7.ttf");
         settings.setFontMono("m5x7.ttf");
-        settings.setSceneFactory(new SceneFactory() {
+        settings.setMainMenuEnabled(true);
+        settings.setSceneFactory(
+                new SceneFactory() {
             @Override
             public LoadingScene newLoadingScene() {
                 return new MainLoadingScene();
@@ -70,6 +73,7 @@ public class App extends GameApplication {
         //settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
         settings.setAppIcon("SleepyGuy.png");
+
     }
 
     @Override

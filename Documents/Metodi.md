@@ -52,12 +52,11 @@
 ---
 
 ## to do
-* despawn dialoghi se andiamo avanti
-* cariamento ascensore
-* demofinished 
-* isMovingX() per effetti visivi player (polvere ecc)
+* menu principale
+* tasto interazione uscita
+* fumo in volo isjumping
 * modificare il salto piu tieni premuto piu va in alto
-* https://github.com/AlmasB/FXGL/issues/775 FIX GROUNDSENSOR
+
 
 ## maybe to do
 * angolazione torcia

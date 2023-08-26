@@ -46,6 +46,7 @@ public class DialogueEvent extends Event {
             }
 
             if (eventType.equals(DIALOGUE4)) {
+                getGameWorld().getSingleton(App.EntityType.MONITOR).getComponent(MonitorComponent.class).activation();
                 startDialogue(4, promptEnt.get(),dialogues);
             }
         }
