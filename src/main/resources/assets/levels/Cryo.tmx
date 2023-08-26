@@ -402,15 +402,15 @@
  </objectgroup>
  <objectgroup id="17" name="Desetters" class="notVisible" visible="0">
   <object id="83" type="notVisible" x="899.583" y="593.239" width="31.3333" height="46.7727"/>
-  <object id="85" type="notVisible" x="889.159" y="1074.34" width="48.1818" height="45.8182"/>
-  <object id="86" type="notVisible" x="982.063" y="1231.94" width="55.875" height="48.125"/>
+  <object id="85" type="notVisible" x="889.159" y="1065.67" width="48.1818" height="54.4849"/>
+  <object id="86" type="notVisible" x="982.063" y="1218.94" width="55.875" height="61.125"/>
   <object id="108" type="notVisible" x="154.667" y="1215.5" width="40" height="65"/>
   <object id="111" type="notVisible" x="19.3333" y="1203.83" width="90" height="81.6667"/>
  </objectgroup>
- <objectgroup id="20" name="Setters" class="visible" visible="0">
+ <objectgroup id="20" name="Setters" class="visible">
   <object id="92" type="visible" x="899.583" y="593.239" width="31.3333" height="46.7727"/>
-  <object id="93" type="visible" x="889.159" y="1074.34" width="48.1818" height="45.8182"/>
-  <object id="94" type="visible" x="982.063" y="1231.94" width="55.875" height="48.125"/>
+  <object id="93" type="visible" x="889.159" y="1065.67" width="48.1818" height="54.4849"/>
+  <object id="94" type="visible" x="982.063" y="1215.27" width="55.875" height="64.7917"/>
   <object id="95" type="visible" x="154.667" y="1215.83" width="40" height="65"/>
   <object id="107" type="visible" x="18.6667" y="1203.5" width="90" height="81.6667"/>
  </objectgroup>
