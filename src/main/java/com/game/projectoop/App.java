@@ -8,7 +8,6 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -16,7 +15,6 @@ import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.time.TimerAction;
-import javafx.event.Event;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
@@ -32,8 +30,6 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 public class App extends GameApplication {
 
     private HashMap<Integer, List<String>> dialogues;
-    private int maxWidth = 0;
-    private int maxHeight = 0;
     boolean tutorialOK = false;
     private Entity player;
     private Entity endlessVoid;
@@ -43,9 +39,6 @@ public class App extends GameApplication {
     private boolean dx = false;
     private final ArrayList<TimerAction> dialogueQueue = new ArrayList<>();
     List<Boolean> dialogDone = new ArrayList<>(List.of(false,false,false,false));
-    double startingY=0.0;
-    double endingY=0.0;
-    boolean wasFalling=false;
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
@@ -249,7 +242,7 @@ public class App extends GameApplication {
                     }
 
                     if (prompt.getString("Use").equals("Minigame")) { //only for starting
-                        // minigames
+                        // minigame
                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.MINIGAME, Optional.of(prompt)));
                     }
 
@@ -279,7 +272,7 @@ public class App extends GameApplication {
     }
 
 
-    public void resetLvl() {
+    /*public void resetLvl() {
         getGameWorld().getEntitiesByType(App.EntityType.HAL).forEach(FXGL::despawnWithScale);
         getGameWorld().getEntitiesByType(App.EntityType.LEVER).forEach(FXGL::despawnWithScale);
         setLevel();
@@ -290,15 +283,13 @@ public class App extends GameApplication {
         for(boolean b : dialogDone){
             dialogDone.set(dialogDone.indexOf(b),false);
         }
-    }
+    }*/
 
     private void setLevel() {
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(905, 595));
         }
         Level level = setLevelFromMap("Cryo.tmx");
-        maxWidth = level.getWidth();
-        maxHeight = level.getHeight();
         List<Entity> layers = level.getEntities();
         int backgrounds = 0;
         for (Entity E : layers) {

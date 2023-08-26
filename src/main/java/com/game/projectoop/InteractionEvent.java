@@ -45,11 +45,8 @@ public class InteractionEvent extends Event {
                                                 });
 
                     if(getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).isPresent()){
-                        System.out.println("attivazione"); //DEBUG
                         if (!getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).isON()) {
                             getGameWorld().getClosestEntity(interactionEnt.get(),e->e.getType().equals(ELEVATOR)).get().getComponent(ElevatorComponent.class).activation();
-                            System.out.println("attivato");
-
                         }
                     }
                     unlockExit();
