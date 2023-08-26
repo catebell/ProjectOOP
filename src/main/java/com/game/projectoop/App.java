@@ -51,6 +51,8 @@ public class App extends GameApplication {
         settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
         settings.setTitle("OOP");
+        settings.setVersion("0.64 TURBO-ALPHA");
+        settings.setDefaultCursor(new CursorInfo("cursors/point and click cursor.png",0,0));
         settings.setFontUI("m5x7.ttf");
         settings.setFontText("m5x7.ttf");
         settings.setFontGame("m5x7.ttf");
