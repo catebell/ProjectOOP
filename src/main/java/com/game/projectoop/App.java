@@ -41,8 +41,8 @@ public class App extends GameApplication {
     List<Boolean> dialogDone = new ArrayList<>(List.of(false,false,false,false));
 
     public enum EntityType {
-        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
-        BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE, MONITOR
+        PLAYER, PLATFORM, USE_PROMPT, USE_SPAWN, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID,
+        FLASHLIGHT, HAL, LEVER, BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE, MONITOR
     }
 
     @Override
@@ -137,7 +137,11 @@ public class App extends GameApplication {
         getPhysicsWorld().setGravity(0, 1000);
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.USE_PROMPT, (player, prompt) -> {
-            Entity useButton = getGameWorld().create("button", new SpawnData(prompt.getX(), prompt.getY()).put("Action", "Use"));
+            Optional<Entity> spawnU = getGameWorld().getEntitiesByType(EntityType.USE_SPAWN).stream()
+                    .filter(useSpawn -> useSpawn.getInt("Number")==prompt.getInt("Number"))
+                    .findFirst();
+
+            Entity useButton = getGameWorld().create("button", new SpawnData(spawnU.get().getX(), spawnU.get().getY()).put("Action", "Use"));
             spawnWithScale(useButton, Duration.seconds(1), Interpolators.ELASTIC.EASE_OUT());
         });
 
