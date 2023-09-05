@@ -264,9 +264,8 @@ public class App extends GameApplication {
 
         getInput().addAction(new UserAction("Flashlight") {
             protected void onActionBegin() {
-               // resetLvl();
                 if (flashlight.isVisible()) {
-                    endlessVoid.setVisible(false);
+                    endlessVoid.setVisible(true);
                     flashlight.setVisible(false);
                 } else {
                     flashlight.setVisible(true);
