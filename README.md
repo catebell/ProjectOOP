@@ -34,8 +34,9 @@ Since this is a demo, it needs to be compiled using [gradle](www.gradle.org)
 ---
 Code used:
 - [FXGL](https://github.com/AlmasB/FXGL)
+  
 Assets used:
-- Free assets from the site [itch.io](www.itch.io)
+- Free assets from the site [itch.io](https://www.itch.io)
 
 ## Authors
 ---
