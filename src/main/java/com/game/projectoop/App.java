@@ -51,6 +51,7 @@ public class App extends GameApplication {
         settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
         settings.setTitle("2023: A Space Pilgrimage");
+        settings.setVersion("Alpha-0.5");
         settings.setDefaultCursor(new CursorInfo("cursors/point and click cursor.png",0,0));
         settings.setFontUI("m5x7.ttf");
         settings.setFontText("m5x7.ttf");
