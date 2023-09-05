@@ -4,7 +4,6 @@
 A demo of a simple platformer game set in a spaceship
 
 ## Features 
----
 - Freedom of movement
 
 ![Movement](https://github.com/catebell/ProjectOOP/blob/8e24b35734eaec62312116056a8db2606f19afd6/Imgs/Levers.gif)
@@ -21,6 +20,7 @@ A demo of a simple platformer game set in a spaceship
 
 ![Movement](https://github.com/catebell/ProjectOOP/blob/8e24b35734eaec62312116056a8db2606f19afd6/Imgs/Door.gif)
 
+---
 ## Requirements
 ---
 **Java 17**     
