@@ -41,8 +41,8 @@ public class App extends GameApplication {
     List<Boolean> dialogDone = new ArrayList<>(List.of(false,false,false,false));
 
     public enum EntityType {
-        PLAYER, PLATFORM, USE_PROMPT, USE_SPAWN, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID,
-        FLASHLIGHT, HAL, LEVER, BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE, MONITOR
+        PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
+        BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE, MONITOR, USE_SPAWN
     }
 
     @Override
@@ -50,18 +50,20 @@ public class App extends GameApplication {
         settings.setHeight(720);
         settings.setWidth(1280);
         settings.setFullScreenAllowed(true);
-        settings.setTitle("OOP");
+        settings.setTitle("2023: A Space Pilgrimage");
         settings.setDefaultCursor(new CursorInfo("cursors/point and click cursor.png",0,0));
         settings.setFontUI("m5x7.ttf");
         settings.setFontText("m5x7.ttf");
         settings.setFontGame("m5x7.ttf");
         settings.setFontMono("m5x7.ttf");
-        settings.setSceneFactory(new SceneFactory() {
-            @Override
-            public LoadingScene newLoadingScene() {
-                return new MainLoadingScene();
-            }
-        });
+        settings.setMainMenuEnabled(true);
+        settings.setSceneFactory(
+                new SceneFactory() {
+                    @Override
+                    public LoadingScene newLoadingScene() {
+                        return new MainLoadingScene();
+                    }
+                });
         //settings.setDeveloperMenuEnabled(true); //DEBUG
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
         settings.setAppIcon("SleepyGuy.png");

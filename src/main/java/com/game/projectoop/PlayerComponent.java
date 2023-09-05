@@ -7,6 +7,7 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import javafx.animation.AnimationTimer;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
@@ -25,6 +26,7 @@ public class PlayerComponent extends Component {
     private boolean landed = true;
     private boolean landingSmoke = false;
     private boolean isOnGround;
+    private Sound footsteps;
     //Sound sound = getAssetLoader().loadSound("FootstepsConcrete2.wav");
 
     public PlayerComponent() {
@@ -40,6 +42,7 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onAdded() {
+        footsteps = getAssetLoader().loadSound("FootstepsConcrete2.wav");
         FXGL.set("PlayerPosition", entity.getPosition());
         entity.getTransformComponent().setScaleOrigin(new Point2D(40, 21));
         entity.getViewComponent().addChild(texture);
@@ -89,6 +92,15 @@ public class PlayerComponent extends Component {
         getEntity().setScaleX(scaleX);
         FXGL.set("PlayerScaleX", scaleX);
         physics.setVelocityX(150 * acc + 25 * scaleX);
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if(now%2==0){
+                    FXGL.getAudioPlayer().playSound(footsteps);
+                }
+            }
+        };
+
     }
 
     public void stop() {

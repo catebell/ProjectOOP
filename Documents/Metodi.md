@@ -52,6 +52,7 @@
 ---
 
 ## to do
+* aggiungere suono
 * modificare il salto piu tieni premuto piu va in alto
 
 ## maybe to do

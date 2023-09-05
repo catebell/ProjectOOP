@@ -1,4 +1,4 @@
-# ProjectOOP
+# 2023: A Space Pilgrimage
 
 Contributors:
 * Caterina Belluti
