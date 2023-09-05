@@ -312,7 +312,7 @@ public class App extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, level.getWidth(), level.getHeight() + 10);
     }
 
-    // [vedi sopra]
+    // for added levels
     /*private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
             showMessage("You finished the demo!");
