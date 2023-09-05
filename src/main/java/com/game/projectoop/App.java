@@ -66,7 +66,6 @@ public class App extends GameApplication {
                     }
                 });
         //settings.setDeveloperMenuEnabled(true); //DEBUG
-        settings.setApplicationMode(ApplicationMode.DEVELOPER);
         settings.setAppIcon("SleepyGuy.png");
     }
 

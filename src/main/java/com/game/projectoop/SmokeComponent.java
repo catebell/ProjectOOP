@@ -24,7 +24,7 @@ public class SmokeComponent extends Component {
     ArrayList<AnimationChannel> animLandings = new ArrayList<>(List.of(
             new AnimationChannel(image1, 9, 32, 32, Duration.seconds(0.5), 0, 8),
             new AnimationChannel(image2, 9, 32, 32, Duration.seconds(0.5), 0, 8),
-            new AnimationChannel(image3, 9, 32, 32, Duration.seconds(0.5), 0, 8)
+            new AnimationChannel(image3, 10, 32, 32, Duration.seconds(0.5), 0, 9)
     ));
 
     public SmokeComponent() {
@@ -49,7 +49,6 @@ public class SmokeComponent extends Component {
             texture.stop();
             ready=true;
         }
-
 
         if(!player.getComponent(PlayerComponent.class).isJumping() && ready){
             texture.playAnimationChannel(animLandings.get(random(0,2)));
