@@ -3,12 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
+    "activeFile": "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
     "expandedProjectPaths": [
-        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels",
         ".",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels"
+        "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels"
     ],
     "file.lastUsedOpenFilter": "Tutti i file (*)",
     "fileStates": {
@@ -212,11 +212,11 @@
             "scaleInEditor": 1
         },
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx": {
-            "scale": 2,
-            "selectedLayer": 5,
+            "scale": 3,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 142.5,
-                "y": 1240.75
+                "x": 149.33333333333331,
+                "y": 1164.8333333333333
             }
         },
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#HangingMonitor": {
@@ -308,7 +308,7 @@
     "map.tileWidth": 32,
     "map.width": 15,
     "openFiles": [
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx"
+        "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx"
     ],
     "project": "OOPGame.tiled-project",
     "property.type": "int",

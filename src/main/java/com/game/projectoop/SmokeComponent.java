@@ -18,8 +18,8 @@ public class SmokeComponent extends Component {
     private final AnimatedTexture texture;
     boolean ready = false;
     private final Image image1 = image("SmokeJump1Mod.png");
-    private final Image image2 = image("SmokeJump2.png");
-    private final Image image3 = image("SmokeJump3.png");
+    private final Image image2 = image("SmokeJump2Mod.png");
+    private final Image image3 = image("SmokeJump3Mod.png");
 
     ArrayList<AnimationChannel> animLandings = new ArrayList<>(List.of(
             new AnimationChannel(image1, 9, 32, 32, Duration.seconds(0.5), 0, 8),
@@ -52,8 +52,7 @@ public class SmokeComponent extends Component {
 
 
         if(!player.getComponent(PlayerComponent.class).isJumping() && ready){
-            //texture.playAnimationChannel(animLandings.get(random(0,2)));
-            texture.playAnimationChannel(animLandings.get(0));
+            texture.playAnimationChannel(animLandings.get(random(0,2)));
             ready=false;
         }
     }
