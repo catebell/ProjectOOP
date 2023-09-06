@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -41,6 +42,8 @@ public class App extends GameApplication {
     private final ArrayList<TimerAction> dialogueQueue = new ArrayList<>();
     List<Boolean> dialogDone = new ArrayList<>(List.of(false,false,false,false));
     private Music spaceshipMusic;
+    private Music flashlightOn;
+    private Music flashlightOff;
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
@@ -74,6 +77,9 @@ public class App extends GameApplication {
     @Override
     protected void onPreInit() {
         spaceshipMusic = getAssetLoader().loadMusic("spaceshipAmbience.mp3");
+        flashlightOn = getAssetLoader().loadMusic("flashlight_on.wav");
+        flashlightOff = getAssetLoader().loadMusic("flashlight_off.wav");
+
         dialogues = new HashMap<>();
             dialogues.put(1, List.of(
                     "   Good Evening 666.\nPlease, follow my voice.",
@@ -266,11 +272,15 @@ public class App extends GameApplication {
         getInput().addAction(new UserAction("Flashlight") {
             protected void onActionBegin() {
                 if (flashlight.isVisible()) {
+                    getAudioPlayer().playMusic(flashlightOff);
                     endlessVoid.setVisible(true);
                     flashlight.setVisible(false);
+                    runOnce(()->getAudioPlayer().stopMusic(flashlightOff),Duration.seconds(1));
                 } else {
+                    getAudioPlayer().playMusic(flashlightOn);
                     flashlight.setVisible(true);
                     endlessVoid.setVisible(false);
+                    runOnce(()->getAudioPlayer().stopMusic(flashlightOn),Duration.seconds(1));
                 }
             }
         }, KeyCode.T);
