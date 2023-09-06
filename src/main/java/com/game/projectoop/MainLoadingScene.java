@@ -1,6 +1,9 @@
 package com.game.projectoop;
 
 import com.almasb.fxgl.app.scene.LoadingScene;
+import com.almasb.fxgl.audio.Audio;
+import com.almasb.fxgl.audio.Music;
+import com.almasb.fxgl.audio.Sound;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -11,6 +14,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class MainLoadingScene extends LoadingScene {
     public MainLoadingScene() {
+        Music menuMusic = getAssetLoader().loadMusic("menu.mp3");
         Rectangle backGround = new Rectangle(getAppWidth(), getAppHeight(), Color.BLACK);
 
         Text text = getUIFactoryService().newText("loading", Color.WHITE, 80);
@@ -34,5 +38,6 @@ public class MainLoadingScene extends LoadingScene {
         hBox.setTranslateY(getAppHeight() / 2.0);
 
         getContentRoot().getChildren().setAll(backGround, text, hBox);
+        getAudioPlayer().loopMusic(menuMusic);
     }
 }

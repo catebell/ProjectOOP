@@ -8,6 +8,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -39,6 +40,7 @@ public class App extends GameApplication {
     private boolean dx = false;
     private final ArrayList<TimerAction> dialogueQueue = new ArrayList<>();
     List<Boolean> dialogDone = new ArrayList<>(List.of(false,false,false,false));
+    private Music spaceshipMusic;
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
@@ -71,6 +73,7 @@ public class App extends GameApplication {
 
     @Override
     protected void onPreInit() {
+        spaceshipMusic = getAssetLoader().loadMusic("spaceshipAmbience.mp3");
         dialogues = new HashMap<>();
             dialogues.put(1, List.of(
                     "   Good Evening 666.\nPlease, follow my voice.",
@@ -86,10 +89,7 @@ public class App extends GameApplication {
                     "There are two levers down there.", "  You'll need to pull them both."));
             dialogues.put(4, List.of(
                     "Good job. Now, fix this circuit\n   to activate the elevator."));
-        getSettings().setGlobalMusicVolume(0.25);
-
-        //altre impostazioni del genere
-        /* [loop music] loopBGM("BGM_dash_runner.wav");*/
+        getSettings().setGlobalMusicVolume(0.5);
     }
 
     @Override
@@ -100,6 +100,7 @@ public class App extends GameApplication {
         } catch (IOException e) {
             System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHH");
         }
+
         vars.put("Levers",2);
         vars.put("PlayerPosition", new Point2D(0, 0));
         vars.put("PlayerScaleX", 1);
@@ -110,6 +111,7 @@ public class App extends GameApplication {
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new PlatformerFactory());
+        getAudioPlayer().stopAllMusic();
 
         spawn("background");
         endlessVoid = spawn("void");
@@ -274,25 +276,12 @@ public class App extends GameApplication {
         }, KeyCode.T);
     }
 
-
-    /*public void resetLvl() {
-        getGameWorld().getEntitiesByType(App.EntityType.HAL).forEach(FXGL::despawnWithScale);
-        getGameWorld().getEntitiesByType(App.EntityType.LEVER).forEach(FXGL::despawnWithScale);
-        setLevel();
-        flashlight.setVisible(false);
-        endlessVoid.setVisible(true);
-        tutorialOK = false;
-        dialogueQueue.forEach(TimerAction::expire);
-        for(boolean b : dialogDone){
-            dialogDone.set(dialogDone.indexOf(b),false);
-        }
-    }*/
-
     private void setLevel() {
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(905, 595));
         }
         Level level = setLevelFromMap("Cryo.tmx");
+        getAudioPlayer().loopMusic(spaceshipMusic);
         List<Entity> layers = level.getEntities();
         int backgrounds = 0;
         for (Entity E : layers) {
