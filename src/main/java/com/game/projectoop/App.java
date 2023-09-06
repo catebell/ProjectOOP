@@ -282,6 +282,7 @@ public class App extends GameApplication {
         }
         Level level = setLevelFromMap("Cryo.tmx");
         getAudioPlayer().loopMusic(spaceshipMusic);
+
         List<Entity> layers = level.getEntities();
         int backgrounds = 0;
         for (Entity E : layers) {

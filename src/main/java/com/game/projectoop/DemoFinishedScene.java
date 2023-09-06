@@ -15,6 +15,7 @@ public class DemoFinishedScene extends SubScene {
         centerText(text, getAppWidth() / 2.0, getAppHeight() / 2.0);
 
         getContentRoot().getChildren().setAll(backGround, text);
+        getAudioPlayer().stopAllMusic();
     }
 
     public void onDemoFinish() {
