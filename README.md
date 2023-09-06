@@ -1,24 +1,24 @@
 
-![yes](https://github.com/catebell/ProjectOOP/blob/227fd90a7ff33d8ae43f48385267796c8c2a5bf4/Imgs/Title.png)
+![yes](https://github.com/catebell/ProjectOOP/blob/794ae93645383c9ec38cc7ed8bf446a1443727a4/Imgs/Title.png)
 
 A demo of a simple platformer game set in a spaceship
 
 ## Features 
 - Freedom of movement
 
-![Movement](https://github.com/catebell/ProjectOOP/blob/8e24b35734eaec62312116056a8db2606f19afd6/Imgs/Levers.gif)
+![Movement](https://github.com/catebell/ProjectOOP/blob/ed80637b378dc8cf7e2074879ea55edb22a6c032/Imgs/Levers.gif)
 
 - Dynamic interactions
 
-![Dialog](https://github.com/catebell/ProjectOOP/blob/8e24b35734eaec62312116056a8db2606f19afd6/Imgs/Dialogues.gif)
+![Movement](https://github.com/catebell/ProjectOOP/blob/ed80637b378dc8cf7e2074879ea55edb22a6c032/Imgs/Dialogues.gif)
 
 - Puzzle solving
 
-![Movement](https://github.com/catebell/ProjectOOP/blob/8e24b35734eaec62312116056a8db2606f19afd6/Imgs/Minigame.gif)
+![Movement](https://github.com/catebell/ProjectOOP/blob/ed80637b378dc8cf7e2074879ea55edb22a6c032/Imgs/Minigame.gif)
 
 - Immersive atmosphere
 
-![Movement](https://github.com/catebell/ProjectOOP/blob/8e24b35734eaec62312116056a8db2606f19afd6/Imgs/Door.gif)
+![Movement](https://github.com/catebell/ProjectOOP/blob/ed80637b378dc8cf7e2074879ea55edb22a6c032/Imgs/Door.gif)
 
 ---
 ## Requirements
