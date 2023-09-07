@@ -1,6 +1,7 @@
 package com.game.projectoop;
 
 import com.almasb.fxgl.animation.Interpolators;
+import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;

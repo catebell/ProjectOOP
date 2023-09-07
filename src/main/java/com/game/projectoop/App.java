@@ -44,6 +44,8 @@ public class App extends GameApplication {
     private Music spaceshipMusic;
     private Music flashlightOn;
     private Music flashlightOff;
+    private Music flashlightPickUp;
+
 
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
@@ -79,6 +81,7 @@ public class App extends GameApplication {
         spaceshipMusic = getAssetLoader().loadMusic("spaceshipAmbience.mp3");
         flashlightOn = getAssetLoader().loadMusic("flashlight_on.wav");
         flashlightOff = getAssetLoader().loadMusic("flashlight_off.wav");
+        flashlightPickUp = getAssetLoader().loadMusic("pick_up_flashlight.mp3");
 
         dialogues = new HashMap<>();
             dialogues.put(1, List.of(
@@ -249,6 +252,8 @@ public class App extends GameApplication {
             protected void onActionBegin() {
                 getGameWorld().getEntitiesByType(EntityType.USE_PROMPT).stream().filter(prompt -> prompt.hasComponent(CollidableComponent.class) && player.isColliding(prompt)).forEach((prompt) -> {
                     if (prompt.getString("Use").equals("Tutorial") && !tutorialOK) { //only for tutorial actions
+                        getAudioPlayer().playMusic(flashlightPickUp);
+                        runOnce(()->getAudioPlayer().stopMusic(flashlightPickUp),Duration.seconds(1));
                         tutorialOK = true;
                         getEventBus().fireEvent(new InteractionEvent(InteractionEvent.TUTORIAL, Optional.of(prompt)));
                     }
@@ -283,7 +288,7 @@ public class App extends GameApplication {
                     runOnce(()->getAudioPlayer().stopMusic(flashlightOn),Duration.seconds(1));
                 }
             }
-        }, KeyCode.T);
+        }, KeyCode.F);
     }
 
     private void setLevel() {
