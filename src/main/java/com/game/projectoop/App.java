@@ -1,7 +1,6 @@
 package com.game.projectoop;
 
 import com.almasb.fxgl.animation.Interpolators;
-import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
@@ -25,7 +24,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -46,7 +44,6 @@ public class App extends GameApplication {
     private Music flashlightOff;
     private Music flashlightPickUp;
 
-
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
         BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE, MONITOR, USE_SPAWN
@@ -65,6 +62,7 @@ public class App extends GameApplication {
         settings.setFontGame("m5x7.ttf");
         settings.setFontMono("m5x7.ttf");
         settings.setMainMenuEnabled(true);
+
         settings.setSceneFactory(
                 new SceneFactory() {
                     @Override
@@ -120,7 +118,6 @@ public class App extends GameApplication {
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new PlatformerFactory());
-        getAudioPlayer().stopAllMusic();
 
         spawn("background");
         endlessVoid = spawn("void");
@@ -128,6 +125,7 @@ public class App extends GameApplication {
         flashlight.setVisible(false);
         player = null;
         spawn("smoke");
+        getAudioPlayer().stopAllMusic();
         setLevel(); //nextlevel(); [vedi sotto]
         Viewport viewport = getGameScene().getViewport();
         // player must be spawned after call to nextLevel, otherwise player gets removed

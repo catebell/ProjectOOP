@@ -1,5 +1,6 @@
 package com.game.projectoop;
 
+import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
@@ -7,6 +8,7 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
+import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.image;
 
 public class ElevatorComponent extends Component {
@@ -14,6 +16,7 @@ public class ElevatorComponent extends Component {
     private final AnimationChannel animActivation;
     private final AnimationChannel animOpening;
     private final LazyValue<DemoFinishedScene> demoFinishedScene = new LazyValue<>(DemoFinishedScene::new);
+    private Music poweringUpEl = getAssetLoader().loadMusic("poweringUp.mp3");
 
 
     private boolean isON=false;
@@ -35,6 +38,8 @@ public class ElevatorComponent extends Component {
     }
 
     public void activation() {
+        getAudioPlayer().playMusic(poweringUpEl);
+        runOnce(()->getAudioPlayer().stopMusic(poweringUpEl),Duration.seconds(1.25));
         texture.playAnimationChannel(animActivation);
         texture.setOnCycleFinished(() -> isON = true);
     }
