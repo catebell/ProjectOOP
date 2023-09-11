@@ -14,7 +14,6 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class MainLoadingScene extends LoadingScene {
     public MainLoadingScene() {
-        Music menuMusic = getAssetLoader().loadMusic("menu.mp3");
         Rectangle backGround = new Rectangle(getAppWidth(), getAppHeight(), Color.BLACK);
 
         Text text = getUIFactoryService().newText("loading", Color.WHITE, 80);
@@ -38,6 +37,5 @@ public class MainLoadingScene extends LoadingScene {
         hBox.setTranslateY(getAppHeight() / 2.0);
 
         getContentRoot().getChildren().setAll(backGround, text, hBox);
-        getAudioPlayer().loopMusic(menuMusic);
     }
 }

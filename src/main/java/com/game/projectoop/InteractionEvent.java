@@ -33,8 +33,8 @@ public class InteractionEvent extends Event {
 
         if (eventType.equals(MINIGAME)) {
             //call to minigame and passing parameters
-            getMiniGameService().startCircuitBreaker(5, 5, 15, 80, Duration.seconds(0.1), result -> {
-                if (result.isSuccess()) { //[to do] da cambiare
+            getMiniGameService().startCircuitBreaker(3, 3, 20, 100, Duration.seconds(0.1), result -> {
+                if (result.isSuccess()) {
                     despawnWithScale(FXGL.getGameWorld().getSingleton((ent) -> ent.isType(App.EntityType.BUTTON) && ent.isColliding(interactionEnt.get())), Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
                     getGameWorld().getEntitiesByType(BATTERY)
                             .stream()

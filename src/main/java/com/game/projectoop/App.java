@@ -125,7 +125,6 @@ public class App extends GameApplication {
         flashlight.setVisible(false);
         player = null;
         spawn("smoke");
-        getAudioPlayer().stopAllMusic();
         setLevel(); //nextlevel(); [vedi sotto]
         Viewport viewport = getGameScene().getViewport();
         // player must be spawned after call to nextLevel, otherwise player gets removed

@@ -6,8 +6,8 @@
     "activeFile": "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx",
     "expandedProjectPaths": [
         "C:/Users/Daniele Teli/Documents/ProjectOOP/src/main/resources/levels",
-        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels",
+        "C:/Users/Daniele Teli/Documents/Programmazione ad oggetti/ProjectOOP/src/main/resources/assets/levels",
         "."
     ],
     "file.lastUsedOpenFilter": "Tutti i file (*)",
@@ -212,11 +212,11 @@
             "scaleInEditor": 1
         },
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx": {
-            "scale": 1,
-            "selectedLayer": 9,
+            "scale": 3,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 12,
-                "y": 390.5
+                "x": 954.3333333333333,
+                "y": 1252.1666666666665
             }
         },
         "C:/Users/cate1/IdeaProjects/ProjectOOP/src/main/resources/assets/levels/Cryo.tmx#HangingMonitor": {
