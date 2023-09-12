@@ -1,7 +1,6 @@
 package com.game.projectoop;
 
 import com.almasb.fxgl.animation.Interpolators;
-import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
@@ -130,8 +129,6 @@ public class InteractionEvent extends Event {
     }
 
     private void unlockMinigame(){
-        System.out.println("unlocked minigame");
-
         Entity minigame = getGameWorld().getSingleton((entity)->entity.isType(USE_PROMPT) && entity.getString("Use").equals(
                         "Minigame"));
         Entity setters =
@@ -143,7 +140,6 @@ public class InteractionEvent extends Event {
     }
 
     private void unlockExit(){
-        System.out.println("unlocked exit");
         Entity exit = getGameWorld().getSingleton((entity)->entity.isType(USE_PROMPT) && entity.getString("Use").equals(
                 "Elevator"));
         Entity setters =

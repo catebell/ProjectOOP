@@ -23,7 +23,7 @@ public class ElevatorComponent extends Component {
     private boolean isOpen=false;
 
     public ElevatorComponent() {
-        Image image = image("Elevator.png");
+        Image image = image("elevator.png");
 
         animActivation = new AnimationChannel(image, 5, 72, 72, Duration.seconds(1), 0, 4);
         animOpening = new AnimationChannel(image,5,72,72,Duration.seconds(0.5),5,9);

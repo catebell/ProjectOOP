@@ -1,7 +1,6 @@
 package com.game.projectoop;
 
 import com.almasb.fxgl.animation.Interpolators;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.time.TimerAction;
@@ -68,7 +67,6 @@ public class DialogueEvent extends Event {
             queue.add(runOnce(() -> spawnWithScale(dialogueEntity, Duration.seconds(1),
                     Interpolators.ELASTIC.EASE_OUT()), Duration.seconds(time)));
             time += 0.1 * s.toCharArray().length;
-            //System.out.println("length of " + s + " = " + s.toCharArray().length + " time = " + time); //DEBUG
 
             if (dialogues.get(dialNumber).get(dialogues.get(dialNumber).size() - 1).equals(s)) { /*oppure con una deque per avere direttamente last element*/
                 runOnce(() -> despawnWithScale(dialogueEntity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN()), Duration.seconds(time));

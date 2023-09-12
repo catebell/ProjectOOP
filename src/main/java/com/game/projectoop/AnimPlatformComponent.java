@@ -19,7 +19,7 @@ public class AnimPlatformComponent extends Component {
     private final AnimationChannel animActivation;
     private boolean isOn=false;
     private final List<Entity> list=new ArrayList<>();
-    private boolean gotem=false;
+    private boolean activated =false;
     public AnimPlatformComponent() {
         Image image = image("PlatformMovement.png");
 
@@ -35,11 +35,10 @@ public class AnimPlatformComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        if(!gotem){
+        if(!activated){
             list.add(getGameWorld().getClosestEntity(entity,(platform)->platform.isType(App.EntityType.PLATFORM)).get());
             list.get(0).getComponent(PhysicsComponent.class).overwritePosition(new Point2D(-150, -150));
-            gotem=true;
-            System.out.println(list);
+            activated =true;
         }
     }
 

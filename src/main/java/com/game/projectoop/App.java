@@ -28,7 +28,6 @@ import java.util.*;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
-
     private HashMap<Integer, List<String>> dialogues;
     boolean tutorialOK = false;
     private Entity player;
@@ -53,6 +52,7 @@ public class App extends GameApplication {
     protected void initSettings(GameSettings settings) {
         settings.setHeight(720);
         settings.setWidth(1280);
+        settings.setFullScreenFromStart(true);
         settings.setFullScreenAllowed(true);
         settings.setTitle("2023: A Space Pilgrimage");
         settings.setVersion("Alpha-0.5");
@@ -111,7 +111,6 @@ public class App extends GameApplication {
         vars.put("Levers",2);
         vars.put("PlayerPosition", new Point2D(0, 0));
         vars.put("PlayerScaleX", 1);
-        vars.put("level", 1);
         vars.put("dialPlaying",0);
     }
 
@@ -125,7 +124,7 @@ public class App extends GameApplication {
         flashlight.setVisible(false);
         player = null;
         spawn("smoke");
-        setLevel(); //nextlevel(); [vedi sotto]
+        setLevel(); //nextlevel(); [see later]
         Viewport viewport = getGameScene().getViewport();
         // player must be spawned after call to nextLevel, otherwise player gets removed
         // before the update tick _actually_ adds the player to game world
@@ -312,7 +311,7 @@ public class App extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, level.getWidth(), level.getHeight() + 10);
     }
 
-    // for added levels
+    // for added levels yeah...
     /*private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
             showMessage("You finished the demo!");
