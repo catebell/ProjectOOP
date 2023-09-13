@@ -129,10 +129,12 @@ public class App extends GameApplication {
         flashlight.setVisible(false);
         player = null;
         spawn("smoke");
-        setLevel(); //nextlevel(); [see later]
+        setLevel(); //nextLevel()
         Viewport viewport = getGameScene().getViewport();
-        // player must be spawned after call to nextLevel, otherwise player gets removed
-        // before the update tick _actually_ adds the player to game world
+        /*
+        * player must be spawned after call to nextLevel, otherwise player gets removed
+        * before the update tick _actually_ adds the player to game world
+        * */
         player = spawn("player", new Point2D(905, 595));
         set("player", player);
         initMinigame();
@@ -144,10 +146,11 @@ public class App extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        // Initialize game physics and collision handling
-        // The following code handles different user actions (left, right, jump, use, flashlight)
+        /*
+        * Initialize game physics and collision handling
+        * The following code handles different user actions (left, right, jump, use, flashlight)
+        * */
         getPhysicsWorld().setGravity(0, 1000);
-
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.USE_PROMPT, (player, prompt) -> {
             Optional<Entity> spawnU = getGameWorld().getEntitiesByType(EntityType.USE_SPAWN).stream()
                     .filter(spawn -> spawn.getInt("Number")==prompt.getInt("Number"))
