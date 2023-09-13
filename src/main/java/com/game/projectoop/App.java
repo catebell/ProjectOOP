@@ -28,6 +28,7 @@ import java.util.*;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
+    // Define class variables
     private HashMap<Integer, List<String>> dialogues;
     boolean tutorialOK = false;
     private Entity player;
@@ -43,6 +44,7 @@ public class App extends GameApplication {
     private Music flashlightOff;
     private Music flashlightPickUp;
 
+    // Define entity types used in the game
     public enum EntityType {
         PLAYER, PLATFORM, USE_PROMPT, BUTTON, DIALOGUE_PROMPT, DIALOGUE_SPAWN, TEXT, FLASHLIGHT_PROMPT, VOID, FLASHLIGHT, HAL, LEVER,
         BATTERY, PLATFORM_ANIM, LIGHT, ELEVATOR, VISIBLE, NOT_VISIBLE, EXIT, SMOKE, MONITOR, USE_SPAWN
@@ -50,6 +52,7 @@ public class App extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
+        // Configure game settings4
         settings.setHeight(720);
         settings.setWidth(1280);
         settings.setFullScreenFromStart(true);
@@ -76,6 +79,7 @@ public class App extends GameApplication {
 
     @Override
     protected void onPreInit() {
+        // Load game assets and dialogues
         spaceshipMusic = getAssetLoader().loadMusic("spaceshipAmbience.mp3");
         flashlightOn = getAssetLoader().loadMusic("flashlight_on.wav");
         flashlightOff = getAssetLoader().loadMusic("flashlight_off.wav");
@@ -116,6 +120,7 @@ public class App extends GameApplication {
 
     @Override
     protected void initGame() {
+        // Initialize the game world and entities
         getGameWorld().addEntityFactory(new PlatformerFactory());
 
         spawn("background");
@@ -139,6 +144,8 @@ public class App extends GameApplication {
 
     @Override
     protected void initPhysics() {
+        // Initialize game physics and collision handling
+        // The following code handles different user actions (left, right, jump, use, flashlight)
         getPhysicsWorld().setGravity(0, 1000);
 
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.USE_PROMPT, (player, prompt) -> {
@@ -189,6 +196,7 @@ public class App extends GameApplication {
 
     @Override
     protected void initInput() {
+        // Initialize user input handling (movement, actions, etc.)
         //movement to the left
         getInput().addAction(new UserAction("Left") {
             @Override
@@ -288,12 +296,14 @@ public class App extends GameApplication {
     }
 
     private void setLevel() {
+        // Set the game level and configure background layers
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(905, 595));
         }
         Level level = setLevelFromMap("Cryo.tmx");
         getAudioPlayer().loopMusic(spaceshipMusic);
 
+        // Configure background layers
         List<Entity> layers = level.getEntities();
         int backgrounds = 0;
         for (Entity E : layers) {
@@ -324,6 +334,7 @@ public class App extends GameApplication {
     }*/
 
     private void initMinigame(){
+        // Initialize the minigame and its components
        Entity minigame =
                getGameWorld().getSingleton((entity -> entity.isType(EntityType.USE_PROMPT) && entity.getString("Use").equals("Minigame")));
 
@@ -340,6 +351,7 @@ public class App extends GameApplication {
     }
 
     private void initExit(){
+        // Initialize the exit (elevator) and its components
         Entity exit =
                 getGameWorld().getSingleton((entity -> entity.isType(EntityType.USE_PROMPT) && entity.getString("Use").equals("Elevator")));
 
