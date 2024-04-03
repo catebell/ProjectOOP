@@ -36,7 +36,7 @@ Code used:
 - [FXGL](https://github.com/AlmasB/FXGL)
   
 Assets used:
-- Free assets from the site [itch.io](https://www.itch.io)
+- Free assets from [itch.io](https://www.itch.io)
 
 ## Authors
 ---
